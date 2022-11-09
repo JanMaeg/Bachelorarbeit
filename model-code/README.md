@@ -127,5 +127,5 @@ http http://127.0.0.1:8080/predictions/<model_name> output_format=conll tokenize
 ```
 
 
-python split_droc.py --type-system-xml /d/Bachelorarbeit/droc-release/droc/src/main/resources/CorefTypeSystem.xml /d/Bachelorarbeit/droc-release/droc/DROC-xmi data/droc_jan/german.droc_gold_conll
-python preprocess.py --input_dir data/droc_jan --output_dir data/droc_jan --seg_len 128 --language german --tokenizer_name german-nlp-group/electra-base-german-uncased --input_suffix droc_gold_conll --input_format conll-2012 --model_type electracd
+python split_droc.py --type-system-xml /d/Bachelorarbeit/droc-release/droc/src/main/resources/CorefTypeSystem.xml /d/Bachelorarbeit/droc-release/droc/DROC-xmi data/droc_full_length/german.droc_gold_conll
+python preprocess.py --input_dir data/droc_max_length --output_dir data/droc_max_length --seg_len 128 --language german --tokenizer_name german-nlp-group/electra-base-german-uncased --input_suffix droc_gold_conll --input_format conll-2012 --model_type electracd

@@ -99,6 +99,7 @@ class Tensorizer:
         self.stored_info['subtoken_maps'] = {}  # {doc_key: ...}; mapping back to tokens
         self.stored_info['gold'] = {}  # {doc_key: ...}
         self.stored_info['genre_dict'] = {genre: idx for idx, genre in enumerate(config['genres'])}
+        self.stored_info['sentence_map'] = {}
 
     def _tensorize_spans(self, spans):
         if len(spans) > 0:
@@ -123,7 +124,7 @@ class Tensorizer:
                 speaker_dict[speaker] = len(speaker_dict)
         return speaker_dict
 
-    def tensorize_example(self, example, is_training):
+    def tensorize_example(self, example, is_training, is_hybrid=True):
         # Mentions and clusters
         clusters = example['clusters']
         gold_mentions = sorted(tuple(mention) for mention in util.flatten(clusters))
@@ -166,7 +167,8 @@ class Tensorizer:
         doc_key = example['doc_key']
         self.stored_info['subtoken_maps'][doc_key] = example.get('subtoken_map', None)
         self.stored_info['gold'][doc_key] = example['clusters']
-        # self.stored_info['tokens'][doc_key] = example['tokens']
+        self.stored_info['tokens'][doc_key] = example['tokens']
+        self.stored_info['sentence_map'][doc_key] = sentence_map
 
         # Construct example
         genre = self.stored_info['genre_dict'].get(doc_key[:2], 0)
@@ -174,7 +176,7 @@ class Tensorizer:
         example_tensor = (input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, is_training,
                           gold_starts, gold_ends, gold_mention_cluster_map)
 
-        if is_training and len(sentences) > self.config['max_training_sentences']:
+        if (is_hybrid or is_training) and len(sentences) > self.config['max_training_sentences']:
             if self.long_doc_strategy == 'split':
                 out = []
                 for sentence_offset in range(0, len(sentences), self.config['max_training_sentences']):
@@ -182,6 +184,10 @@ class Tensorizer:
                         f'{doc_key}_{sentence_offset}',
                         self.truncate_example(*example_tensor, sentence_offset=sentence_offset)
                     ))
+
+                    self.stored_info['subtoken_maps'][f'{doc_key}_{sentence_offset}'] = example.get('subtoken_map', None)
+                    self.stored_info['gold'][f'{doc_key}_{sentence_offset}'] = example['clusters']
+                    self.stored_info['tokens'][f'{doc_key}_{sentence_offset}'] = example['tokens']
                 return out
             elif self.long_doc_strategy == 'truncate':
                 return [(doc_key, self.truncate_example(*example_tensor))]
@@ -190,7 +196,7 @@ class Tensorizer:
                 max_len = self.config["max_training_sentences"]
                 n = len(sentences)
                 buckets = min(n, (len(sentences) + max_len - 1) // max_len)
-                floor = n // buckets 
+                floor = n // buckets
                 ceiling = floor + 1
                 stepdown = n % buckets
                 offset = 0

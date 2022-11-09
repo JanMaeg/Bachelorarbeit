@@ -282,9 +282,9 @@ def minimize_language(args):
     else:
         tokenizer = BertTokenizer.from_pretrained(args.tokenizer_name)
 
-    minimize_partition('dev', args.input_suffix, args, tokenizer)
+    # minimize_partition('dev', args.input_suffix, args, tokenizer)
     minimize_partition('test', args.input_suffix, args, tokenizer)
-    minimize_partition('train', args.input_suffix, args, tokenizer)
+    # minimize_partition('train', args.input_suffix, args, tokenizer)
 
 
 if __name__ == '__main__':

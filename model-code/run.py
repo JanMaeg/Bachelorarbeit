@@ -52,7 +52,7 @@ class Runner:
             util.set_seed(seed)
 
         # Set up device
-        self.device = torch.device('cpu' if gpu_id is None else f'cuda:{gpu_id}')
+        self.device = torch.device('cpu')
 
         # Set up data
         if not skip_data_loading:
@@ -206,7 +206,7 @@ class Runner:
         tb_writer.close()
         return loss_history
 
-    def evaluate(self, model, tensor_examples, stored_info, step, official=False, conll_path=None, tb_writer=None, out_file=None):
+    def evaluate(self, model, tensor_examples, stored_info, step, official=False, conll_path=None, tb_writer=None, out_file=None, hybrid=False):
         logger.info('Step %d: evaluating on %d samples...' % (step, len(tensor_examples)))
         model.to(self.device)
         evaluator = CorefEvaluator()
@@ -243,6 +243,9 @@ class Runner:
             logger.info('%s: %.2f' % (name, score))
             if tb_writer:
                 tb_writer.add_scalar(name, score, step)
+
+        if hybrid:
+            return doc_to_prediction
 
         if official:
             conll_results = conll.evaluate_conll(

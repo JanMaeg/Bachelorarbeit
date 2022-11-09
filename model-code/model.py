@@ -23,7 +23,7 @@ class CorefModel(nn.Module):
     def __init__(self, config, device, num_genres=None):
         super().__init__()
         self.config = config
-        self.eval_only = False
+        self.eval_only = True
         self.device = device
 
         self.num_genres = num_genres if num_genres else len(config['genres'])
