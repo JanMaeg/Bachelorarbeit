@@ -8,3 +8,8 @@ droc-release/droc
 model-code/data
 model-code/venv
 model-code/logs
+*.bin
+visualization/node_modules
+coref.zip
+model-code/droc_c2f_test1
+venv
