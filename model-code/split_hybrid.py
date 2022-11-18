@@ -2,7 +2,9 @@ import util
 import json
 from os.path import join
 import numpy as np
+import logging
 
+logger = logging.getLogger(__name__)
 
 def filter_cluster(clusters, start_index, end_index, normalize=False):
     final_clusters = []
@@ -22,6 +24,7 @@ def filter_cluster(clusters, start_index, end_index, normalize=False):
 
 
 def split_document(samples, max_length=400):
+    logger.info(f"Splitting documents into segment of length of around {max_length} subtokens.")
     splitted_documents = []
 
     for sample in samples:
@@ -64,7 +67,7 @@ def split_document(samples, max_length=400):
                 split_tokens = sample["tokens"][first_token_index: last_token_index + 1]
                 total_token_count += len(split_tokens)
 
-                document_key = f"{sample['doc_key']}_{split_index}"
+                document_key = f"{sample['doc_key']}#{split_index}"
 
                 split_sample[document_key] = {
                     "tokens": split_tokens,
@@ -76,7 +79,8 @@ def split_document(samples, max_length=400):
                     "clusters_org": filter_cluster(sample["clusters"], sub_token_index, end_index),
                     "clusters": filter_cluster(sample["clusters"], sub_token_index, end_index, True),
                     "start_index": sub_token_index,
-                    "end_index": end_index
+                    "end_index": end_index,
+                    "doc_key": document_key
                 }
 
                 # Proof that we match the correct speakers list o the sentences. I don't matter because
@@ -96,6 +100,7 @@ def split_document(samples, max_length=400):
         assert total_token_count == len(sample["tokens"])
 
         splitted_documents.append(split_sample)
+        logger.info(f"Splitted document {sample['doc_key']} into {len(split_sample)} segments")
 
     return splitted_documents
 
@@ -112,7 +117,12 @@ def get_clusters_for_subtoken_index(clusters, subtoken_index):
     return cluster_ids
 
 
-def dump_to_file(documents, config):
+def dump_to_file(documents, config, merged_clusters=None, file_name='hybrid_split.json'):
+    if merged_clusters is None:
+        logger.info(f"Dump raw split into file {file_name}")
+    else:
+        logger.info(f"Dump merged predictions of first document into file {file_name}")
+
     # We only dump the first document. More is not needed for a preview
     doc = documents[0]
 
@@ -129,11 +139,17 @@ def dump_to_file(documents, config):
             if sentence_index >= len(sentences):
                 sentences.append([])
 
-            sentences[sentence_index].append({
+            sub_token_index = index + doc[doc_key]['start_index'] if merged_clusters is not None else index
+
+            token_merged_clusters = get_clusters_for_subtoken_index(merged_clusters, sub_token_index) if merged_clusters is not None else []
+
+            word = {
+                "sub_token_index": sub_token_index,
                 "word": doc[doc_key]["tokens"][token_index],
                 "clusters": get_clusters_for_subtoken_index(doc[doc_key]["clusters"], index),
-                "merged_clusters": []
-            })
+                "merged_clusters": token_merged_clusters
+            }
+            sentences[sentence_index].append(word)
 
             last_index = token_index
 
@@ -141,7 +157,7 @@ def dump_to_file(documents, config):
             "sentences": sentences
         }
 
-    output_path = join(config['data_dir'], f'hybrid_split.json')
+    output_path = join(config['data_dir'], file_name)
     dump_file = open(output_path, "w")
     dump_file.write(json.dumps(dump))
     dump_file.close()

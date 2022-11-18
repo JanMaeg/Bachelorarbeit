@@ -7,6 +7,7 @@ import data from "./data/test.german.512.json"
 import hybridData from "./data/hybrid.german.128.json"
 import hybridExcludedData from "./data/hybrid.german.128.ex.json"
 import splitGoldData from "./data/hybrid_split.json"
+import hybridExcluded2Data from "./data/2_hybrid.german.128.ex.json"
 
 
 const PUNCTUATIONS = [",", ";", "!", ".", "?", ":"]
@@ -227,8 +228,9 @@ function App() {
 
                 <Result data={resultSentences} />
                 */}
-                <Result data={goldSentences} />
+
                 <Result data={excludeTokens ? hybridExcludedData : hybridData} hybrid showMergedClusters={showMergedClusters} showBoundaries={showBoundaries} />
+                <Result data={excludeTokens ? hybridExcluded2Data : hybridData} hybrid showMergedClusters={showMergedClusters} showBoundaries={showBoundaries} />
                 <Result data={splitGoldData} hybrid showBoundaries={showBoundaries}  />
             </div>
         </div>

@@ -13,6 +13,22 @@ import torch
 logger = logging.getLogger(__name__)
 
 
+def convert_to_torch_tensor(input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map,
+                            is_training, gold_starts, gold_ends, gold_mention_cluster_map):
+    input_ids = torch.tensor(input_ids, dtype=torch.long)
+    input_mask = torch.tensor(input_mask, dtype=torch.long)
+    speaker_ids = torch.tensor(speaker_ids, dtype=torch.long)
+    sentence_len = torch.tensor(sentence_len, dtype=torch.long)
+    genre = torch.tensor(genre, dtype=torch.long)
+    sentence_map = torch.tensor(sentence_map, dtype=torch.long)
+    is_training = torch.tensor(is_training, dtype=torch.bool)
+    gold_starts = torch.tensor(gold_starts, dtype=torch.long)
+    gold_ends = torch.tensor(gold_ends, dtype=torch.long)
+    gold_mention_cluster_map = torch.tensor(gold_mention_cluster_map, dtype=torch.long)
+    return input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, \
+           is_training, gold_starts, gold_ends, gold_mention_cluster_map,
+
+
 class CorefDataProcessor:
     def __init__(self, config, language='english'):
         self.config = config
@@ -50,27 +66,11 @@ class CorefDataProcessor:
                     *(tensorizer.tensorize_example(sample, is_training) for sample in samples)
                 )
                 tensor_samples = list(tensor_samples)
-                self.tensor_samples[split] = [(doc_key, self.convert_to_torch_tensor(*tensor)) for doc_key, tensor in tensor_samples]
+                self.tensor_samples[split] = [(doc_key, convert_to_torch_tensor(*tensor)) for doc_key, tensor in tensor_samples]
             self.stored_info = tensorizer.stored_info
             # Cache tensorized samples
             with open(cache_path, 'wb') as f:
                 pickle.dump((self.tensor_samples, self.stored_info), f)
-
-    @classmethod
-    def convert_to_torch_tensor(cls, input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map,
-                                is_training, gold_starts, gold_ends, gold_mention_cluster_map):
-        input_ids = torch.tensor(input_ids, dtype=torch.long)
-        input_mask = torch.tensor(input_mask, dtype=torch.long)
-        speaker_ids = torch.tensor(speaker_ids, dtype=torch.long)
-        sentence_len = torch.tensor(sentence_len, dtype=torch.long)
-        genre = torch.tensor(genre, dtype=torch.long)
-        sentence_map = torch.tensor(sentence_map, dtype=torch.long)
-        is_training = torch.tensor(is_training, dtype=torch.bool)
-        gold_starts = torch.tensor(gold_starts, dtype=torch.long)
-        gold_ends = torch.tensor(gold_ends, dtype=torch.long)
-        gold_mention_cluster_map = torch.tensor(gold_mention_cluster_map, dtype=torch.long)
-        return input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, \
-               is_training, gold_starts, gold_ends, gold_mention_cluster_map,
 
     def get_tensor_examples(self):
         # For each split, return list of tensorized samples to allow variable length input (batch size = 1)
