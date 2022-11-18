@@ -12,4 +12,5 @@ model-code/logs
 visualization/node_modules
 coref.zip
 model-code/droc_c2f_test1
+model-code/local.conf
 venv
