@@ -11,6 +11,7 @@ import json
 import itertools
 import logging
 import numpy as np
+from metrics import CorefEvaluator
 
 logger = logging.getLogger(__name__)
 
@@ -199,6 +200,13 @@ def merge_by_string_matching(documents):
     return merged_clusters
 
 
+def update_evaluator(predicted_clusters, mention_to_cluster_id, gold_clusters, evaluator):
+    mention_to_predicted = {m: predicted_clusters[cluster_idx] for m, cluster_idx in mention_to_cluster_id.items()}
+    gold_clusters = [tuple(tuple(m) for m in cluster) for cluster in gold_clusters]
+    mention_to_gold = {m: cluster for cluster in gold_clusters for m in cluster}
+    evaluator.update(predicted_clusters, gold_clusters, mention_to_predicted, mention_to_gold)
+
+
 def evaluate(config_name, gpu_id, saved_suffix, out_file):
     config = util.initialize_config(config_name, create_dirs=False)
     runner = Runner(config_name, gpu_id, skip_data_loading=True)
@@ -217,6 +225,27 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     enriched_documents = cluster_indices_to_tokens(enriched_documents)
 
     merged_clusters = merge_by_string_matching(enriched_documents)
+
+    evaluator = CorefEvaluator()
+
+    for doc_index, document in enumerate(enriched_documents):
+        document_clusters = merged_clusters[doc_index]['indices']
+
+        gold_clusters = documents[doc_index]['clusters']
+        predicted_clusters = []
+        mention_to_cluster_id = {}
+
+        for cluster_index, cluster in enumerate(document_clusters):
+            predicted_clusters.append(tuple(tuple(m) for m in cluster))
+            for mention in cluster:
+                mention_to_cluster_id[tuple(mention)] = cluster_index
+
+        update_evaluator(predicted_clusters, mention_to_cluster_id, gold_clusters, evaluator)
+
+    p, r, f = evaluator.get_prf()
+    metrics = {'Merge_Avg_Precision': p * 100, 'Merge_Avg_Recall': r * 100, 'Merge_Avg_F1': f * 100}
+    for name, score in metrics.items():
+        logger.info('%s: %.2f' % (name, score))
 
     exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
     dump_to_file(enriched_documents, config, merged_clusters[0]['indices'],
