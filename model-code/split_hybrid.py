@@ -6,6 +6,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def filter_cluster(clusters, start_index, end_index, normalize=False):
     final_clusters = []
 
@@ -124,38 +125,99 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='hybrid_spli
         logger.info(f"Dump merged predictions of first document into file {file_name}")
 
     # We only dump the first document. More is not needed for a preview
-    doc = documents[0]
-
     dump = {}
 
-    for doc_key in doc:
-        last_index = -1
-        sentences = []
-        for index, token_index in enumerate(doc[doc_key]["subtoken_map"]):
-            if token_index == last_index:
-                continue
+    # const
+    # testData = {
+    #     sentences: [
+    #                    {
+    #                        tokens: ["asd", "test", "zwischen", "drei", "vier", "fünf", "sechs", "."],
+    #                        subtoken_map: [0, 0, 1, 2, 3, 3, 4, 5, 6, 7],
+    #                        clusters: [
+    #                            [
+    #                                [0, 1], // "asd"
+    #                        ],
+    #                        [[4, 6]], // "drei vier"
+    # ],
+    # },
+    # ],
+    # };
 
-            sentence_index = doc[doc_key]["sentence_map"][index]
-            if sentence_index >= len(sentences):
-                sentences.append([])
+    sentences = []
+    sentences_count = 0
+    split_index = 0
 
-            sub_token_index = index + doc[doc_key]['start_index'] if merged_clusters is not None else index
+    # clusters = []
 
-            token_merged_clusters = get_clusters_for_subtoken_index(merged_clusters, sub_token_index) if merged_clusters is not None else []
+    for (doc_key, doc) in documents[0].items():
+        sub_token_index = 0
+        last_sentence_index = -1
+        last_token_index = -1
+        token_offset = 0
 
-            word = {
-                "sub_token_index": sub_token_index,
-                "word": doc[doc_key]["tokens"][token_index],
-                "clusters": get_clusters_for_subtoken_index(doc[doc_key]["clusters"], index),
-                "merged_clusters": token_merged_clusters
-            }
-            sentences[sentence_index].append(word)
+        # clusters.append(doc['clusters_org'])
 
-            last_index = token_index
+        while sub_token_index < len(doc['sentence_map']) - 1:
+            sentence_index = doc['sentence_map'][sub_token_index] + sentences_count
+            token_index = doc['subtoken_map'][sub_token_index]
 
-        dump[doc_key] = {
-            "sentences": sentences
-        }
+            # We are at a new sentence
+            if last_sentence_index != sentence_index:
+                token_offset = doc['subtoken_map'][sub_token_index]
+
+                sentences.append({
+                    "subtoken_map": [],
+                    "tokens": [],
+                    "split_index": split_index,
+                    "start_sub_token_index": doc['start_index'] + sub_token_index
+                })
+
+            if token_index != last_token_index:
+                sentences[sentence_index]['tokens'].append(
+                    doc['tokens'][token_index]
+                )
+
+            sentences[sentence_index]['subtoken_map'].append(
+                doc['subtoken_map'][sub_token_index] - token_offset)
+
+            last_token_index = token_index
+            last_sentence_index = sentence_index
+            sub_token_index += 1
+
+        sentences_count = len(sentences)
+        split_index += 1
+
+        # last_index = -1
+        # sentences = []
+        # for index, token_index in enumerate(doc[doc_key]["subtoken_map"]):
+        #     if token_index == last_index:
+        #         continue
+        #
+        #     sentence_index = doc[doc_key]["sentence_map"][index]
+        #     if sentence_index >= len(sentences):
+        #         sentences.append([])
+        #
+        #     sub_token_index = index + doc[doc_key]['start_index'] if merged_clusters is not None else index
+        #
+        #     token_merged_clusters = get_clusters_for_subtoken_index(merged_clusters,
+        #                                                             sub_token_index) if merged_clusters is not None else []
+        #
+        #     word = {
+        #         "sub_token_index": sub_token_index,
+        #         "word": doc[doc_key]["tokens"][token_index],
+        #         "clusters": get_clusters_for_subtoken_index(doc[doc_key]["clusters"], index),
+        #         "merged_clusters": token_merged_clusters
+        #     }
+        #     sentences[sentence_index].append(word)
+        #
+        #     last_index = token_index
+        #
+        # dump[doc_key] = {
+        #     "sentences": sentences
+        # }
+
+    dump['sentences'] = sentences
+    dump['clusters'] = merged_clusters
 
     output_path = join(config['data_dir'], file_name)
     dump_file = open(output_path, "w")
@@ -173,9 +235,10 @@ def main():
     path = join(config['data_dir'], f'test.{language}.{max_seg_len}.jsonlines')
 
     with open(path, 'r') as f:
-        splitted_documents = split_document([json.loads(line) for line in f.readlines()], 400)
+        documents = [json.loads(line) for line in f.readlines()]
+        splitted_documents = split_document(documents, 400)
 
-        dump_to_file(splitted_documents, config)
+        dump_to_file(splitted_documents, config, merged_clusters=documents[0]['clusters'])
 
 
 if __name__ == "__main__":
