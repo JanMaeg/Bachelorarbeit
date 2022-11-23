@@ -12,6 +12,9 @@ interface SentenceProps {
 const PUNCTUATIONS = [",", ".", "!", "?", ":"];
 
 const Sentence = ({ sentence, start = false }: SentenceProps) => {
+  if (!sentence)
+    return <div></div>
+
   const elements = [];
 
   let previousClusterIndex = null;

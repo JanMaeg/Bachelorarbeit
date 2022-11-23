@@ -24,8 +24,11 @@ def filter_cluster(clusters, start_index, end_index, normalize=False):
     return final_clusters
 
 
-def split_document(samples, max_length=400):
+def split_document(samples, max_length=400, overlapping=True):
     logger.info(f"Splitting documents into segment of length of around {max_length} subtokens.")
+    if overlapping:
+        logger.info(f"Documents will overlap.")
+
     splitted_documents = []
 
     for sample in samples:
@@ -37,17 +40,20 @@ def split_document(samples, max_length=400):
         total_token_count = 0
         total_split_sub_token_count = 0
         start_sentence_index = 0  # The index of the sentence where the current split starts
-        current_sentence_index = 0  # The index of the sentence we currently analyze
         split_index = 0
 
-        for sentence in sample['sentences']:
+        sentence_index = 0
+        overlapping_sub_token_count = 0
+
+        while sentence_index < len(sample['sentences']):
+            sentence = sample['sentences'][sentence_index]
+
             token_count += len(sentence)
             split_sentences.append(sentence)
             total_sub_token_count += len(sentence)
-            current_sentence_index += 1
 
             # At this point we have enough sub-tokens in our current set, so we split at this point.
-            if token_count > max_length:
+            if token_count > max_length or sentence_index == len(sample['sentences']) - 1:
                 end_index = sub_token_index + token_count - 1
                 split_subtokens = sample['subtoken_map'][sub_token_index: end_index + 1]
 
@@ -75,30 +81,49 @@ def split_document(samples, max_length=400):
                     "sentences": split_sentences,
                     "subtoken_map": (np.array(split_subtokens) - split_subtokens[0]).tolist(),
                     "subtoken_map_org": split_subtokens,
-                    "speakers": sample["speakers"][start_sentence_index: current_sentence_index],
+                    "speakers": sample["speakers"][start_sentence_index: sentence_index + 1],
                     "sentence_map": (np.array(split_sentence_map) - split_sentence_map[0]).tolist(),
+                    "sentence_map_org": split_sentence_map,
                     "clusters_org": filter_cluster(sample["clusters"], sub_token_index, end_index),
                     "clusters": filter_cluster(sample["clusters"], sub_token_index, end_index, True),
                     "start_index": sub_token_index,
                     "end_index": end_index,
-                    "doc_key": document_key
+                    "doc_key": document_key,
                 }
 
                 # Proof that we match the correct speakers list o the sentences. I don't matter because
                 # we don't have any speaker information for the datasets.
-                assert len(split_sample[document_key]["speakers"][-1]) == len(
-                    split_sample[document_key]["sentences"][-1])
+                if len(split_sample[document_key]["speakers"]) > 1:
+                    assert len(split_sample[document_key]["speakers"][-1]) == len(
+                        split_sample[document_key]["sentences"][-1])
 
                 # Reset the variables for a new split set
                 token_count = 0
                 split_sentences = []
                 sub_token_index = end_index + 1
-                start_sentence_index = current_sentence_index
+                start_sentence_index = sentence_index + 1
                 split_index += 1
 
-        assert total_split_sub_token_count == total_sub_token_count
-        assert total_split_sub_token_count == len(sample['sentence_map'])
-        assert total_token_count == len(sample["tokens"])
+                if overlapping and sentence_index != len(sample['sentences']) - 1:
+                    # We want to overlap with 2 sentences so instead of increasing by 1, we decrease by 1.
+                    # This resets the counter in total by 2
+                    sentence_index -= 1
+
+                    # Reset the sub_token_index by the token count of the last 2 sentences because we want to add
+                    # them again
+                    overlapping_sub_token_count = len(sample['sentences'][sentence_index])
+                    overlapping_sub_token_count += len(sample['sentences'][sentence_index + 1])
+
+                    sub_token_index -= overlapping_sub_token_count
+                else:
+                    sentence_index += 1
+            else:
+                sentence_index += 1
+
+        if not overlapping:
+            assert total_split_sub_token_count == total_sub_token_count
+            assert total_split_sub_token_count == len(sample['sentence_map'])
+            assert total_token_count == len(sample["tokens"])
 
         splitted_documents.append(split_sample)
         logger.info(f"Splitted document {sample['doc_key']} into {len(split_sample)} segments")
@@ -118,7 +143,8 @@ def get_clusters_for_subtoken_index(clusters, subtoken_index):
     return cluster_ids
 
 
-def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.json', predictions = False):
+def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.json', predictions=False,
+                 overlapping=False):
     if merged_clusters is not None:
         logger.info(f"Dump merged predictions of first document into file {file_name}")
     if predictions:
@@ -135,21 +161,36 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.
 
     split_ends = []
 
+    skip_sentences_until = -1
+
     for doc_key in doc:
         last_index = -1
+        skipped_sentences = 0 if skip_sentences_until == - 1 else skip_sentences_until - \
+                                                                  doc[doc_key]["sentence_map_org"][0] + 1
+        last_skipped_index = 0
 
         for index, token_index in enumerate(doc[doc_key]["subtoken_map"]):
+            if overlapping and skipped_sentences > -1 and doc[doc_key]["sentence_map"][index] <= skipped_sentences - 1:
+                last_skipped_index = index
+                continue
+
+            if overlapping and skip_sentences_until > -1 and (
+                    last_skipped_index + 1 == index or last_skipped_index + 2 == index):
+                continue
+
             if token_index == last_index:
                 continue
 
             sentence_index = count_last_doc_sentences + doc[doc_key]["sentence_map"][index]
+            if overlapping and skipped_sentences > 0:
+                sentence_index -= skipped_sentences
             if sentence_index >= len(sentences):
                 sentences.append([])
 
             sub_token_index = index + doc[doc_key]['start_index'] if merged_clusters is not None else index
             clusters_key = "clusters" if not predictions else "predictions"
 
-            clusters = get_clusters_for_subtoken_index(merged_clusters, sub_token_index) if merged_clusters is not None\
+            clusters = get_clusters_for_subtoken_index(merged_clusters, sub_token_index) if merged_clusters is not None \
                 else get_clusters_for_subtoken_index(doc[doc_key][clusters_key], index)
 
             word = {
@@ -161,12 +202,14 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.
 
             last_index = token_index
 
+        skip_sentences_until = doc[doc_key]["sentence_map_org"][-2]
         count_last_doc_sentences = len(sentences)
         split_ends.append(count_last_doc_sentences)
 
     dump["sentences"] = sentences
     dump["split_ends"] = split_ends
-    output_path = join(config['data_dir'], file_name)
+    # output_path = join(config['data_dir'], file_name)
+    output_path = join('/Users/jan/Documents/Studium/Bachelorarbeit/repository/visualization/src/data', file_name)
     dump_file = open(output_path, "w")
     dump_file.write(json.dumps(dump))
     dump_file.close()
@@ -174,6 +217,7 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.
 
 def main():
     config_name = "droc_test"
+    overlapping = True
 
     config = util.initialize_config(config_name, create_dirs=False)
 
@@ -183,9 +227,12 @@ def main():
 
     with open(path, 'r') as f:
         documents = [json.loads(line) for line in f.readlines()]
-        splitted_documents = split_document(documents, 400)
+        splitted_documents = split_document(documents, 400, overlapping=overlapping)
 
-        dump_to_file(splitted_documents, config)
+        if overlapping:
+            dump_to_file(splitted_documents, config, file_name='gold_split_overlapping.json', overlapping=True)
+        else:
+            dump_to_file(splitted_documents, config, file_name='gold_split.json')
 
 
 if __name__ == "__main__":
