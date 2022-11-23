@@ -248,8 +248,11 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
         logger.info('%s: %.2f' % (name, score))
 
     exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
+    dump_to_file(enriched_documents, config, None,
+                 f'predicted.{language}.{max_seg_len}{exclude_token_suffix}.json', True)
+
     dump_to_file(enriched_documents, config, merged_clusters[0]['indices'],
-                 f'hybrid.{language}.{max_seg_len}{exclude_token_suffix}.json')
+                 f'merged.{language}.{max_seg_len}{exclude_token_suffix}.json')
 
 
 def main():

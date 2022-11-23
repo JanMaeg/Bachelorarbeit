@@ -1,32 +1,25 @@
+import csx from "classnames";
+
 interface SentenceProps {
   sentence: {
-    subtoken_map: number[];
-    tokens: string[];
-    split_index: number;
-    start_sub_token_index: number;
-  };
-  clusters: number[][][];
+    sub_token_index: number;
+    word: string;
+    clusters: number[];
+  }[];
+  start?: boolean;
 }
 
-const PUNCTUATIONS = [",", ".", "!", "?"];
+const PUNCTUATIONS = [",", ".", "!", "?", ":"];
 
-const Sentence = ({ sentence, clusters }: SentenceProps) => {
+const Sentence = ({ sentence, start = false }: SentenceProps) => {
   const elements = [];
 
-  let previousTokenIndex = -1;
   let previousClusterIndex = null;
   let currentCluster: string[] = [];
-  for (let i = 0; i < sentence.subtoken_map.length; i++) {
-    const currentClusterIndex = clusters.findIndex((cluster) => {
-      const filteredCluster = cluster.filter(
-        (span) =>
-          i + sentence.start_sub_token_index >= span[0] &&
-          i + sentence.start_sub_token_index <= span[1]
-      );
-      return filteredCluster.length > 0;
-    });
+  for (let i = 0; i < sentence.length; i++) {
+    const token = sentence[i];
 
-    const tokenIndex = sentence.subtoken_map[i];
+    const currentClusterIndex = token.clusters.length ? token.clusters[0] : -1;
 
     if (
       previousClusterIndex != null &&
@@ -48,12 +41,9 @@ const Sentence = ({ sentence, clusters }: SentenceProps) => {
     }
 
     if (currentClusterIndex !== -1) {
-      if (previousTokenIndex !== tokenIndex) {
-        currentCluster.push(sentence.tokens[tokenIndex]);
-        currentCluster.push(i + sentence.start_sub_token_index);
-      }
+      currentCluster.push(token.word);
 
-      if (i == sentence.subtoken_map.length - 1) {
+      if (i == sentence.length - 1) {
         elements.push(
           <span
             className={`cluster-view__cluster cluster-view__cluster--${previousClusterIndex}`}
@@ -67,24 +57,23 @@ const Sentence = ({ sentence, clusters }: SentenceProps) => {
         );
       }
     } else {
-      if (previousTokenIndex !== tokenIndex) {
-        elements.push(sentence.tokens[tokenIndex]);
-        elements.push(i + sentence.start_sub_token_index);
-
-        if (
-          tokenIndex !== sentence.tokens.length - 1 &&
-          !PUNCTUATIONS.includes(sentence.tokens[tokenIndex + 1])
-        )
-          elements.push(" ");
-      }
+      elements.push(token.word);
+      if (
+        i !== sentence.length - 1 &&
+        !PUNCTUATIONS.includes(sentence[i + 1].word)
+      )
+        elements.push(" ");
     }
 
     previousClusterIndex = currentClusterIndex;
-    previousTokenIndex = tokenIndex;
   }
 
   return (
-    <div className="cluster-view__sentence">
+    <div
+      className={csx("cluster-view__sentence", {
+        "cluster-view__sentence--start": start,
+      })}
+    >
       <p>{elements}</p>
     </div>
   );

@@ -24,10 +24,17 @@ body {
     min-height: 100vh;
 }
 
+.cluster-view__headline,
 .cluster-view__row {
     display: grid;
     grid-template-columns: 50px minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
     font-family: monospace;
+}
+
+.cluster-view__headline {
+    background: RGBA(0, 0, 0, 0.64);
+    color: white;
+    text-align: center;
 }
 
 .cluster-view__row:nth-of-type(2n) .cluster-view__sentence {
@@ -36,10 +43,16 @@ body {
 
 .cluster-view__sentence {
     padding: 0 10px;
+    border-right: 1px solid RGBA(0, 0, 0, 0.64);
 }
 
-.cluster-view__sentence:nth-of-type(3) {
-    background-color: rgba(0, 0, 0, 0.06)
+.cluster-view__sentence--start {
+    padding: 0 10px;
+    border-top: 1px solid RGBA(0, 0, 0, 0.64);
+}
+
+p {
+    font-size: 11px;
 }
 
 .cluster-view__index {
