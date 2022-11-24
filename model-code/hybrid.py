@@ -21,7 +21,7 @@ def get_documents_with_predictions(documents, config, runner, model, out_file):
     language = config['language']
     max_seg_len = config['max_segment_len']
 
-    splitted_documents = split_document(documents)
+    splitted_documents = split_document(documents, overlapping=False)
 
     # To evaluate multiple documents with one call to the evaluate function we have change the structure of data
     # object. Our splitting function returns an array of dictionaries, where every split has an own key in the

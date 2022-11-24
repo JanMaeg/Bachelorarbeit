@@ -160,10 +160,12 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.
     count_last_doc_sentences = 0
 
     split_ends = []
+    split_starts = []
 
     skip_sentences_until = -1
 
     for doc_key in doc:
+        split_starts.append(doc[doc_key]["sentence_map_org"][0])
         last_index = -1
         skipped_sentences = 0 if skip_sentences_until == - 1 else skip_sentences_until - \
                                                                   doc[doc_key]["sentence_map_org"][0] + 1
@@ -208,6 +210,7 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.
 
     dump["sentences"] = sentences
     dump["split_ends"] = split_ends
+    dump["split_starts"] = split_starts
     # output_path = join(config['data_dir'], file_name)
     output_path = join('/Users/jan/Documents/Studium/Bachelorarbeit/repository/visualization/src/data', file_name)
     dump_file = open(output_path, "w")

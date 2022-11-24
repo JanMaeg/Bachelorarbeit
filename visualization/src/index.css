@@ -13,7 +13,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+}
+
+#root {
     width: 100%;
+    min-height: 100vh;
 }
 
 body {
@@ -37,6 +41,10 @@ body {
     text-align: center;
 }
 
+.cluster-view__headline--down {
+    margin-top: 40px;
+}
+
 .cluster-view__row:nth-of-type(2n) .cluster-view__sentence {
     background-color: rgba(0, 0, 0, 0.06);
 }
@@ -49,6 +57,10 @@ body {
 .cluster-view__sentence--start {
     padding: 0 10px;
     border-top: 1px solid RGBA(0, 0, 0, 0.64);
+}
+
+.cluster-view__sentence--overlapping {
+    background-color: red !important;
 }
 
 p {
@@ -189,4 +201,8 @@ p {
 .cluster-view__cluster--27 {
     background-color: #521B41;
     color: white;
+}
+
+.home {
+    padding: 20px;
 }

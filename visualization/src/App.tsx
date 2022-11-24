@@ -1,20 +1,40 @@
-import ClusterView from "./components/ClusterView/ClusterView";
+import {
+  Outlet,
+  RouterProvider,
+  createReactRouter,
+  createRouteConfig,
+} from "@tanstack/react-router";
 
-import goldSplitData from "./data/gold_split.json";
-import predictedData from "./data/predicted.german.128.json";
-import mergedData from "./data/merged.german.128.json";
+import StringMatch from "./views/StringMatch";
 
 import "./App.css";
+import Home from "./views/Home";
+import WindowMerge from "./views/WindowMerge";
+
+const routeConfig = createRouteConfig().createChildren((createRoute) => [
+  createRoute({
+    path: "/",
+    component: Home,
+  }),
+  createRoute({
+    path: "/string-match",
+    component: StringMatch,
+  }),
+  createRoute({
+    path: "/window-merge",
+    component: WindowMerge,
+  }),
+]);
+
+const router = createReactRouter({ routeConfig });
 
 function App() {
   return (
-    <div className="App">
-      <ClusterView
-        goldData={goldSplitData}
-        predictedData={predictedData}
-        mergedData={mergedData}
-      />
-    </div>
+    <RouterProvider router={router}>
+      <div className="App">
+        <Outlet />
+      </div>
+    </RouterProvider>
   );
 }
 

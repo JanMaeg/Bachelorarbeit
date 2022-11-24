@@ -7,13 +7,17 @@ interface SentenceProps {
     clusters: number[];
   }[];
   start?: boolean;
+  overlapping?: boolean;
 }
 
 const PUNCTUATIONS = [",", ".", "!", "?", ":"];
 
-const Sentence = ({ sentence, start = false }: SentenceProps) => {
-  if (!sentence)
-    return <div></div>
+const Sentence = ({
+  sentence,
+  start = false,
+  overlapping = false,
+}: SentenceProps) => {
+  if (!sentence) return <div></div>;
 
   const elements = [];
 
@@ -75,6 +79,7 @@ const Sentence = ({ sentence, start = false }: SentenceProps) => {
     <div
       className={csx("cluster-view__sentence", {
         "cluster-view__sentence--start": start,
+        "cluster-view__sentence--overlapping": overlapping,
       })}
     >
       <p>{elements}</p>
