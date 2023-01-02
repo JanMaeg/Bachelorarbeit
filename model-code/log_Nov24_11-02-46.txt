@@ -1,0 +1,151 @@
+Log file path: /Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test/log_Nov24_11-02-46.txt
+Loaded model from /Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test/model_droc_c2f_May12_17-38-53_1800.bin
+Splitting documents into segment of length of around 400 subtokens.
+Splitted document Ahlefeld,-Charlotte-von__Erna_72 into 18 segments
+Splitted document Anonym__Schwester_Monika_73 into 16 segments
+Splitted document Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_74 into 11 segments
+Splitted document Aston,-Louise__Revolution_und_Contrerevolution_75 into 12 segments
+Splitted document Auerbach,-Berthold__Der_Lehnhold_76 into 24 segments
+Splitted document Balzac,-Honoré-de__Vater_Goriot_77 into 10 segments
+Splitted document Bierbaum,-Otto-Julius__Stilpe_78 into 8 segments
+Splitted document Bruckbräu,-Friedrich-Wilhelm__Mittheilungen_aus_den_geheimen_Memoiren_einer_deutschen_Sängerin_79 into 12 segments
+Splitted document Duncker,-Dora__Großstadt_80 into 10 segments
+Splitted document Fischer,-Caroline-Auguste__Gustavs_Verirrungen_81 into 6 segments
+Splitted document Fontane,-Theodor__Quitt_82 into 12 segments
+Splitted document Fontane,-Theodor__Stine_83 into 9 segments
+Splitted document Franzos,-Karl-Emil__Der_Pojaz_84 into 13 segments
+Splitted document Klabund__Bracke_85 into 6 segments
+Splitted document May,-Karl__Auf_fremden_Pfaden_86 into 7 segments
+Splitted document Pichler,-Karoline__Agathocles_87 into 10 segments
+Splitted document Sack,-Gustav__Paralyse_88 into 13 segments
+Splitted document Verne,-Jules__Zwanzigtausend_Meilen_unter'm_Meer_89 into 6 segments
+Loaded predictions from cache
+=====================
+Merge_Avg_Precision: 55.74
+Merge_Avg_Recall: 54.81
+Merge_Avg_F1: 54.56
+Merge_Cur_Precision: 55.74
+Merge_Cur_Recall: 54.81
+Merge_Cur_F1: 54.56
+=====================
+Merge_Avg_Precision: 55.97
+Merge_Avg_Recall: 56.96
+Merge_Avg_F1: 54.97
+Merge_Cur_Precision: 55.79
+Merge_Cur_Recall: 58.70
+Merge_Cur_F1: 54.85
+=====================
+Merge_Avg_Precision: 57.18
+Merge_Avg_Recall: 59.38
+Merge_Avg_F1: 56.46
+Merge_Cur_Precision: 62.65
+Merge_Cur_Recall: 67.55
+Merge_Cur_F1: 61.62
+=====================
+Merge_Avg_Precision: 56.69
+Merge_Avg_Recall: 58.97
+Merge_Avg_F1: 56.04
+Merge_Cur_Precision: 54.58
+Merge_Cur_Recall: 57.08
+Merge_Cur_F1: 54.04
+=====================
+Merge_Avg_Precision: 55.42
+Merge_Avg_Recall: 58.84
+Merge_Avg_F1: 54.86
+Merge_Cur_Precision: 51.58
+Merge_Cur_Recall: 58.68
+Merge_Cur_F1: 51.07
+=====================
+Merge_Avg_Precision: 55.59
+Merge_Avg_Recall: 58.65
+Merge_Avg_F1: 54.63
+Merge_Cur_Precision: 56.84
+Merge_Cur_Recall: 57.68
+Merge_Cur_F1: 53.04
+=====================
+Merge_Avg_Precision: 55.75
+Merge_Avg_Recall: 58.85
+Merge_Avg_F1: 54.75
+Merge_Cur_Precision: 57.55
+Merge_Cur_Recall: 61.18
+Merge_Cur_F1: 56.21
+=====================
+Merge_Avg_Precision: 55.92
+Merge_Avg_Recall: 58.57
+Merge_Avg_F1: 54.82
+Merge_Cur_Precision: 55.46
+Merge_Cur_Recall: 54.13
+Merge_Cur_F1: 53.38
+=====================
+Merge_Avg_Precision: 55.98
+Merge_Avg_Recall: 57.66
+Merge_Avg_F1: 54.42
+Merge_Cur_Precision: 57.05
+Merge_Cur_Recall: 47.01
+Merge_Cur_F1: 49.63
+=====================
+Merge_Avg_Precision: 56.38
+Merge_Avg_Recall: 57.94
+Merge_Avg_F1: 54.91
+Merge_Cur_Precision: 62.44
+Merge_Cur_Recall: 64.52
+Merge_Cur_F1: 63.17
+=====================
+Merge_Avg_Precision: 56.62
+Merge_Avg_Recall: 58.02
+Merge_Avg_F1: 55.11
+Merge_Cur_Precision: 60.03
+Merge_Cur_Recall: 59.09
+Merge_Cur_F1: 57.81
+=====================
+Merge_Avg_Precision: 56.61
+Merge_Avg_Recall: 58.37
+Merge_Avg_F1: 54.99
+Merge_Cur_Precision: 60.99
+Merge_Cur_Recall: 63.36
+Merge_Cur_F1: 51.67
+=====================
+Merge_Avg_Precision: 57.04
+Merge_Avg_Recall: 58.24
+Merge_Avg_F1: 55.10
+Merge_Cur_Precision: 59.37
+Merge_Cur_Recall: 55.90
+Merge_Cur_F1: 54.84
+=====================
+Merge_Avg_Precision: 56.88
+Merge_Avg_Recall: 57.99
+Merge_Avg_F1: 54.83
+Merge_Cur_Precision: 53.08
+Merge_Cur_Recall: 53.97
+Merge_Cur_F1: 50.15
+=====================
+Merge_Avg_Precision: 56.62
+Merge_Avg_Recall: 57.71
+Merge_Avg_F1: 54.74
+Merge_Cur_Precision: 53.73
+Merge_Cur_Recall: 52.58
+Merge_Cur_F1: 52.75
+=====================
+Merge_Avg_Precision: 56.37
+Merge_Avg_Recall: 57.06
+Merge_Avg_F1: 54.42
+Merge_Cur_Precision: 53.24
+Merge_Cur_Recall: 45.00
+Merge_Cur_F1: 48.14
+=====================
+Merge_Avg_Precision: 56.10
+Merge_Avg_Recall: 56.92
+Merge_Avg_F1: 54.23
+Merge_Cur_Precision: 50.28
+Merge_Cur_Recall: 54.12
+Merge_Cur_F1: 50.14
+=====================
+Merge_Avg_Precision: 56.35
+Merge_Avg_Recall: 56.95
+Merge_Avg_F1: 54.43
+Merge_Cur_Precision: 64.63
+Merge_Cur_Recall: 59.20
+Merge_Cur_F1: 61.29
+Dump predictions of first document into file predicted.german.128.json
+Dump merged predictions of first document into file merged.german.128.json
+Dump raw split into file merged.german.128.json

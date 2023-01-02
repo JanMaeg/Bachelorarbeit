@@ -73,11 +73,12 @@ def get_documents_with_predictions(documents, config, runner, model, out_file):
         if last_doc_key is None:
             last_doc_key = doc_key_without_index
 
-        splitted_documents[document_index][doc_key]["predictions"] = predictions
-
         # When the document key without the index has changed we know that we moved to the next document.
         if doc_key_without_index != last_doc_key:
             document_index += 1
+
+        splitted_documents[document_index][doc_key]["predictions"] = predictions
+        last_doc_key = doc_key_without_index
 
     return splitted_documents
 
@@ -229,6 +230,7 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     evaluator = CorefEvaluator()
 
     for doc_index, document in enumerate(enriched_documents):
+        evaluator2 = CorefEvaluator()
         document_clusters = merged_clusters[doc_index]['indices']
 
         gold_clusters = documents[doc_index]['clusters']
@@ -241,11 +243,16 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
                 mention_to_cluster_id[tuple(mention)] = cluster_index
 
         update_evaluator(predicted_clusters, mention_to_cluster_id, gold_clusters, evaluator)
+        update_evaluator(predicted_clusters, mention_to_cluster_id, gold_clusters, evaluator2)
 
-    p, r, f = evaluator.get_prf()
-    metrics = {'Merge_Avg_Precision': p * 100, 'Merge_Avg_Recall': r * 100, 'Merge_Avg_F1': f * 100}
-    for name, score in metrics.items():
-        logger.info('%s: %.2f' % (name, score))
+        p, r, f = evaluator.get_prf()
+        p2, r2, f2 = evaluator2.get_prf()
+
+        logger.info("=====================")
+        metrics = {'Merge_Avg_Precision': p * 100, 'Merge_Avg_Recall': r * 100, 'Merge_Avg_F1': f * 100,
+                   'Merge_Cur_Precision': p2 * 100, 'Merge_Cur_Recall': r2 * 100, 'Merge_Cur_F1': f2 * 100}
+        for name, score in metrics.items():
+            logger.info('%s: %.2f' % (name, score))
 
     exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
     dump_to_file(enriched_documents, config, None,
