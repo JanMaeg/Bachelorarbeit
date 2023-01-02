@@ -104,7 +104,7 @@ TRAIN = [
     "Gutzkow,-Karl__Wally_ die Zweiflerin.xmi.xmi.xmi",
 ]
 
-BOOKS = TRAIN + DEV + TEST
+BOOKS = TEST
 
 
 def convert_library(in_path, output_file_name, typesystem_path=None, split_paragraphs=False, max_length=None):

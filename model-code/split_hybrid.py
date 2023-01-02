@@ -91,6 +91,8 @@ def split_document(samples, max_length=400, overlapping=True):
                     "doc_key": document_key,
                 }
 
+                assert len(split_sample[document_key]["speakers"]) == len(split_sentences)
+
                 # Proof that we match the correct speakers list o the sentences. I don't matter because
                 # we don't have any speaker information for the datasets.
                 if len(split_sample[document_key]["speakers"]) > 1:
@@ -108,6 +110,7 @@ def split_document(samples, max_length=400, overlapping=True):
                     # We want to overlap with 2 sentences so instead of increasing by 1, we decrease by 1.
                     # This resets the counter in total by 2
                     sentence_index -= 1
+                    start_sentence_index = sentence_index
 
                     # Reset the sub_token_index by the token count of the last 2 sentences because we want to add
                     # them again

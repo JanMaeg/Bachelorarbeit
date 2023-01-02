@@ -15,13 +15,18 @@ from metrics import CorefEvaluator
 
 logger = logging.getLogger(__name__)
 
+STRING_MATCHING = "string_matching"
+OVERLAPPING = "overlapping"
+
+METHOD = OVERLAPPING
+
 
 def get_documents_with_predictions(documents, config, runner, model, out_file):
     tensorizer = Tensorizer(config)
     language = config['language']
     max_seg_len = config['max_segment_len']
 
-    splitted_documents = split_document(documents, overlapping=False)
+    splitted_documents = split_document(documents, overlapping=(METHOD == OVERLAPPING))
 
     # To evaluate multiple documents with one call to the evaluate function we have change the structure of data
     # object. Our splitting function returns an array of dictionaries, where every split has an own key in the
@@ -106,6 +111,12 @@ def cluster_indices_to_tokens(documents):
         enriched_documents.append(document)
 
     return enriched_documents
+
+
+def merge_by_overlapping(documents):
+    merged_clusters = []
+
+    return merged_clusters
 
 
 def merge_by_string_matching(documents):
@@ -225,7 +236,12 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     enriched_documents = get_documents_with_predictions(documents, config, runner, model, out_file)
     enriched_documents = cluster_indices_to_tokens(enriched_documents)
 
-    merged_clusters = merge_by_string_matching(enriched_documents)
+    merged_clusters = []
+
+    if METHOD == STRING_MATCHING:
+        merged_clusters = merge_by_string_matching(enriched_documents)
+    elif METHOD == OVERLAPPING:
+        merged_clusters = merge_by_overlapping(enriched_documents)
 
     evaluator = CorefEvaluator()
 
