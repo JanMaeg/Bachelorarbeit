@@ -1,12 +1,12 @@
-import ClusterView from "../components/ClusterView/ClusterView";
+import ClusterViewWindow from "../components/ClusterViewWindow/ClusterViewWindow";
 
-import goldSplitData from "../data/string-matching/gold_split.json";
-import predictedData from "../data/string-matching/predicted.german.128.json";
-import mergedData from "../data/gold_split_overlapping.json";
+import goldSplitData from "../data/overlapping/gold.german.128.json";
+import predictedData from "../data/overlapping/predicted.german.128.json";
+import mergedData from "../data/overlapping/merged.german.128.json";
 
 const StringMatch = () => {
   return (
-    <ClusterView
+    <ClusterViewWindow
       goldData={goldSplitData}
       predictedData={predictedData}
       mergedData={mergedData}

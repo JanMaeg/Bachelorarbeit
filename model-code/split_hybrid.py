@@ -146,7 +146,7 @@ def get_clusters_for_subtoken_index(clusters, subtoken_index):
     return cluster_ids
 
 
-def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.json', predictions=False,
+def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german.128.json', predictions=False,
                  overlapping=False):
     if merged_clusters is not None:
         logger.info(f"Dump merged predictions of first document into file {file_name}")
@@ -192,7 +192,7 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.
             if sentence_index >= len(sentences):
                 sentences.append([])
 
-            sub_token_index = index + doc[doc_key]['start_index'] if merged_clusters is not None else index
+            sub_token_index = index + doc[doc_key]['start_index'] if merged_clusters is not None or overlapping  else index
             clusters_key = "clusters" if not predictions else "predictions"
 
             clusters = get_clusters_for_subtoken_index(merged_clusters, sub_token_index) if merged_clusters is not None \
@@ -214,8 +214,18 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold_split.
     dump["sentences"] = sentences
     dump["split_ends"] = split_ends
     dump["split_starts"] = split_starts
-    # output_path = join(config['data_dir'], file_name)
-    output_path = join('/Users/jan/Documents/Studium/Bachelorarbeit/repository/visualization/src/data', file_name)
+    if overlapping:
+        dump["split_predictions"] = []
+        for (_, document) in doc.items():
+            index_corrected_clusters = []
+            for clusters in document["predictions"]:
+                index_corrected_clusters.append((np.array(clusters) + document["start_index"]).tolist())
+
+            dump["split_predictions"].append(index_corrected_clusters)
+
+    sub_folder = 'overlapping' if overlapping else 'string-matching'
+
+    output_path = join('/Users/jan/Documents/Studium/Bachelorarbeit/repository/visualization/src/data', sub_folder, file_name)
     dump_file = open(output_path, "w")
     dump_file.write(json.dumps(dump))
     dump_file.close()
@@ -236,9 +246,9 @@ def main():
         splitted_documents = split_document(documents, 400, overlapping=overlapping)
 
         if overlapping:
-            dump_to_file(splitted_documents, config, file_name='gold_split_overlapping.json', overlapping=True)
+            dump_to_file(splitted_documents, config, file_name='overlapping/gold.german.128.json', overlapping=True)
         else:
-            dump_to_file(splitted_documents, config, file_name='gold_split.json')
+            dump_to_file(splitted_documents, config, file_name='string-matching/gold.german.128.json')
 
 
 if __name__ == "__main__":

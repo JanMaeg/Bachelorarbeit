@@ -1,4 +1,4 @@
-import Sentence from "./Sentence";
+import SentenceWindow from "./SentenceWindow";
 import csx from "classnames";
 import {
   NumberDecrementStepper,
@@ -9,8 +9,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import Sentence from "../ClusterView/Sentence";
 
-interface ClusterViewProps {
+interface ClusterViewWindowProps {
   goldData: {
     sentences: {
       sub_token_index: number;
@@ -28,6 +29,7 @@ interface ClusterViewProps {
     }[][];
     split_ends: number[];
     split_starts?: number[];
+    split_predictions: number[][][][];
   };
   mergedData: {
     sentences: {
@@ -41,12 +43,12 @@ interface ClusterViewProps {
   showClusterSelect: boolean;
 }
 
-const ClusterView = ({
+const ClusterViewWindow = ({
   predictedData,
   goldData,
   mergedData,
   showClusterSelect = false,
-}: ClusterViewProps) => {
+}: ClusterViewWindowProps) => {
   const [displayedCluster, setDisplayedCluster] = useState(0);
 
   const splits: number[][] = [];
@@ -64,6 +66,7 @@ const ClusterView = ({
             width: "100vw",
             background: "white",
             top: "0",
+            display: "flex",
           }}
         >
           <NumberInput
@@ -114,7 +117,7 @@ const ClusterView = ({
                 splits[displayedCluster][1] > index
               }
             />
-            <Sentence
+            <SentenceWindow
               start={predictedData.split_ends.includes(index)}
               sentence={predictedData.sentences[index]}
               overlapping={
@@ -122,6 +125,7 @@ const ClusterView = ({
                 splits[displayedCluster][0] <= index &&
                 splits[displayedCluster][1] > index
               }
+              clusters={predictedData.split_predictions[displayedCluster]}
             />
           </div>
         );
@@ -130,4 +134,4 @@ const ClusterView = ({
   );
 };
 
-export default ClusterView;
+export default ClusterViewWindow;

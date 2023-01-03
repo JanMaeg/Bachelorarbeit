@@ -163,7 +163,7 @@ def write_paragraphs_as_docs(cas, output_file, doc_id, TrainingDoc):
             custom_paragraph.begin = previous_end
             custom_paragraph.end = paragraph.end
             previous_end = paragraph.end
-        if len(cas.select_covered("de.uniwue.kalimachos.coref.type.Sentence", custom_paragraph)) > 0:
+        if len(cas.select_covered("de.uniwue.kalimachos.coref.type.SentenceWindow", custom_paragraph)) > 0:
             write_document(
                 cas,
                 output_file,
@@ -175,9 +175,9 @@ def write_paragraphs_as_docs(cas, output_file, doc_id, TrainingDoc):
 
 def write_document(cas, output_file, doc_id, paragraph=None, max_length=None):
     if not paragraph:
-        sentences = list(cas.select("de.uniwue.kalimachos.coref.type.Sentence"))
+        sentences = list(cas.select("de.uniwue.kalimachos.coref.type.SentenceWindow"))
     else:
-        sentences = list(cas.select_covered("de.uniwue.kalimachos.coref.type.Sentence", paragraph))
+        sentences = list(cas.select_covered("de.uniwue.kalimachos.coref.type.SentenceWindow", paragraph))
     if len(sentences) == 0:
         return
     if max_length is None:

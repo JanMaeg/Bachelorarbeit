@@ -116,6 +116,15 @@ def cluster_indices_to_tokens(documents):
 def merge_by_overlapping(documents):
     merged_clusters = []
 
+    for document in documents:
+        document_clusters = []
+        document_clusters_indices = []
+
+        merged_clusters.append({
+            "str": document_clusters,
+            "indices": document_clusters_indices
+        })
+
     return merged_clusters
 
 
@@ -272,10 +281,10 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
 
     exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
     dump_to_file(enriched_documents, config, None,
-                 f'predicted.{language}.{max_seg_len}{exclude_token_suffix}.json', True)
+                 f'predicted.{language}.{max_seg_len}{exclude_token_suffix}.json', True, overlapping=(METHOD == OVERLAPPING))
 
     dump_to_file(enriched_documents, config, merged_clusters[0]['indices'],
-                 f'merged.{language}.{max_seg_len}{exclude_token_suffix}.json')
+                 f'merged.{language}.{max_seg_len}{exclude_token_suffix}.json', False, overlapping=(METHOD == OVERLAPPING))
 
 
 def main():

@@ -60,7 +60,7 @@ body {
 }
 
 .cluster-view__sentence--overlapping {
-    background-color: red !important;
+    background-color: #FC8181 !important;
 }
 
 p {
