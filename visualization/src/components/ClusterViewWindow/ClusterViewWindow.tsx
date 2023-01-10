@@ -53,7 +53,9 @@ const ClusterViewWindow = ({
   mergedData,
   showClusterSelect = false,
 }: ClusterViewWindowProps) => {
-  const [displayedCluster, setDisplayedCluster] = useState(0);
+  const [displayedSplit, setDisplayedSplit] = useState(0);
+  const [displayedGoldCluster, setDisplayedGoldCluster] = useState(-1);
+  const [displayedMergeCluster, setDisplayedMergeCluster] = useState(-1);
 
   const splits: number[][] = [];
 
@@ -83,9 +85,9 @@ const ClusterViewWindow = ({
                   defaultValue={0}
                   min={-1}
                   max={splits.length - 1}
-                  value={displayedCluster}
+                  value={displayedSplit}
                   onChange={(string, number) => {
-                    setDisplayedCluster(number);
+                    setDisplayedSplit(number);
                   }}
                 >
                   <NumberInputField />
@@ -101,12 +103,12 @@ const ClusterViewWindow = ({
                 <FormLabel>Gold cluster index</FormLabel>
                 <NumberInput
                   size="sm"
-                  defaultValue={0}
-                  min={0}
+                  defaultValue={-1}
+                  min={-1}
                   max={splits.length - 1}
-                  value={displayedCluster}
+                  value={displayedGoldCluster}
                   onChange={(string, number) => {
-                    setDisplayedCluster(number);
+                    setDisplayedGoldCluster(number);
                   }}
                 >
                   <NumberInputField />
@@ -122,12 +124,12 @@ const ClusterViewWindow = ({
                 <FormLabel>Merged cluster index</FormLabel>
                 <NumberInput
                   size="sm"
-                  defaultValue={0}
-                  min={0}
+                  defaultValue={-1}
+                  min={-1}
                   max={splits.length - 1}
-                  value={displayedCluster}
+                  value={displayedMergeCluster}
                   onChange={(string, number) => {
-                    setDisplayedCluster(number);
+                    setDisplayedMergeCluster(number);
                   }}
                 >
                   <NumberInputField />
@@ -162,15 +164,19 @@ const ClusterViewWindow = ({
         return (
           <div className="cluster-view__row" key={index}>
             <div className="cluster-view__index">{index}</div>
-            <Sentence sentence={sentence} />
             <Sentence
+              onlyHighlightedCluster={displayedGoldCluster}
+              sentence={sentence}
+            />
+            <Sentence
+              onlyHighlightedCluster={displayedMergeCluster}
               start={mergedData.split_ends.includes(index)}
               sentence={mergedData.sentences[index]}
               overlapping={
                 showClusterSelect &&
-                displayedCluster > -1 &&
-                splits[displayedCluster][0] <= index &&
-                splits[displayedCluster][1] > index
+                displayedSplit > -1 &&
+                splits[displayedSplit][0] <= index &&
+                splits[displayedSplit][1] > index
               }
             />
             <SentenceWindow
@@ -178,11 +184,11 @@ const ClusterViewWindow = ({
               sentence={predictedData.sentences[index]}
               overlapping={
                 showClusterSelect &&
-                displayedCluster > -1 &&
-                splits[displayedCluster][0] <= index &&
-                splits[displayedCluster][1] > index
+                displayedSplit > -1 &&
+                splits[displayedSplit][0] <= index &&
+                splits[displayedSplit][1] > index
               }
-              clusters={predictedData.split_predictions[displayedCluster]}
+              clusters={predictedData.split_predictions[displayedSplit]}
             />
           </div>
         );

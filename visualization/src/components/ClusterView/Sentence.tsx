@@ -8,6 +8,7 @@ interface SentenceProps {
   }[];
   start?: boolean;
   overlapping?: boolean;
+  onlyHighlightedCluster?: number;
 }
 
 const PUNCTUATIONS = [",", ".", "!", "?", ":"];
@@ -16,6 +17,7 @@ const Sentence = ({
   sentence,
   start = false,
   overlapping = false,
+  onlyHighlightedCluster = -1,
 }: SentenceProps) => {
   if (!sentence) return <div></div>;
 
@@ -35,13 +37,19 @@ const Sentence = ({
     ) {
       elements.push(
         <span
-          className={`cluster-view__cluster cluster-view__cluster--${previousClusterIndex}`}
+          className={csx("cluster-view__cluster", {
+            [`cluster-view__cluster--${previousClusterIndex}`]:
+              onlyHighlightedCluster == -1 ||
+              onlyHighlightedCluster == previousClusterIndex,
+          })}
           key={i}
         >
           {currentCluster.join(" ")}
-          <span className="cluster-view__cluster-index">
-            ({previousClusterIndex})
-          </span>
+          {onlyHighlightedCluster == -1 && (
+            <span className="cluster-view__cluster-index">
+              ({previousClusterIndex})
+            </span>
+          )}
         </span>
       );
       currentCluster = [];
@@ -53,13 +61,19 @@ const Sentence = ({
       if (i == sentence.length - 1) {
         elements.push(
           <span
-            className={`cluster-view__cluster cluster-view__cluster--${previousClusterIndex}`}
+            className={csx("cluster-view__cluster", {
+              [`cluster-view__cluster--${previousClusterIndex}`]:
+                onlyHighlightedCluster == -1 ||
+                onlyHighlightedCluster == previousClusterIndex,
+            })}
             key={i}
           >
             {currentCluster.join(" ")}
-            <span className="cluster-view__cluster-index">
-              ({previousClusterIndex})
-            </span>
+            {onlyHighlightedCluster == -1 && (
+              <span className="cluster-view__cluster-index">
+                ({previousClusterIndex})
+              </span>
+            )}
           </span>
         );
       }
