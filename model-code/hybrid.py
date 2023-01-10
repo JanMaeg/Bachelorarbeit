@@ -134,28 +134,30 @@ def merge_by_overlapping(documents):
             for cluster_index, cluster in enumerate(split["predictions_str"]):
                 logger.info("=========")
                 logger.info(cluster)
-                cluster_merged = False
                 cluster_indices_corrected = np.array(split["predictions"][cluster_index]) + split["start_index"]
                 logger.info(cluster_indices_corrected)
+
+                max_overlaps = 0
+                best_index = -1
 
                 for existing_cluster_index, existing_cluster in enumerate(document_clusters_indices):
                     cluster_intersection = np.intersect1d(existing_cluster, cluster_indices_corrected)
 
-                    if len(cluster_intersection) > 0:
-                        logger.info(f"Cluster where merged with num overlaps: {len(cluster_intersection) / 2}")
-                        logger.info(document_clusters[existing_cluster_index])
+                    if len(cluster_intersection) > max_overlaps:
+                        max_overlaps = len(cluster_intersection)
+                        best_index = existing_cluster_index
 
-                        document_clusters[existing_cluster_index] = np.concatenate(
-                            (document_clusters[existing_cluster_index], cluster))
+                if max_overlaps > 0:
+                    logger.info(f"Cluster where merged with num overlaps: {max_overlaps / 2}")
+                    logger.info(document_clusters[best_index])
 
-                        document_clusters_indices[existing_cluster_index] = np.concatenate(
-                            (document_clusters_indices[existing_cluster_index], cluster_indices_corrected)
-                        )
+                    document_clusters[best_index] = np.concatenate(
+                        (document_clusters[best_index], cluster))
 
-                        cluster_merged = True
-                        break
-
-                if not cluster_merged:
+                    document_clusters_indices[best_index] = np.concatenate(
+                        (document_clusters_indices[best_index], cluster_indices_corrected)
+                    )
+                else:
                     logger.info(f"No overlaps from the current cluster could be found in existing ones: {cluster}")
                     document_clusters.append(cluster)
                     document_clusters_indices.append(cluster_indices_corrected)

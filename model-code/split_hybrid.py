@@ -7,10 +7,13 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def filter_cluster(clusters, start_index, end_index, normalize=False):
+def filter_cluster(clusters, start_index, end_index, normalize=False, correct_indices=False):
     final_clusters = []
 
-    for cluster in clusters:
+    if correct_indices:
+        final_clusters = {}
+
+    for cluster_index, cluster in enumerate(clusters):
         filtered_cluster = [span for span in cluster if span[0] >= start_index and span[1] <= end_index]
 
         if normalize:
@@ -19,7 +22,10 @@ def filter_cluster(clusters, start_index, end_index, normalize=False):
             filtered_cluster = filtered_cluster.tolist()
 
         if len(filtered_cluster) > 0:
-            final_clusters.append(filtered_cluster)
+            if correct_indices:
+                final_clusters[f"{cluster_index}"] = filtered_cluster
+            else:
+                final_clusters.append(filtered_cluster)
 
     return final_clusters
 
@@ -86,6 +92,7 @@ def split_document(samples, max_length=400, overlapping=True):
                     "sentence_map_org": split_sentence_map,
                     "clusters_org": filter_cluster(sample["clusters"], sub_token_index, end_index),
                     "clusters": filter_cluster(sample["clusters"], sub_token_index, end_index, True),
+                    "clusters_correct_indices": filter_cluster(sample["clusters"], sub_token_index, end_index, True, True),
                     "start_index": sub_token_index,
                     "end_index": end_index,
                     "doc_key": document_key,
@@ -137,11 +144,18 @@ def split_document(samples, max_length=400, overlapping=True):
 def get_clusters_for_subtoken_index(clusters, subtoken_index):
     cluster_ids = []
 
-    for cluster_id, cluster in enumerate(clusters):
-        for span in cluster:
-            if span[0] <= subtoken_index <= span[1]:
-                cluster_ids.append(cluster_id)
-                continue
+    if type(clusters) is dict:
+        for cluster_id, cluster in clusters.items():
+            for span in cluster:
+                if span[0] <= subtoken_index <= span[1]:
+                    cluster_ids.append(int(cluster_id))
+                    continue
+    else:
+        for cluster_id, cluster in enumerate(clusters):
+            for span in cluster:
+                if span[0] <= subtoken_index <= span[1]:
+                    cluster_ids.append(cluster_id)
+                    continue
 
     return cluster_ids
 
@@ -193,7 +207,7 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german
                 sentences.append([])
 
             sub_token_index = index + doc[doc_key]['start_index'] if merged_clusters is not None or overlapping  else index
-            clusters_key = "clusters" if not predictions else "predictions"
+            clusters_key = "clusters_correct_indices" if not predictions else "predictions"
 
             clusters = get_clusters_for_subtoken_index(merged_clusters, sub_token_index) if merged_clusters is not None \
                 else get_clusters_for_subtoken_index(doc[doc_key][clusters_key], index)
@@ -214,7 +228,7 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german
     dump["sentences"] = sentences
     dump["split_ends"] = split_ends
     dump["split_starts"] = split_starts
-    if overlapping:
+    if overlapping and merged_clusters is not None:
         dump["split_predictions"] = []
         for (_, document) in doc.items():
             index_corrected_clusters = []
@@ -246,9 +260,9 @@ def main():
         splitted_documents = split_document(documents, 400, overlapping=overlapping)
 
         if overlapping:
-            dump_to_file(splitted_documents, config, file_name='overlapping/gold.german.128.json', overlapping=True)
+            dump_to_file(splitted_documents, config, file_name='gold.german.128.json', overlapping=True)
         else:
-            dump_to_file(splitted_documents, config, file_name='string-matching/gold.german.128.json')
+            dump_to_file(splitted_documents, config, file_name='gold.german.128.json')
 
 
 if __name__ == "__main__":
