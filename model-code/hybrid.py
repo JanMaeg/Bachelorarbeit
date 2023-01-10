@@ -120,6 +120,46 @@ def merge_by_overlapping(documents):
         document_clusters = []
         document_clusters_indices = []
 
+        for index, split_doc_key in enumerate(document):
+            logger.info(f"New split {index}")
+            split = document[split_doc_key]
+
+            # For the first split we simply take all clusters as they are
+            # Obviously no need to merge them with anything.
+            if index == 0:
+                document_clusters = split["predictions_str"]
+                document_clusters_indices = split["predictions"]
+                continue
+
+            for cluster_index, cluster in enumerate(split["predictions_str"]):
+                logger.info("=========")
+                logger.info(cluster)
+                cluster_merged = False
+                cluster_indices_corrected = np.array(split["predictions"][cluster_index]) + split["start_index"]
+                logger.info(cluster_indices_corrected)
+
+                for existing_cluster_index, existing_cluster in enumerate(document_clusters_indices):
+                    cluster_intersection = np.intersect1d(existing_cluster, cluster_indices_corrected)
+
+                    if len(cluster_intersection) > 0:
+                        logger.info(f"Cluster where merged with num overlaps: {len(cluster_intersection) / 2}")
+                        logger.info(document_clusters[existing_cluster_index])
+
+                        document_clusters[existing_cluster_index] = np.concatenate(
+                            (document_clusters[existing_cluster_index], cluster))
+
+                        document_clusters_indices[existing_cluster_index] = np.concatenate(
+                            (document_clusters_indices[existing_cluster_index], cluster_indices_corrected)
+                        )
+
+                        cluster_merged = True
+                        break
+
+                if not cluster_merged:
+                    logger.info(f"No overlaps from the current cluster could be found in existing ones: {cluster}")
+                    document_clusters.append(cluster)
+                    document_clusters_indices.append(cluster_indices_corrected)
+
         merged_clusters.append({
             "str": document_clusters,
             "indices": document_clusters_indices
@@ -281,10 +321,12 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
 
     exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
     dump_to_file(enriched_documents, config, None,
-                 f'predicted.{language}.{max_seg_len}{exclude_token_suffix}.json', True, overlapping=(METHOD == OVERLAPPING))
+                 f'predicted.{language}.{max_seg_len}{exclude_token_suffix}.json', True,
+                 overlapping=(METHOD == OVERLAPPING))
 
     dump_to_file(enriched_documents, config, merged_clusters[0]['indices'],
-                 f'merged.{language}.{max_seg_len}{exclude_token_suffix}.json', False, overlapping=(METHOD == OVERLAPPING))
+                 f'merged.{language}.{max_seg_len}{exclude_token_suffix}.json', False,
+                 overlapping=(METHOD == OVERLAPPING))
 
 
 def main():

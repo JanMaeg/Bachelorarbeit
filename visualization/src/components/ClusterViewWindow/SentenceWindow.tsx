@@ -35,8 +35,8 @@ const SentenceWindow = ({
 
         cluster.forEach((mention) => {
           if (
-            mention[0] >= token.sub_token_index &&
-            mention[1] <= token.sub_token_index
+            mention[0] <= token.sub_token_index &&
+            token.sub_token_index <= mention[1]
           ) {
             updatedToken.clusters.push(i);
           }

@@ -1,6 +1,10 @@
 import SentenceWindow from "./SentenceWindow";
 import csx from "classnames";
 import {
+  FormControl,
+  FormLabel,
+  Grid,
+  GridItem,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -67,23 +71,74 @@ const ClusterViewWindow = ({
             background: "white",
             top: "0",
             display: "flex",
+            padding: "10px",
           }}
         >
-          <NumberInput
-            defaultValue={0}
-            min={0}
-            max={splits.length - 1}
-            value={displayedCluster}
-            onChange={(string, number) => {
-              setDisplayedCluster(number);
-            }}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
+          <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+            <GridItem w="100%">
+              <FormControl size="sm">
+                <FormLabel>Highlighted Split</FormLabel>
+                <NumberInput
+                  size="sm"
+                  defaultValue={0}
+                  min={-1}
+                  max={splits.length - 1}
+                  value={displayedCluster}
+                  onChange={(string, number) => {
+                    setDisplayedCluster(number);
+                  }}
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </FormControl>
+            </GridItem>{" "}
+            <GridItem w="100%">
+              <FormControl size="sm">
+                <FormLabel>Gold cluster index</FormLabel>
+                <NumberInput
+                  size="sm"
+                  defaultValue={0}
+                  min={0}
+                  max={splits.length - 1}
+                  value={displayedCluster}
+                  onChange={(string, number) => {
+                    setDisplayedCluster(number);
+                  }}
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </FormControl>
+            </GridItem>
+            <GridItem w="100%">
+              <FormControl size="sm">
+                <FormLabel>Merged cluster index</FormLabel>
+                <NumberInput
+                  size="sm"
+                  defaultValue={0}
+                  min={0}
+                  max={splits.length - 1}
+                  value={displayedCluster}
+                  onChange={(string, number) => {
+                    setDisplayedCluster(number);
+                  }}
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </FormControl>
+            </GridItem>
+          </Grid>
         </div>
       )}
 
@@ -113,6 +168,7 @@ const ClusterViewWindow = ({
               sentence={mergedData.sentences[index]}
               overlapping={
                 showClusterSelect &&
+                displayedCluster > -1 &&
                 splits[displayedCluster][0] <= index &&
                 splits[displayedCluster][1] > index
               }
@@ -122,6 +178,7 @@ const ClusterViewWindow = ({
               sentence={predictedData.sentences[index]}
               overlapping={
                 showClusterSelect &&
+                displayedCluster > -1 &&
                 splits[displayedCluster][0] <= index &&
                 splits[displayedCluster][1] > index
               }
