@@ -82,6 +82,11 @@ p {
     font-size: 10px;
 }
 
+.cluster-view__cluster--highlighted {
+    background-color: gold !important;
+}
+
+
 .cluster-view__cluster--0 {
     background-color: #FED7D7;
 }

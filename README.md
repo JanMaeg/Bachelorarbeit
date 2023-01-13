@@ -12,3 +12,4 @@ Steps contain just some extra information on how to get the data and how to eval
  - Then run the following command to preprocess the data into the correct format
    - `python preprocess.py --input_dir data/droc_test --output_dir data/droc_test --seg_len 512 --language german --tokenizer_name german-nlp-group/electra-base-german-uncased --input_suffix droc_gold_conll --input_format conll-2012 --model_type electracd `
 
+ - Download pretrained Word2Vec vectors from https://www.deepset.ai/german-word-embeddings

@@ -12,13 +12,20 @@ import itertools
 import logging
 import numpy as np
 from metrics import CorefEvaluator
+import matplotlib.pyplot as plt
+from collections import Counter
+from matplotlib.pyplot import figure
+from sklearn.metrics.pairwise import cosine_similarity
+
+from gensim.models.keyedvectors import KeyedVectors
 
 logger = logging.getLogger(__name__)
 
 STRING_MATCHING = "string_matching"
 OVERLAPPING = "overlapping"
+EMBEDDING = "embedding"
 
-METHOD = OVERLAPPING
+METHOD = EMBEDDING
 
 
 def get_documents_with_predictions(documents, config, runner, model, out_file):
@@ -43,7 +50,7 @@ def get_documents_with_predictions(documents, config, runner, model, out_file):
 
     torch_documents = [(doc_key, convert_to_torch_tensor(*tensor)) for doc_key, tensor in tensor_documents]
 
-    cache_path = join(config['data_dir'], f'predictions.{language}.{max_seg_len}')
+    cache_path = join(config['data_dir'], f'predictions.{METHOD.lower()}.{language}.{max_seg_len}')
 
     # For faster development I added here a caching for the predictions so that the model doesn't have
     # to prediction on every run (which takes some time).
@@ -263,6 +270,79 @@ def merge_by_string_matching(documents):
     return merged_clusters
 
 
+def map_word_frequency(document):
+    return Counter(document)
+
+
+def get_sif_feature_vectors(sentence1, sentence2, word_emb_model):
+    sentence1 = [f"{token.lower().encode()}" for token in sentence1.split() if
+                 f"{token.lower().encode()}" in word_emb_model.key_to_index]
+    sentence2 = [f"{token.lower().encode()}" for token in sentence2.split() if
+                 f"{token.lower().encode()}" in word_emb_model.key_to_index]
+    word_counts = map_word_frequency((sentence1 + sentence2))
+    embedding_size = 300  # size of vectore in word embeddings
+    a = 0.001
+    sentence_set = []
+    for sentence in [sentence1, sentence2]:
+        vs = np.zeros(embedding_size)
+        sentence_length = len(sentence)
+        for word in sentence:
+            a_value = a / (a + word_counts[word])  # smooth inverse frequency, SIF
+            vs = np.add(vs, np.multiply(a_value, word_emb_model.get_vector(word)))  # vs += sif * word_vector
+        vs = np.divide(vs, sentence_length)  # weighted average
+        sentence_set.append(vs)
+    return sentence_set
+
+
+def merge_by_embedding(documents):
+    model = KeyedVectors.load_word2vec_format("vectors_full.txt", binary=False, no_header=True)
+
+    merged_clusters = []
+
+    for document in documents:
+        document_clusters = []
+        document_clusters_indices = []
+
+        previous_predictions = []
+
+        for index, split_doc_key in enumerate(document):
+            split = document[split_doc_key]
+            current_predictions = split['predictions_str']
+
+            if len(previous_predictions) > 0:
+                figure(figsize=(15, 15), dpi=80)
+
+                current_predictions_sentences = [" ".join(pre) for pre in current_predictions]
+                previous_predictions_sentences = [" ".join(pre) for pre in previous_predictions]
+
+                weights = np.zeros([len(current_predictions), len(previous_predictions)])
+
+                for x, sentence1 in enumerate(current_predictions_sentences):
+                    for y, sentence2 in enumerate(previous_predictions_sentences):
+                        feature_vecs = get_sif_feature_vectors(sentence1, sentence2, model)
+
+                        weights[x][y] = \
+                        cosine_similarity(feature_vecs[0].reshape(1, -1), feature_vecs[1].reshape(1, -1))[0][0]
+
+                plt.imshow(weights)
+                plt.yticks(np.arange(len(current_predictions)), [", ".join(pre) for pre in current_predictions])
+                plt.xticks(np.arange(len(previous_predictions)), [", ".join(pre) for pre in previous_predictions],
+                           rotation='vertical')
+                plt.subplots_adjust(bottom=0.6, left=0.6)
+                plt.colorbar()
+                plt.show()
+                print("test")
+
+            previous_predictions = current_predictions
+
+        merged_clusters.append({
+            "str": document_clusters,
+            "indices": document_clusters_indices
+        })
+
+    return merged_clusters
+
+
 def update_evaluator(predicted_clusters, mention_to_cluster_id, gold_clusters, evaluator):
     mention_to_predicted = {m: predicted_clusters[cluster_idx] for m, cluster_idx in mention_to_cluster_id.items()}
     gold_clusters = [tuple(tuple(m) for m in cluster) for cluster in gold_clusters]
@@ -293,6 +373,8 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
         merged_clusters = merge_by_string_matching(enriched_documents)
     elif METHOD == OVERLAPPING:
         merged_clusters = merge_by_overlapping(enriched_documents)
+    elif METHOD == EMBEDDING:
+        merged_clusters = merge_by_embedding(enriched_documents)
 
     evaluator = CorefEvaluator()
 

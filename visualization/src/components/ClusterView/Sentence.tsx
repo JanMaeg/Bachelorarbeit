@@ -41,6 +41,8 @@ const Sentence = ({
             [`cluster-view__cluster--${previousClusterIndex}`]:
               onlyHighlightedCluster == -1 ||
               onlyHighlightedCluster == previousClusterIndex,
+            [`cluster-view__cluster--highlighted`]:
+              onlyHighlightedCluster == previousClusterIndex,
           })}
           key={i}
         >
@@ -63,7 +65,8 @@ const Sentence = ({
           <span
             className={csx("cluster-view__cluster", {
               [`cluster-view__cluster--${previousClusterIndex}`]:
-                onlyHighlightedCluster == -1 ||
+                onlyHighlightedCluster == -1,
+              [`cluster-view__cluster--highlighted`]:
                 onlyHighlightedCluster == previousClusterIndex,
             })}
             key={i}

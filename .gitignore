@@ -14,3 +14,5 @@ coref.zip
 model-code/droc_c2f_test1
 model-code/local.conf
 venv
+**/vectors.txt
+**/vectors_full.txt
