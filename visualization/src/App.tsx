@@ -10,6 +10,7 @@ import StringMatch from "./views/StringMatch";
 import "./App.css";
 import Home from "./views/Home";
 import WindowMerge from "./views/WindowMerge";
+import Embedding from "./views/Embedding";
 
 const routeConfig = createRouteConfig().createChildren((createRoute) => [
   createRoute({
@@ -23,6 +24,10 @@ const routeConfig = createRouteConfig().createChildren((createRoute) => [
   createRoute({
     path: "/window-merge",
     component: WindowMerge,
+  }),
+  createRoute({
+    path: "/embedding",
+    component: Embedding,
   }),
 ]);
 

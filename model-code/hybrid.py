@@ -1,23 +1,22 @@
+import itertools
+import json
+import logging
 import os
 import pickle
-
-from split_hybrid import split_document, dump_to_file
-from run import Runner
 import sys
-import util
-from tensorize import Tensorizer, convert_to_torch_tensor
-from os.path import join
-import json
-import itertools
-import logging
-import numpy as np
-from metrics import CorefEvaluator
-import matplotlib.pyplot as plt
 from collections import Counter
+from os.path import join
+
+import numpy as np
+from gensim.models.keyedvectors import KeyedVectors
 from matplotlib.pyplot import figure
 from sklearn.metrics.pairwise import cosine_similarity
 
-from gensim.models.keyedvectors import KeyedVectors
+import util
+from metrics import CorefEvaluator
+from run import Runner
+from split_hybrid import split_document, dump_to_file
+from tensorize import Tensorizer, convert_to_torch_tensor
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +25,8 @@ OVERLAPPING = "overlapping"
 EMBEDDING = "embedding"
 
 METHOD = EMBEDDING
+
+EMBEDDING_THRESHOLD = 0.7
 
 
 def get_documents_with_predictions(documents, config, runner, model, out_file):
@@ -114,7 +115,22 @@ def cluster_indices_to_tokens(documents):
 
                 prediction_strings.append(cluster_tokens)
 
+            gold_prediction_strings = []
+
+            for gold_cluster in document[split_doc_key]["clusters"]:
+                gold_cluster_tokens = []
+
+                for span in gold_cluster:
+                    start_token_index = document[split_doc_key]['subtoken_map'][span[0]]
+                    end_token_index = document[split_doc_key]['subtoken_map'][span[1]]
+
+                    tokens = document[split_doc_key]['tokens'][start_token_index: end_token_index + 1]
+                    gold_cluster_tokens.append(' '.join(tokens))
+
+                gold_prediction_strings.append(gold_cluster_tokens)
+
             document[split_doc_key]["predictions_str"] = prediction_strings
+            document[split_doc_key]["gold_cluster_str"] = gold_prediction_strings
         enriched_documents.append(document)
 
     return enriched_documents
@@ -274,28 +290,35 @@ def map_word_frequency(document):
     return Counter(document)
 
 
-def get_sif_feature_vectors(sentence1, sentence2, word_emb_model):
+def get_feature_vectors_word2vec(sentence1, sentence2, word_emb_model, use_sif=False):
     sentence1 = [f"{token.lower().encode()}" for token in sentence1.split() if
                  f"{token.lower().encode()}" in word_emb_model.key_to_index]
     sentence2 = [f"{token.lower().encode()}" for token in sentence2.split() if
                  f"{token.lower().encode()}" in word_emb_model.key_to_index]
     word_counts = map_word_frequency((sentence1 + sentence2))
-    embedding_size = 300  # size of vectore in word embeddings
+    embedding_size = 300  # size of vector in word embeddings
     a = 0.001
     sentence_set = []
     for sentence in [sentence1, sentence2]:
         vs = np.zeros(embedding_size)
         sentence_length = len(sentence)
-        for word in sentence:
-            a_value = a / (a + word_counts[word])  # smooth inverse frequency, SIF
-            vs = np.add(vs, np.multiply(a_value, word_emb_model.get_vector(word)))  # vs += sif * word_vector
-        vs = np.divide(vs, sentence_length)  # weighted average
+        if sentence_length > 0:
+            for word in sentence:
+                if use_sif:
+                    a_value = a / (a + word_counts[word])  # smooth inverse frequency, SIF
+                    vs = np.add(vs, np.multiply(a_value, word_emb_model.get_vector(word)))
+                else:
+                    vs = np.add(vs, word_emb_model.get_vector(word))
+            vs = np.divide(vs, sentence_length)  # weighted average
         sentence_set.append(vs)
     return sentence_set
 
 
-def merge_by_embedding(documents):
+def merge_by_embedding(documents, use_gold_clusters=False):
     model = KeyedVectors.load_word2vec_format("vectors_full.txt", binary=False, no_header=True)
+
+    cluster_str_key = "gold_cluster_str" if use_gold_clusters else "predictions_str"
+    cluster_indices_key = "clusters" if use_gold_clusters else "predictions"
 
     merged_clusters = []
 
@@ -303,37 +326,63 @@ def merge_by_embedding(documents):
         document_clusters = []
         document_clusters_indices = []
 
-        previous_predictions = []
-
         for index, split_doc_key in enumerate(document):
             split = document[split_doc_key]
-            current_predictions = split['predictions_str']
+            current_predictions = split[cluster_str_key]
 
-            if len(previous_predictions) > 0:
+            # For the first split we simply take all clusters as they are
+            # Obviously no need to merge them with anything.
+            if index == 0:
+                document_clusters = split[cluster_str_key]
+                document_clusters_indices = split[cluster_indices_key]
+                continue
+            else:
                 figure(figsize=(15, 15), dpi=80)
 
                 current_predictions_sentences = [" ".join(pre) for pre in current_predictions]
-                previous_predictions_sentences = [" ".join(pre) for pre in previous_predictions]
+                previous_predictions_sentences = [" ".join(pre) for pre in document_clusters]
 
-                weights = np.zeros([len(current_predictions), len(previous_predictions)])
+                weights = np.zeros([len(current_predictions), len(document_clusters)])
 
                 for x, sentence1 in enumerate(current_predictions_sentences):
                     for y, sentence2 in enumerate(previous_predictions_sentences):
-                        feature_vecs = get_sif_feature_vectors(sentence1, sentence2, model)
+                        feature_vectors = get_feature_vectors_word2vec(sentence1, sentence2, model)
 
                         weights[x][y] = \
-                        cosine_similarity(feature_vecs[0].reshape(1, -1), feature_vecs[1].reshape(1, -1))[0][0]
+                            cosine_similarity(feature_vectors[0].reshape(1, -1), feature_vectors[1].reshape(1, -1))[0][
+                                0]
 
-                plt.imshow(weights)
-                plt.yticks(np.arange(len(current_predictions)), [", ".join(pre) for pre in current_predictions])
-                plt.xticks(np.arange(len(previous_predictions)), [", ".join(pre) for pre in previous_predictions],
-                           rotation='vertical')
-                plt.subplots_adjust(bottom=0.6, left=0.6)
-                plt.colorbar()
-                plt.show()
-                print("test")
+                for cluster_index, _ in enumerate(weights):
+                    cluster = split[cluster_str_key][cluster_index]
+                    cluster_indices_corrected = np.array(split[cluster_indices_key][cluster_index]) + split["start_index"]
 
-            previous_predictions = current_predictions
+                    highest_sim_index = np.argmax(weights[cluster_index])
+                    highest_sim_value = weights[cluster_index][highest_sim_index]
+
+                    # If the highest cosine similarity is above the threshold both clusters will be merged
+                    if highest_sim_value > EMBEDDING_THRESHOLD:
+                        logger.debug(f"Cluster where merged by cosine similarity: {highest_sim_value}")
+                        document_clusters[highest_sim_index] = np.concatenate(
+                            (document_clusters[highest_sim_index], cluster))
+
+                        document_clusters_indices[highest_sim_index] = np.concatenate(
+                            (document_clusters_indices[highest_sim_index], cluster_indices_corrected)
+                        )
+                    else:
+                        logger.debug(
+                            f"Cosine similarity doesn't pass threshold for any existing cluster. "
+                            f"Adding new one {highest_sim_value}")
+                        document_clusters.append(cluster)
+                        document_clusters_indices.append(cluster_indices_corrected)
+
+                # plt.imshow(weights)
+                # plt.yticks(np.arange(len(current_predictions)), [", ".join(pre) for pre in current_predictions])
+                # plt.xticks(np.arange(len(previous_predictions)), [", ".join(pre) for pre in previous_predictions],
+                #            rotation='vertical')
+                # plt.subplots_adjust(bottom=0.6, left=0.6)
+                # plt.colorbar()
+                # plt.show()
+                # print("test")
 
         merged_clusters.append({
             "str": document_clusters,
@@ -406,11 +455,11 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
     dump_to_file(enriched_documents, config, None,
                  f'predicted.{language}.{max_seg_len}{exclude_token_suffix}.json', True,
-                 overlapping=(METHOD == OVERLAPPING))
+                 method=METHOD)
 
     dump_to_file(enriched_documents, config, merged_clusters[0]['indices'],
                  f'merged.{language}.{max_seg_len}{exclude_token_suffix}.json', False,
-                 overlapping=(METHOD == OVERLAPPING))
+                 method=METHOD)
 
 
 def main():

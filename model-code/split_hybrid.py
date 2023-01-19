@@ -1,10 +1,16 @@
-import util
 import json
-from os.path import join
-import numpy as np
 import logging
+from os.path import join
+
+import numpy as np
+
+import util
 
 logger = logging.getLogger(__name__)
+
+STRING_MATCHING = "string_matching"
+OVERLAPPING = "overlapping"
+EMBEDDING = "embedding"
 
 
 def filter_cluster(clusters, start_index, end_index, normalize=False, correct_indices=False):
@@ -92,7 +98,8 @@ def split_document(samples, max_length=400, overlapping=True):
                     "sentence_map_org": split_sentence_map,
                     "clusters_org": filter_cluster(sample["clusters"], sub_token_index, end_index),
                     "clusters": filter_cluster(sample["clusters"], sub_token_index, end_index, True),
-                    "clusters_correct_indices": filter_cluster(sample["clusters"], sub_token_index, end_index, True, True),
+                    "clusters_correct_indices": filter_cluster(sample["clusters"], sub_token_index, end_index, True,
+                                                               True),
                     "start_index": sub_token_index,
                     "end_index": end_index,
                     "doc_key": document_key,
@@ -161,7 +168,7 @@ def get_clusters_for_subtoken_index(clusters, subtoken_index):
 
 
 def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german.128.json', predictions=False,
-                 overlapping=False):
+                 method=STRING_MATCHING):
     if merged_clusters is not None:
         logger.info(f"Dump merged predictions of first document into file {file_name}")
     if predictions:
@@ -189,11 +196,13 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german
         last_skipped_index = 0
 
         for index, token_index in enumerate(doc[doc_key]["subtoken_map"]):
-            if overlapping and skipped_sentences > -1 and doc[doc_key]["sentence_map"][index] <= skipped_sentences - 1:
+            if method is OVERLAPPING and \
+                    skipped_sentences > -1 and \
+                    doc[doc_key]["sentence_map"][index] <= skipped_sentences - 1:
                 last_skipped_index = index
                 continue
 
-            if overlapping and skip_sentences_until > -1 and (
+            if method is OVERLAPPING and skip_sentences_until > -1 and (
                     last_skipped_index + 1 == index or last_skipped_index + 2 == index):
                 continue
 
@@ -201,12 +210,13 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german
                 continue
 
             sentence_index = count_last_doc_sentences + doc[doc_key]["sentence_map"][index]
-            if overlapping and skipped_sentences > 0:
+            if method is OVERLAPPING and skipped_sentences > 0:
                 sentence_index -= skipped_sentences
             if sentence_index >= len(sentences):
                 sentences.append([])
 
-            sub_token_index = index + doc[doc_key]['start_index'] if merged_clusters is not None or overlapping  else index
+            sub_token_index = index + doc[doc_key][
+                'start_index'] if merged_clusters is not None or method is OVERLAPPING else index
             clusters_key = "clusters_correct_indices" if not predictions else "predictions"
 
             clusters = get_clusters_for_subtoken_index(merged_clusters, sub_token_index) if merged_clusters is not None \
@@ -228,7 +238,7 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german
     dump["sentences"] = sentences
     dump["split_ends"] = split_ends
     dump["split_starts"] = split_starts
-    if overlapping and merged_clusters is not None:
+    if method is OVERLAPPING and merged_clusters is not None:
         dump["split_predictions"] = []
         for (_, document) in doc.items():
             index_corrected_clusters = []
@@ -237,9 +247,15 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german
 
             dump["split_predictions"].append(index_corrected_clusters)
 
-    sub_folder = 'overlapping' if overlapping else 'string-matching'
+    if method is OVERLAPPING:
+        sub_folder = 'overlapping'
+    elif method is STRING_MATCHING:
+        sub_folder = 'string-matching'
+    else:
+        sub_folder = 'embedding'
 
-    output_path = join('/Users/jan/Documents/Studium/Bachelorarbeit/repository/visualization/src/data', sub_folder, file_name)
+    output_path = join('/Users/jan/Documents/Studium/Bachelorarbeit/repository/visualization/src/data', sub_folder,
+                       file_name)
     dump_file = open(output_path, "w")
     dump_file.write(json.dumps(dump))
     dump_file.close()
@@ -260,7 +276,7 @@ def main():
         splitted_documents = split_document(documents, 400, overlapping=overlapping)
 
         if overlapping:
-            dump_to_file(splitted_documents, config, file_name='gold.german.128.json', overlapping=True)
+            dump_to_file(splitted_documents, config, file_name='gold.german.128.json', method=OVERLAPPING)
         else:
             dump_to_file(splitted_documents, config, file_name='gold.german.128.json')
 
