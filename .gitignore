@@ -16,3 +16,4 @@ model-code/local.conf
 venv
 **/vectors.txt
 **/vectors_full.txt
+model-code/cc.de.300.bin.gz
