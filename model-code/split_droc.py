@@ -24,23 +24,23 @@ DEV = [
 
 TEST = [
     "Ahlefeld,-Charlotte-von__Erna.xmi.xmi.xmi",
-    # "Anonym__Schwester Monika.xmi.xmi.xmi",
-    # "Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde.xmi.xmi",
-    # "Aston,-Louise__Revolution und Contrerevolution.xmi.xmi.xmi",
-    # "Auerbach,-Berthold__Der Lehnhold.xmi.xmi.xmi",
-    # "Balzac,-Honoré-de__Vater Goriot.xmi.xmi.xmi",
-    # "Bierbaum,-Otto-Julius__Stilpe. Ein Roman aus der Froschperspektive.xmi.xmi.xmi",
-    # "Bruckbräu,-Friedrich-Wilhelm__Mittheilungen aus den geheimen Memoiren einer deutschen Sängerin.xmi.xmi.xmi",
-    # "Duncker,-Dora__Großstadt.xmi.xmi.xmi",
-    # "Fischer,-Caroline-Auguste__Gustavs Verirrungen.xmi.xmi.xmi",
-    # "Fontane,-Theodor__Quitt.xmi.xmi.xmi",
-    # "Fontane,-Theodor__Stine.xmi.xmi.xmi",
-    # "Franzos,-Karl-Emil__Der Pojaz.xmi.xmi.xmi",
-    # "Klabund__Bracke.xml.xmi.xmi.txt.xmi.xmi.xmi",
-    # "May,-Karl__Auf fremden Pfaden.xml.xmi.xmi.txt.xmi.xmi.xmi",
-    # "Pichler,-Karoline__Agathocles.xml.xmi.xmi.txt.xmi.xmi.xmi",
-    # "Sack,-Gustav__Paralyse.xml.xmi.xmi.txt.xmi.xmi.xmi",
-    # "Verne,-Jules__Zwanzigtausend Meilen unter'm Meer.xml.xmi.xmi.txt.xmi.xmi.xmi",
+    "Anonym__Schwester Monika.xmi.xmi.xmi",
+    "Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde.xmi.xmi",
+    "Aston,-Louise__Revolution und Contrerevolution.xmi.xmi.xmi",
+    "Auerbach,-Berthold__Der Lehnhold.xmi.xmi.xmi",
+    "Balzac,-Honoré-de__Vater Goriot.xmi.xmi.xmi",
+    "Bierbaum,-Otto-Julius__Stilpe. Ein Roman aus der Froschperspektive.xmi.xmi.xmi",
+    "Bruckbräu,-Friedrich-Wilhelm__Mittheilungen aus den geheimen Memoiren einer deutschen Sängerin.xmi.xmi.xmi",
+    "Duncker,-Dora__Großstadt.xmi.xmi.xmi",
+    "Fischer,-Caroline-Auguste__Gustavs Verirrungen.xmi.xmi.xmi",
+    "Fontane,-Theodor__Quitt.xmi.xmi.xmi",
+    "Fontane,-Theodor__Stine.xmi.xmi.xmi",
+    "Franzos,-Karl-Emil__Der Pojaz.xmi.xmi.xmi",
+    "Klabund__Bracke.xml.xmi.xmi.txt.xmi.xmi.xmi",
+    "May,-Karl__Auf fremden Pfaden.xml.xmi.xmi.txt.xmi.xmi.xmi",
+    "Pichler,-Karoline__Agathocles.xml.xmi.xmi.txt.xmi.xmi.xmi",
+    "Sack,-Gustav__Paralyse.xml.xmi.xmi.txt.xmi.xmi.xmi",
+    "Verne,-Jules__Zwanzigtausend Meilen unter'm Meer.xml.xmi.xmi.txt.xmi.xmi.xmi",
 ]
 
 TRAIN = [
@@ -163,7 +163,7 @@ def write_paragraphs_as_docs(cas, output_file, doc_id, TrainingDoc):
             custom_paragraph.begin = previous_end
             custom_paragraph.end = paragraph.end
             previous_end = paragraph.end
-        if len(cas.select_covered("de.uniwue.kalimachos.coref.type.SentenceWindow", custom_paragraph)) > 0:
+        if len(cas.select_covered("de.uniwue.kalimachos.coref.type.Sentence", custom_paragraph)) > 0:
             write_document(
                 cas,
                 output_file,
@@ -175,9 +175,9 @@ def write_paragraphs_as_docs(cas, output_file, doc_id, TrainingDoc):
 
 def write_document(cas, output_file, doc_id, paragraph=None, max_length=None):
     if not paragraph:
-        sentences = list(cas.select("de.uniwue.kalimachos.coref.type.SentenceWindow"))
+        sentences = list(cas.select("de.uniwue.kalimachos.coref.type.Sentence"))
     else:
-        sentences = list(cas.select_covered("de.uniwue.kalimachos.coref.type.SentenceWindow", paragraph))
+        sentences = list(cas.select_covered("de.uniwue.kalimachos.coref.type.Sentence", paragraph))
     if len(sentences) == 0:
         return
     if max_length is None:
