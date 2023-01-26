@@ -26,8 +26,9 @@ logger = logging.getLogger(__name__)
 STRING_MATCHING = "string_matching"
 OVERLAPPING = "overlapping"
 EMBEDDING = "embedding"
+NEURAL = "neural"
 
-METHOD = EMBEDDING
+METHOD = NEURAL
 
 EMBEDDING_THRESHOLD = 0.7
 
@@ -445,6 +446,33 @@ def update_evaluator(predicted_clusters, mention_to_cluster_id, gold_clusters, e
     evaluator.update(predicted_clusters, gold_clusters, mention_to_predicted, mention_to_gold)
 
 
+def merge_by_neural_net(enriched_documents, documents, config):
+    tensorizer = Tensorizer(config)
+
+    tensors = []
+
+    for doc, enriched_doc in zip(documents, enriched_documents):
+        split_starts = [split['start_index'] for split in enriched_doc.values()]
+        split_ends = [split['end_index'] for split in enriched_doc.values()]
+
+        predictions = [split['predictions'] for split in enriched_doc.values()]
+
+        # predictions müssen genau wie die gold_starts und gold_ends aufgebaut sein
+        # also:
+        # predictions_starts
+        # predictions_ends
+        # predictions_cluster_map
+        # predictions_split_map
+
+        enriched_tensor = tensorizer.tensorize_example(doc, False, False, split_starts, split_ends, predictions)
+        tensors.append(enriched_tensor)
+
+    tensor_documents = itertools.chain(*tensors)
+    tensor_documents = list(tensor_documents)
+    torch_documents = [(doc_key, convert_to_torch_tensor(*tensor)) for doc_key, tensor in tensor_documents]
+    print("test")
+
+
 def evaluate(config_name, gpu_id, saved_suffix, out_file):
     config = util.initialize_config(config_name, create_dirs=False)
     runner = Runner(config_name, gpu_id, skip_data_loading=True)
@@ -470,6 +498,8 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
         merged_clusters = merge_by_overlapping(enriched_documents)
     elif METHOD == EMBEDDING:
         merged_clusters = merge_by_embedding(enriched_documents)
+    elif METHOD == NEURAL:
+        merged_clusters = merge_by_neural_net(enriched_documents, documents, config)
 
     evaluator = CorefEvaluator()
 

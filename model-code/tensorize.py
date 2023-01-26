@@ -14,7 +14,8 @@ logger = logging.getLogger(__name__)
 
 
 def convert_to_torch_tensor(input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map,
-                            is_training, gold_starts, gold_ends, gold_mention_cluster_map):
+                            is_training, gold_starts, gold_ends, gold_mention_cluster_map,
+                            split_starts=None, split_ends=None, predictions=None):
     input_ids = torch.tensor(input_ids, dtype=torch.long)
     input_mask = torch.tensor(input_mask, dtype=torch.long)
     speaker_ids = torch.tensor(speaker_ids, dtype=torch.long)
@@ -25,8 +26,17 @@ def convert_to_torch_tensor(input_ids, input_mask, speaker_ids, sentence_len, ge
     gold_starts = torch.tensor(gold_starts, dtype=torch.long)
     gold_ends = torch.tensor(gold_ends, dtype=torch.long)
     gold_mention_cluster_map = torch.tensor(gold_mention_cluster_map, dtype=torch.long)
-    return input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, \
+
+    if split_starts is None:
+        return input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, \
            is_training, gold_starts, gold_ends, gold_mention_cluster_map,
+    else:
+        split_starts = torch.tensor(split_starts, dtype=torch.long)
+        split_ends = torch.tensor(split_ends, dtype=torch.long)
+        predictions = torch.tensor(predictions)
+
+        return input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, \
+            is_training, gold_starts, gold_ends, gold_mention_cluster_map, split_starts, split_ends, predictions
 
 
 class CorefDataProcessor:
@@ -53,8 +63,8 @@ class CorefDataProcessor:
             self.tensor_samples = {}
             tensorizer = Tensorizer(self.config)
             paths = {
-                #'trn': join(self.data_dir, f'train.{self.language}.{self.max_seg_len}.jsonlines'),
-                #'dev': join(self.data_dir, f'dev.{self.language}.{self.max_seg_len}.jsonlines'),
+                'trn': join(self.data_dir, f'train.{self.language}.{self.max_seg_len}.jsonlines'),
+                'dev': join(self.data_dir, f'dev.{self.language}.{self.max_seg_len}.jsonlines'),
                 'tst': join(self.data_dir, f'test.{self.language}.{self.max_seg_len}.jsonlines')
             }
             for split, path in paths.items():
@@ -124,7 +134,7 @@ class Tensorizer:
                 speaker_dict[speaker] = len(speaker_dict)
         return speaker_dict
 
-    def tensorize_example(self, example, is_training, is_hybrid=True):
+    def tensorize_example(self, example, is_training, is_hybrid=True, split_starts=None, split_ends=None, predictions=None):
         # Mentions and clusters
         clusters = example['clusters']
         gold_mentions = sorted(tuple(mention) for mention in util.flatten(clusters))
@@ -173,8 +183,12 @@ class Tensorizer:
         # Construct example
         genre = self.stored_info['genre_dict'].get(doc_key[:2], 0)
         gold_starts, gold_ends = self._tensorize_spans(gold_mentions)
-        example_tensor = (input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, is_training,
+        if split_starts is None:
+            example_tensor = (input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, is_training,
                           gold_starts, gold_ends, gold_mention_cluster_map)
+        else:
+            example_tensor = (input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, is_training,
+                              gold_starts, gold_ends, gold_mention_cluster_map, split_starts, split_ends, predictions)
 
         if (is_hybrid or is_training) and len(sentences) > self.config['max_training_sentences']:
             if self.long_doc_strategy == 'split':

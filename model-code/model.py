@@ -175,12 +175,14 @@ class CorefModel(nn.Module):
 
         # Get span score
         candidate_mention_scores = torch.squeeze(self.span_emb_score_ffnn(candidate_span_emb), 1)
+        # Wahrscheinlich wird hier nochmal irgendwie die Länge der Span-Kandidaten mit einberechnet in den Score
         if conf['use_width_prior']:
-            width_score = torch.squeeze(self.span_width_score_ffnn(self.emb_span_width_prior.weight), 1)
+            width_score = torch.squeeze(self.span_width_score_ffnn(self.emb_span_width_prior.weight), 1) # Überhaupt keinen Plan was hier passiert
             candidate_width_score = width_score[candidate_width_idx]
             candidate_mention_scores += candidate_width_score
 
         # Extract top spans
+        # Hier werden die Span-Kandidaten anhand des Scores sortiert
         candidate_idx_sorted_by_score = torch.argsort(candidate_mention_scores, descending=True).tolist()
         candidate_starts_cpu, candidate_ends_cpu = candidate_starts.tolist(), candidate_ends.tolist()
         num_top_spans = int(min(conf['max_num_extracted_spans'], conf['top_span_ratio'] * num_words))
@@ -773,6 +775,12 @@ class IncrementalCorefModel(CorefModel):
                     seg_distance_emb = self.emb_segment_distance(entities.sentence_distance.type(torch.long))
                     feature_list.append(seg_distance_emb.reshape(-1, conf['feature_emb_size']))
                 if conf['use_features']:
+                    # Mention-Distance gibt die Entfernung von der aktuellen Mention zum Cluster an.
+                    # Genauer: Anzahl der Mentions, welche seit dem letzten Hinzufügen zum Cluster
+                    # zu anderen Clustern hinzugefügt wurden
+                    # bucket_distance überführt diese Distance in feste Anzahl von Werten.
+                    # Dabei werden größere Mention-Distances immer weiter zusammengefasst
+                    #  10 semi-logscale bin: 0, 1, 2, 3, 4, (5-7)->5, (8-15)->6, (16-31)->7, (32-63)->8, (64+)->9
                     dists = util.bucket_distance(entities.mention_distance, num_buckets=self.config['num_antecedent_distance_buckets'])
                     antecedent_distance_emb = self.emb_top_antecedent_distance(dists.type(torch.long))
                     feature_list.append(antecedent_distance_emb.reshape(-1, conf['feature_emb_size']))
@@ -781,10 +789,13 @@ class IncrementalCorefModel(CorefModel):
                 fast_coref_scores = torch.matmul(fast_source_span_emb, fast_entity_embs).unsqueeze(-1)
                 feature_emb = torch.cat(feature_list, dim=1)
                 feature_emb = self.dropout(feature_emb)
+                # Embedding von aktueller Mention wird so oft wiederholt wie wir aktuell schon Cluster vorliegen haben
                 embs = emb.repeat(entities.emb.shape[0], 1)
+                # Embedding von aktueller Mention wird mit dem Embedding von allen Clustern multipliziert
                 similarity_emb = embs * entities.emb
                 pair_emb = torch.cat([embs, entities.emb, similarity_emb, feature_emb], 1)
-                # It's important for us to also involve the mention span scores, the only way to prune discovered spans is by turning them into singleton clusters
+                # It's important for us to also involve the mention span scores,
+                # the only way to prune discovered spans is by turning them into singleton clusters
                 # This is encouraged by explicitly involving the sum of the mention scores
                 original_scores = self.coref_score_ffnn(pair_emb) + fast_coref_scores
                 if return_singletons:
