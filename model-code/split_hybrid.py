@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 STRING_MATCHING = "string_matching"
 OVERLAPPING = "overlapping"
 EMBEDDING = "embedding"
+NEURAL = "neural"
 
 
 def filter_cluster(clusters, start_index, end_index, normalize=False, correct_indices=False):
@@ -219,6 +220,9 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german
                 'start_index'] if merged_clusters is not None or method is OVERLAPPING else index
             clusters_key = "clusters_correct_indices" if not predictions else "predictions"
 
+            if method is NEURAL and merged_clusters is None:
+                clusters_key = 'clusters'
+
             clusters = get_clusters_for_subtoken_index(merged_clusters, sub_token_index) if merged_clusters is not None \
                 else get_clusters_for_subtoken_index(doc[doc_key][clusters_key], index)
 
@@ -251,6 +255,8 @@ def dump_to_file(documents, config, merged_clusters=None, file_name='gold.german
         sub_folder = 'overlapping'
     elif method is STRING_MATCHING:
         sub_folder = 'string-matching'
+    elif method is NEURAL:
+        sub_folder = 'neural'
     else:
         sub_folder = 'embedding'
 

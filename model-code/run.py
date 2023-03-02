@@ -212,10 +212,12 @@ class Runner:
         evaluator = CorefEvaluator()
         doc_to_prediction = {}
 
+        evaluate = False
+
         model.eval()
         for i, (doc_key, tensor_example) in tqdm(enumerate(tensor_examples), total=len(tensor_examples)):
             gold_clusters = stored_info['gold'][doc_key]
-            tensor_example = tensor_example[:7]  # Strip out gold
+            tensor_example = tensor_example[:7] if not hybrid else tensor_example[:13]  # Strip out gold
             example_gpu = [d.to(self.device) for d in tensor_example]
             if self.config["incremental"]:
                 with torch.no_grad():
@@ -237,12 +239,13 @@ class Runner:
                 predicted_clusters = model.update_evaluator(span_starts, span_ends, antecedent_idx, antecedent_scores, gold_clusters, evaluator)
                 doc_to_prediction[doc_key] = predicted_clusters
 
-        p, r, f = evaluator.get_prf()
-        metrics = {'Eval_Avg_Precision': p * 100, 'Eval_Avg_Recall': r * 100, 'Eval_Avg_F1': f * 100}
-        for name, score in metrics.items():
-            logger.info('%s: %.2f' % (name, score))
-            if tb_writer:
-                tb_writer.add_scalar(name, score, step)
+        if evaluate:
+            p, r, f = evaluator.get_prf()
+            metrics = {'Eval_Avg_Precision': p * 100, 'Eval_Avg_Recall': r * 100, 'Eval_Avg_F1': f * 100}
+            for name, score in metrics.items():
+                logger.info('%s: %.2f' % (name, score))
+                if tb_writer:
+                    tb_writer.add_scalar(name, score, step)
 
         if hybrid:
             return doc_to_prediction

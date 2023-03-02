@@ -15,7 +15,8 @@ logger = logging.getLogger(__name__)
 
 def convert_to_torch_tensor(input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map,
                             is_training, gold_starts, gold_ends, gold_mention_cluster_map,
-                            split_starts=None, split_ends=None, predictions=None):
+                            split_starts=None, split_ends=None, predictions_start=None,
+                            predictions_ends=None, predictions_cluster_map=None, predictions_split_map=None):
     input_ids = torch.tensor(input_ids, dtype=torch.long)
     input_mask = torch.tensor(input_mask, dtype=torch.long)
     speaker_ids = torch.tensor(speaker_ids, dtype=torch.long)
@@ -33,10 +34,15 @@ def convert_to_torch_tensor(input_ids, input_mask, speaker_ids, sentence_len, ge
     else:
         split_starts = torch.tensor(split_starts, dtype=torch.long)
         split_ends = torch.tensor(split_ends, dtype=torch.long)
-        predictions = torch.tensor(predictions)
+        predictions_start = torch.tensor(predictions_start, dtype=torch.long)
+        predictions_ends = torch.tensor(predictions_ends, dtype=torch.long)
+        predictions_split_map = torch.tensor(predictions_split_map, dtype=torch.long)
+        predictions_cluster_map = torch.tensor(predictions_cluster_map, dtype=torch.long)
 
         return input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, \
-            is_training, gold_starts, gold_ends, gold_mention_cluster_map, split_starts, split_ends, predictions
+            is_training, split_starts, split_ends,\
+            predictions_start, predictions_ends, predictions_split_map, predictions_cluster_map, \
+            gold_starts, gold_ends, gold_mention_cluster_map
 
 
 class CorefDataProcessor:
@@ -187,8 +193,22 @@ class Tensorizer:
             example_tensor = (input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, is_training,
                           gold_starts, gold_ends, gold_mention_cluster_map)
         else:
+            predictions_start = []
+            predictions_ends = []
+            predictions_split_map = []
+            predictions_cluster_map = []
+
+            for index, split_predictions in enumerate(predictions):
+                for cluster_index, cluster in enumerate(split_predictions):
+                    for mention in cluster:
+                        predictions_start.append(mention[0])
+                        predictions_ends.append(mention[1])
+                        predictions_split_map.append(index)
+                        predictions_cluster_map.append(cluster_index)
+
             example_tensor = (input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, is_training,
-                              gold_starts, gold_ends, gold_mention_cluster_map, split_starts, split_ends, predictions)
+                              gold_starts, gold_ends, gold_mention_cluster_map, split_starts, split_ends, predictions_start,
+                              predictions_ends, predictions_cluster_map, predictions_split_map)
 
         if (is_hybrid or is_training) and len(sentences) > self.config['max_training_sentences']:
             if self.long_doc_strategy == 'split':

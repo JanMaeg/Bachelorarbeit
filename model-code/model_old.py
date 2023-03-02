@@ -768,7 +768,7 @@ class IncrementalCorefModel(CorefModel):
             cpu_entities.extend(new_cpu_entities)
         cpu_entities.extend(entities)
         starts, ends, mention_to_cluster_id, predicted_clusters = cpu_entities.get_result(
-            remove_singletons=False
+            remove_singletons=not self.config['incremental_singletons']
         )
         out = [
             starts,
@@ -870,99 +870,106 @@ class IncrementalCorefModel(CorefModel):
         if len(top_span_emb.shape) == 1:
             top_span_emb = top_span_emb.unsqueeze(0)
 
-        total_scores = []
-        already_picked_cluster = []
-
         losses = []
         cpu_loss = 0.0
         discard_weight = len(labels_for_starts.keys()) / len(top_span_starts)
         new_cluster_weight = len(set(labels_for_starts.keys())) / len(top_span_starts)
-        for new_cluster_idx in range(0, torch.max(predictions_cluster_map)):
-            cluster_starts = predictions_starts[predictions_cluster_map == new_cluster_idx]
-            cluster_ends = predictions_ends[predictions_cluster_map == new_cluster_idx]
-            cluster_embs = predictions_span_emb[predictions_cluster_map == new_cluster_idx]
+        for emb, span_start, span_end, mention_score in zip(top_span_emb, top_span_starts, top_span_ends,
+                                                            top_spans['mention_scores']):
+            gold_class = labels_for_starts.get((span_start.item(), span_end.item()))
+            if len(entities) == 0:
+                # No need to do the whole similarity computation, this is the first mention
+                entities.add_entity(emb, gold_class, span_start, span_end, offset=offset)
+            else:
+                if conf['evict']:
+                    entities.evict(evict_to=cpu_entities)
+                feature_list = []
+                if conf['use_metadata']:
+                    same_speaker_emb = torch.zeros(conf['feature_emb_size'], device=self.device)
+                    genre_emb = self.emb_genre(genre)
+                    feature_list.append(
+                        same_speaker_emb.repeat(entities.emb.shape[0]).reshape(-1, conf['feature_emb_size']))
+                    feature_list.append(
+                        genre_emb.repeat(feature_list[0].shape[0]).reshape(-1, conf['feature_emb_size']))
+                if conf['use_segment_distance']:
+                    seg_distance_emb = self.emb_segment_distance(entities.sentence_distance.type(torch.long))
+                    feature_list.append(seg_distance_emb.reshape(-1, conf['feature_emb_size']))
+                if conf['use_features']:
+                    # Mention-Distance gibt die Entfernung von der aktuellen Mention zum Cluster an.
+                    # Genauer: Anzahl der Mentions, welche seit dem letzten Hinzufügen zum Cluster
+                    # zu anderen Clustern hinzugefügt wurden
+                    # bucket_distance überführt diese Distance in feste Anzahl von Werten.
+                    # Dabei werden größere Mention-Distances immer weiter zusammengefasst
+                    #  10 semi-logscale bin: 0, 1, 2, 3, 4, (5-7)->5, (8-15)->6, (16-31)->7, (32-63)->8, (64+)->9
+                    dists = util.bucket_distance(entities.mention_distance,
+                                                 num_buckets=self.config['num_antecedent_distance_buckets'])
+                    antecedent_distance_emb = self.emb_top_antecedent_distance(dists.type(torch.long))
+                    feature_list.append(antecedent_distance_emb.reshape(-1, conf['feature_emb_size']))
+                fast_source_span_emb = self.dropout(self.coarse_bilinear(emb))
+                fast_entity_embs = self.dropout(torch.transpose(entities.emb, 0, 1))
+                fast_coref_scores = torch.matmul(fast_source_span_emb, fast_entity_embs).unsqueeze(-1)
+                feature_emb = torch.cat(feature_list, dim=1)
+                feature_emb = self.dropout(feature_emb)
+                # Embedding von aktueller Mention wird so oft wiederholt wie wir aktuell schon Cluster vorliegen haben
+                embs = emb.repeat(entities.emb.shape[0], 1)
+                # Embedding von aktueller Mention wird mit dem Embedding von allen Clustern multipliziert
+                similarity_emb = embs * entities.emb
+                pair_emb = torch.cat([embs, entities.emb, similarity_emb, feature_emb], 1)
+                # It's important for us to also involve the mention span scores,
+                # the only way to prune discovered spans is by turning them into singleton clusters
+                # This is encouraged by explicitly involving the sum of the mention scores
+                original_scores = self.coref_score_ffnn(pair_emb) + fast_coref_scores
+                if return_singletons:
+                    scores = torch.cat([new_cluster_threshold, -mention_score.view(1, 1), original_scores])
+                else:
+                    scores = torch.cat([new_cluster_threshold, original_scores])
+                dist = torch.softmax(scores, 0)
 
-            #if conf['evict']:
-#                entities.evict(evict_to=cpu_entities)
-
-            # TODO: Aktuell wird hier nur der average genommen.
-            # TODO: Macht es Sinn das Ganze zu gewichten, wie?
-            emb = torch.mean(cluster_embs, 0)
-
-            feature_list = []
-            if conf['use_features']:
-                # Mention-Distance gibt die Entfernung von der aktuellen Mention zum Cluster an.
-                # Genauer: Anzahl der Mentions, welche seit dem letzten Hinzufügen zum Cluster
-                # zu anderen Clustern hinzugefügt wurden
-                # bucket_distance überführt diese Distance in feste Anzahl von Werten.
-                # Dabei werden größere Mention-Distances immer weiter zusammengefasst
-                #  10 semi-logscale bin: 0, 1, 2, 3, 4, (5-7)->5, (8-15)->6, (16-31)->7, (32-63)->8, (64+)->9
-                dists = util.bucket_distance(entities.mention_distance,
-                                             num_buckets=self.config['num_antecedent_distance_buckets'])
-                antecedent_distance_emb = self.emb_top_antecedent_distance(dists.type(torch.long))
-                feature_list.append(antecedent_distance_emb.reshape(-1, conf['feature_emb_size']))
-
-            fast_source_span_emb = self.dropout(self.coarse_bilinear(emb))
-            fast_entity_embs = self.dropout(torch.transpose(entities.emb, 0, 1))
-            fast_coref_scores = torch.matmul(fast_source_span_emb, fast_entity_embs).unsqueeze(-1)
-            feature_emb = torch.cat(feature_list, dim=1)
-            feature_emb = self.dropout(feature_emb)
-
-            embs = emb.repeat(entities.emb.shape[0], 1)
-            # Embedding von aktueller Mention wird mit dem Embedding von allen Clustern multipliziert
-            similarity_emb = embs * entities.emb
-            pair_emb = torch.cat([embs, entities.emb, similarity_emb, feature_emb], 1)
-            # It's important for us to also involve the mention span scores,
-            # the only way to prune discovered spans is by turning them into singleton clusters
-            # This is encouraged by explicitly involving the sum of the mention scores
-            original_scores = self.coref_score_ffnn(pair_emb) + fast_coref_scores
-            # TODO: Was genau macht return_singletons? Wie kann ich bzw. muss ich das so umbauen, dass ich es auch für den Cluster-Merge verwenden kann?
-            # if return_singletons:
-            #    scores = torch.cat([new_cluster_threshold, -mention_score.view(1, 1), original_scores])
-            # else:
-            scores = torch.cat([new_cluster_threshold, original_scores])
-            total_scores.append(torch.softmax(scores, 0))
-
-        for new_cluster_idx, dist in enumerate(total_scores):
-            cluster_starts = predictions_starts[predictions_cluster_map == new_cluster_idx]
-            cluster_ends = predictions_ends[predictions_cluster_map == new_cluster_idx]
-            cluster_embs = predictions_span_emb[predictions_cluster_map == new_cluster_idx]
-
-            emb = torch.mean(cluster_embs, 0)
-
-            index_to_update = dist.argmax()
-            # picked = None
-
-            if index_to_update > 0:
-                original = index_to_update
-
-                highest_score_cluster = torch.tensor([s[index_to_update] for s in total_scores]).argmax()
-
-                # torch.tensor(total_scores[:index_to_update]).argmax() == new_cluster_idx
-                while index_to_update in already_picked_cluster and index_to_update > 0 and new_cluster_idx > highest_score_cluster:
-                    dist[index_to_update] = 0
-                    index_to_update = dist.argmax()
-                    highest_score_cluster = torch.tensor([s[index_to_update] for s in total_scores]).argmax()
-                    # print(already_picked_cluster, dist, index_to_update)
-                    # picked = index_to_update
-                # if picked is not None:
-                    # print(original, picked)
-                # picked = None
-                already_picked_cluster.append(index_to_update)
-
-            cluster_to_update = index_to_update - 1
-
-            # TODO: Macht es Sinn zu verhindern, dass Cluster aus dem gleichen Split in das selbe "globale" Cluster hinzugefügt werden?
-            # if offset < 998:
-#                print(cluster_starts + offset, cluster_to_update, offset)
-
-            for span_start, span_end, span_emb in zip(cluster_starts, cluster_ends, cluster_embs):
-
+                index_to_update = dist.argmax()
+                if return_singletons:
+                    cluster_to_update = index_to_update - 2
+                else:
+                    cluster_to_update = index_to_update - 1
+                weights = torch.ones(scores.squeeze().T.shape)
+                if return_singletons:
+                    weights[0] = new_cluster_weight
+                    weights[1] = discard_weight
+                else:
+                    weights[0] = discard_weight
+                cre_loss = torch.nn.CrossEntropyLoss(weight=weights.to(self.device))
+                if gold_class and do_loss:
+                    if return_singletons:
+                        target = torch.tensor([entities.class_gold_entity.get(gold_class, -2) + 2]).to(device)
+                    else:
+                        target = torch.tensor([entities.class_gold_entity.get(gold_class, -1) + 1]).to(device)
+                    loss = cre_loss(scores.T, target)
+                    losses.append(loss)
+                elif do_loss:
+                    # In this case we are training but don't have a gold label for this span
+                    # i.e. the span is not in any gold cluster!
+                    if return_singletons:
+                        # In this case we add the option to discard a mention
+                        loss = cre_loss(scores.T, torch.tensor([1], device=device))
+                    else:
+                        # Always create a new singleton cluster hoping nothing else ever gets added
+                        loss = cre_loss(scores.T, torch.tensor([0], device=device))
+                    losses.append(loss)
+                if util.cuda_allocated_memory(self.device) > conf['memory_limit'] and len(losses) > 0:
+                    sum(losses).backward(retain_graph=True)
+                    cpu_loss += sum(losses).item()
+                    losses = []
+                if teacher_forcing:
+                    forced_class = entities.class_gold_entity.get(gold_class)
+                    if forced_class is None:
+                        cluster_to_update = None
+                    else:
+                        cluster_to_update = torch.tensor(forced_class)
+                    if cluster_to_update is None:
+                        index_to_update = 0
                 if index_to_update == 0:
-                    entities.add_entity(emb, None, span_start, span_end, offset=offset)
-                    index_to_update = len(entities.count)
-                    cluster_to_update = torch.tensor(index_to_update - 1)
-
+                    entities.add_entity(emb, gold_class, span_start, span_end, offset=offset)
+                elif index_to_update == 1 and return_singletons:
+                    pass
                 else:
                     update_gate = torch.sigmoid(
                         self.entity_representation_gate(torch.cat(
@@ -974,7 +981,7 @@ class IncrementalCorefModel(CorefModel):
                     entities.update_entity(
                         cluster_to_update,
                         emb,
-                        None,
+                        gold_class,
                         span_start,
                         span_end,
                         update_gate,

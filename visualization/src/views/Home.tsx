@@ -65,6 +65,11 @@ const Home = () => {
             Merged if over a defined threshold."
             link="/embedding"
           />
+          <MethodCard
+            title="Merge by neural method"
+            description="Text is split without overlapping."
+            link="/neural"
+          />
         </SimpleGrid>
       </div>
     </Container>

@@ -11,6 +11,7 @@ import "./App.css";
 import Home from "./views/Home";
 import WindowMerge from "./views/WindowMerge";
 import Embedding from "./views/Embedding";
+import Neural from "./views/Neural";
 
 const routeConfig = createRouteConfig().createChildren((createRoute) => [
   createRoute({
@@ -28,6 +29,10 @@ const routeConfig = createRouteConfig().createChildren((createRoute) => [
   createRoute({
     path: "/embedding",
     component: Embedding,
+  }),
+  createRoute({
+    path: "/neural",
+    component: Neural,
   }),
 ]);
 

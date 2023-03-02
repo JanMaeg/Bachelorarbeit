@@ -12,7 +12,6 @@ import fasttext.util
 import matplotlib.pyplot as plt
 import numpy as np
 from gensim.models.keyedvectors import KeyedVectors
-from matplotlib.pyplot import figure
 from sklearn.metrics.pairwise import cosine_similarity
 
 import util
@@ -33,12 +32,19 @@ METHOD = NEURAL
 EMBEDDING_THRESHOLD = 0.7
 
 
-def get_documents_with_predictions(documents, config, runner, model, out_file):
+def get_documents_with_predictions(documents, config, runner, model, out_file, skip_predictions=True):
     tensorizer = Tensorizer(config)
     language = config['language']
     max_seg_len = config['max_segment_len']
 
     splitted_documents = split_document(documents, overlapping=(METHOD == OVERLAPPING))
+
+    if skip_predictions:
+        for index, docs in enumerate(splitted_documents):
+            for doc_key, doc in docs.items():
+                splitted_documents[index][doc_key]["predictions"] = []
+
+        return splitted_documents
 
     # To evaluate multiple documents with one call to the evaluate function we have change the structure of data
     # object. Our splitting function returns an array of dictionaries, where every split has an own key in the
@@ -446,7 +452,7 @@ def update_evaluator(predicted_clusters, mention_to_cluster_id, gold_clusters, e
     evaluator.update(predicted_clusters, gold_clusters, mention_to_predicted, mention_to_gold)
 
 
-def merge_by_neural_net(enriched_documents, documents, config):
+def merge_by_neural_net(enriched_documents, documents, config, model, runner, out_file):
     tensorizer = Tensorizer(config)
 
     tensors = []
@@ -455,7 +461,7 @@ def merge_by_neural_net(enriched_documents, documents, config):
         split_starts = [split['start_index'] for split in enriched_doc.values()]
         split_ends = [split['end_index'] for split in enriched_doc.values()]
 
-        predictions = [split['predictions'] for split in enriched_doc.values()]
+        predictions = [split['clusters'] for split in enriched_doc.values()]
 
         # predictions müssen genau wie die gold_starts und gold_ends aufgebaut sein
         # also:
@@ -470,12 +476,44 @@ def merge_by_neural_net(enriched_documents, documents, config):
     tensor_documents = itertools.chain(*tensors)
     tensor_documents = list(tensor_documents)
     torch_documents = [(doc_key, convert_to_torch_tensor(*tensor)) for doc_key, tensor in tensor_documents]
-    print("test")
+
+    clusters = runner.evaluate(
+        model,
+        torch_documents,
+        tensorizer.stored_info,
+        0,
+        official=True,
+        conll_path=runner.config['conll_test_path'],
+        out_file=out_file,
+        hybrid=True
+    )
+
+    merged_clusters = []
+
+    for doc_clusters in clusters.items():
+        merged_clusters.append({
+            "str": [],
+            "indices": doc_clusters[1]
+        })
+
+    return merged_clusters
+
+    # 1. Call evaluate function from here DONE
+    # 2. Use provided predictions in internal_evaluate instead of mention prediction DONE
+    # 3. Change loop to loop per cluster instead of mention DONE
+    # 4. Calculate a average of mention embedding DONE
+    # 5. Calculate weighted average of mention embedding ?
+    # 6. Try using existing model DONE
+    # 7. Train model on gold data
+    # 8. Evaluate on both datasets
 
 
 def evaluate(config_name, gpu_id, saved_suffix, out_file):
     config = util.initialize_config(config_name, create_dirs=False)
     runner = Runner(config_name, gpu_id, skip_data_loading=True)
+    # TODO: Ich benutze aktuell das Modell "droc_incremental_no_segment_distance_May02_17-32-58_1800" von GitHub?
+    # TODO: Gibt es ein anderes bereits trainiertes Modell oder doch besser komplett neu trainieren?
+    # TODO: Auf beiden Datensätzen?
     model = runner.initialize_model(saved_suffix)
     model.eval_only = True
     exclude_merge_tokens = False
@@ -499,7 +537,7 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     elif METHOD == EMBEDDING:
         merged_clusters = merge_by_embedding(enriched_documents)
     elif METHOD == NEURAL:
-        merged_clusters = merge_by_neural_net(enriched_documents, documents, config)
+        merged_clusters = merge_by_neural_net(enriched_documents, documents, config, model, runner, out_file)
 
     evaluator = CorefEvaluator()
 
