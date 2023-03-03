@@ -867,19 +867,13 @@ class IncrementalCorefModel(CorefModel):
                     )
             return entities, cpu_entities
 
-        if len(top_span_emb.shape) == 1:
-            top_span_emb = top_span_emb.unsqueeze(0)
-
         total_scores = []
         already_picked_cluster = []
 
         losses = []
         cpu_loss = 0.0
-        discard_weight = len(labels_for_starts.keys()) / len(top_span_starts)
-        new_cluster_weight = len(set(labels_for_starts.keys())) / len(top_span_starts)
-        for new_cluster_idx in range(0, torch.max(predictions_cluster_map)):
-            cluster_starts = predictions_starts[predictions_cluster_map == new_cluster_idx]
-            cluster_ends = predictions_ends[predictions_cluster_map == new_cluster_idx]
+
+        for new_cluster_idx in range(0, torch.max(predictions_cluster_map) + 1):
             cluster_embs = predictions_span_emb[predictions_cluster_map == new_cluster_idx]
 
             #if conf['evict']:
@@ -916,7 +910,6 @@ class IncrementalCorefModel(CorefModel):
             # the only way to prune discovered spans is by turning them into singleton clusters
             # This is encouraged by explicitly involving the sum of the mention scores
             original_scores = self.coref_score_ffnn(pair_emb) + fast_coref_scores
-            # TODO: Was genau macht return_singletons? Wie kann ich bzw. muss ich das so umbauen, dass ich es auch für den Cluster-Merge verwenden kann?
             # if return_singletons:
             #    scores = torch.cat([new_cluster_threshold, -mention_score.view(1, 1), original_scores])
             # else:
@@ -943,18 +936,10 @@ class IncrementalCorefModel(CorefModel):
                     dist[index_to_update] = 0
                     index_to_update = dist.argmax()
                     highest_score_cluster = torch.tensor([s[index_to_update] for s in total_scores]).argmax()
-                    # print(already_picked_cluster, dist, index_to_update)
-                    # picked = index_to_update
-                # if picked is not None:
-                    # print(original, picked)
-                # picked = None
+
                 already_picked_cluster.append(index_to_update)
 
             cluster_to_update = index_to_update - 1
-
-            # TODO: Macht es Sinn zu verhindern, dass Cluster aus dem gleichen Split in das selbe "globale" Cluster hinzugefügt werden?
-            # if offset < 998:
-#                print(cluster_starts + offset, cluster_to_update, offset)
 
             for span_start, span_end, span_emb in zip(cluster_starts, cluster_ends, cluster_embs):
 
