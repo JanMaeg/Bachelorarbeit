@@ -781,6 +781,26 @@ class IncrementalCorefModel(CorefModel):
         else:
             return out
 
+    def calculate_emb_for_cluster(self, cluster_embs, use_mean=True):
+        if use_mean:
+            return torch.mean(cluster_embs, 0)
+
+        emb = cluster_embs[0]
+
+        for i in range(1, len(cluster_embs)):
+            emb_to_be_added = cluster_embs[i]
+            update_gate = torch.sigmoid(
+                self.entity_representation_gate(torch.cat(
+                    [
+                        emb_to_be_added,
+                        emb,
+                    ],
+                )))
+
+            emb = update_gate * emb_to_be_added + (torch.tensor(1) - update_gate) * emb.clone()
+
+        return emb
+
     def get_predictions_spans(self, predictions_starts, predictions_ends):
         return {
             'candidate_starts': predictions_starts,
@@ -868,6 +888,7 @@ class IncrementalCorefModel(CorefModel):
             return entities, cpu_entities
 
         total_scores = []
+        total_embs = []
         already_picked_cluster = []
 
         losses = []
@@ -881,7 +902,8 @@ class IncrementalCorefModel(CorefModel):
 
             # TODO: Aktuell wird hier nur der average genommen.
             # TODO: Macht es Sinn das Ganze zu gewichten, wie?
-            emb = torch.mean(cluster_embs, 0)
+            emb = self.calculate_emb_for_cluster(cluster_embs)
+            total_embs.append(emb)
 
             feature_list = []
             if conf['use_features']:
@@ -921,7 +943,7 @@ class IncrementalCorefModel(CorefModel):
             cluster_ends = predictions_ends[predictions_cluster_map == new_cluster_idx]
             cluster_embs = predictions_span_emb[predictions_cluster_map == new_cluster_idx]
 
-            emb = torch.mean(cluster_embs, 0)
+            emb = total_embs[new_cluster_idx]
 
             index_to_update = dist.argmax()
             # picked = None
