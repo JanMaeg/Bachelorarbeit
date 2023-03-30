@@ -1,0 +1,67 @@
+[
+0:    ["Alexander", "ihm", "Herr von Norbeck", "Alexander", "Herr von Norbeck", "ihm", "er", "seinem", "seines", "sich", "er", "Alexander", "ihn", "seinen", "sein", "ihn", "Freund", "seines", "seinen"]
+1:    ["ich", "wer", "Linovsky", "Ich", "er", "sein", "er", "sich", "Gemahls", "er", "sein", "ihm", "er", "Herr von Linovsky"]
+2:    ["meine", "dir", "Erna", "Erna", "ich", "ich", "sie", "ihr", "du", "ich", "Erna", "sie"]
+3:    ["seines", "Wundarzt", "er", "Wundarzt",]
+4:    ["Kinder", "Kindern"]
+5:    ["uns", "unserm"]
+]
+
+[
+0:    ["seiner" & "ihm" & "Alexander" & "ihn" & "sich" & "ihm" & "seines" & "seinem" & "ihm" & "sich" & "seine" & "Alexander" & "dieser" & "seinen" & "ihm" & "seine" & "ihm" & "seinen" & "Leidenden" & "er"] &
+1:    ["Linovsky", "sein", "er", "Linovsky"],
+2:    ["ihrer", "sie", "Sie", "sie", "sie", "sich", "Erna"],
+3:    ["er", "Arztes", "der", "seiner", "Arzt", "Chirurgus"]
+]
+
+&  \rot{"sich"} &  \rot{"seines"} &  \rot{"seinem"} &  \rot{"seine"} &  \rot{"dieser"} &  \rot{"seinen"} &  \rot{"Leidenden"} &  \rot{"er"}
+
+best_cluster_match; max_token_occurrences; clusters_with_match_count
+
+{
+    "seiner": (-1, -1, 0),
+    "ihm": (0, 2, 2),
+    "Alexander": (0, 3, 1),
+    "ihn": (0, 2, 1),
+    "sich": (0, 1, 2),
+    "seines": (0, 2, 2),
+    "seinem": (0, 1, 1),
+    "seine": (-1, -1, 0),
+    "dieser": (-1, -1, 0),
+    "seinen": (0, 2, 1),
+    "Leidenden": (-1, -1, 0),
+    "er": (1, 4, 2)
+}
+
+Cluster 0 wird anhand von String "Alexander" in Cluster 0 gemerged (correct)
+
+{
+    "Linovsky": (1, 1, 1),
+    "sein": (1, 2, 2),
+    "er": (1, 4, 2)
+}
+
+Cluster 1 wird anhand vom String Linovsky in Cluster 1 gemerged (correct)
+
+
+{
+    "ihrer": (-1, -1, 0),
+    "sie": (2, 2, 1),
+    "Sie": (-1, -1, 0),
+    "sich": (0, 3, 2),
+    "Erna": (2, 3, 1)
+}
+
+Cluster 2 wird anhand vom Token Erna in Cluster 2 gemerged (correct)
+
+{
+    "er": (1, 5, 2),
+    "Wundarzt": (3, 1, 1),
+    "Arztes": (-1, -1, 0),
+    "der": (-1, -1, 0),
+    "seiner": (0, 1, 1),
+    "Arzt": (-1, -1, 0),
+    "Chirurgus": (-1, -1, 0)
+}
+
+Cluster 3 wird anhand vom Token Wundarzt in Cluster 3 gemerged (correct)

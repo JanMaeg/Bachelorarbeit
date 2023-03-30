@@ -188,7 +188,7 @@ const ClusterViewWindow = ({
                 splits[displayedSplit][0] <= index &&
                 splits[displayedSplit][1] > index
               }
-              clusters={predictedData.split_predictions[displayedSplit]}
+              // clusters={predictedData.split_predictions[displayedSplit]}
             />
           </div>
         );

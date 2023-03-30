@@ -1,0 +1,290 @@
+/Users/jan/Documents/Studium/Bachelorarbeit/repository/venv/bin/python /Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/hybrid.py droc_test droc_c2f_May12_17-38-53_1800 0
+03/27/2023 17:44:06 - INFO - util - Running experiment: droc_test
+03/27/2023 17:44:06 - INFO - util - data_dir = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test"
+conll_scorer = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/reference-coreference-scorers/v8.01/scorer.pl"
+max_top_antecedents = 10
+max_training_sentences = 13
+top_span_ratio = 0.4
+max_num_extracted_spans = 3900
+max_num_speakers = 20
+max_segment_len = 512
+long_doc_strategy = "split"
+postprocess_merge_overlapping_spans = true
+bert_learning_rate = 1e-05
+task_learning_rate = 0.0003
+loss_type = "marginalized"
+mention_loss_coef = 0.0
+false_new_delta = 1.5
+adam_eps = 1e-06
+adam_weight_decay = 0.01
+warmup_ratio = 0.1
+max_grad_norm = 1
+gradient_accumulation_steps = 1
+doc_max_segments = 30
+coref_depth = 1
+higher_order = "attended_antecedent"
+coarse_to_fine = true
+fine_grained = true
+dropout_rate = 0.3
+ffnn_size = 2048
+ffnn_depth = 1
+cluster_ffnn_size = 2048
+cluster_reduce = "mean"
+easy_cluster_first = false
+cluster_dloss = false
+num_epochs = 30
+feature_emb_size = 20
+max_span_width = 8
+span_width_embedding_size = 30
+use_metadata = false
+use_features = true
+use_segment_distance = true
+model_heads = true
+use_width_prior = true
+use_distance_prior = true
+model_type = "electra"
+freeze_mention_score = false
+incremental_start_global_loss_ratio = 0.0
+incremental_end_global_loss_ratio = 0.0
+incremental_teacher_forcing = true
+incremental_singletons = false
+evict = true
+unconditional_eviction_limit = 1500
+singleton_eviction_limit = 400
+num_antecedent_distance_buckets = 30
+conll_eval_path = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test/dev.german.droc_gold_conll"
+conll_test_path = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test/test.german.droc_gold_conll"
+genres = [
+  "n"
+]
+eval_frequency = 200
+report_frequency = 100
+log_root = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data"
+incremental = false
+language = "german"
+bert_tokenizer_name = "german-nlp-group/electra-base-german-uncased"
+bert_pretrained_name_or_path = "german-nlp-group/electra-base-german-uncased"
+log_dir = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test"
+data_dir_max_length = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/test-max-length"
+tb_dir = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/tensorboard"
+03/27/2023 17:44:06 - INFO - util - Running experiment: droc_test
+03/27/2023 17:44:07 - INFO - util - data_dir = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test"
+conll_scorer = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/reference-coreference-scorers/v8.01/scorer.pl"
+max_top_antecedents = 10
+max_training_sentences = 13
+top_span_ratio = 0.4
+max_num_extracted_spans = 3900
+max_num_speakers = 20
+max_segment_len = 512
+long_doc_strategy = "split"
+postprocess_merge_overlapping_spans = true
+bert_learning_rate = 1e-05
+task_learning_rate = 0.0003
+loss_type = "marginalized"
+mention_loss_coef = 0.0
+false_new_delta = 1.5
+adam_eps = 1e-06
+adam_weight_decay = 0.01
+warmup_ratio = 0.1
+max_grad_norm = 1
+gradient_accumulation_steps = 1
+doc_max_segments = 30
+coref_depth = 1
+higher_order = "attended_antecedent"
+coarse_to_fine = true
+fine_grained = true
+dropout_rate = 0.3
+ffnn_size = 2048
+ffnn_depth = 1
+cluster_ffnn_size = 2048
+cluster_reduce = "mean"
+easy_cluster_first = false
+cluster_dloss = false
+num_epochs = 30
+feature_emb_size = 20
+max_span_width = 8
+span_width_embedding_size = 30
+use_metadata = false
+use_features = true
+use_segment_distance = true
+model_heads = true
+use_width_prior = true
+use_distance_prior = true
+model_type = "electra"
+freeze_mention_score = false
+incremental_start_global_loss_ratio = 0.0
+incremental_end_global_loss_ratio = 0.0
+incremental_teacher_forcing = true
+incremental_singletons = false
+evict = true
+unconditional_eviction_limit = 1500
+singleton_eviction_limit = 400
+num_antecedent_distance_buckets = 30
+conll_eval_path = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test/dev.german.droc_gold_conll"
+conll_test_path = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test/test.german.droc_gold_conll"
+genres = [
+  "n"
+]
+eval_frequency = 200
+report_frequency = 100
+log_root = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data"
+incremental = false
+language = "german"
+bert_tokenizer_name = "german-nlp-group/electra-base-german-uncased"
+bert_pretrained_name_or_path = "german-nlp-group/electra-base-german-uncased"
+log_dir = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test"
+data_dir_max_length = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/test-max-length"
+tb_dir = "/Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/tensorboard"
+03/27/2023 17:44:07 - INFO - root - Log file path: /Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test/log_Mar27_17-44-06.txt
+Some weights of the model checkpoint at german-nlp-group/electra-base-german-uncased were not used when initializing ElectraModel: ['discriminator_predictions.dense.weight', 'discriminator_predictions.dense_prediction.bias', 'discriminator_predictions.dense.bias', 'discriminator_predictions.dense_prediction.weight']
+- This IS expected if you are initializing ElectraModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing ElectraModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+03/27/2023 17:44:11 - INFO - root - Loaded model from /Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_test/model_droc_c2f_May12_17-38-53_1800.bin
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitting documents into segment of length of around 400 subtokens.
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Ahlefeld,-Charlotte-von__Erna_0 into 17 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Anonym__Schwester_Monika_1 into 15 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_2 into 10 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Aston,-Louise__Revolution_und_Contrerevolution_3 into 11 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Auerbach,-Berthold__Der_Lehnhold_4 into 22 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Balzac,-Honoré-de__Vater_Goriot_5 into 9 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Bierbaum,-Otto-Julius__Stilpe_6 into 8 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Bruckbräu,-Friedrich-Wilhelm__Mittheilungen_aus_den_geheimen_Memoiren_einer_deutschen_Sängerin_7 into 11 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Duncker,-Dora__Großstadt_8 into 9 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Fischer,-Caroline-Auguste__Gustavs_Verirrungen_9 into 6 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Fontane,-Theodor__Quitt_10 into 11 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Fontane,-Theodor__Stine_11 into 8 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Franzos,-Karl-Emil__Der_Pojaz_12 into 11 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Klabund__Bracke_13 into 6 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document May,-Karl__Auf_fremden_Pfaden_14 into 7 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Pichler,-Karoline__Agathocles_15 into 9 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Sack,-Gustav__Paralyse_16 into 12 segments
+03/27/2023 17:44:16 - INFO - split_hybrid - Splitted document Verne,-Jules__Zwanzigtausend_Meilen_unter'm_Meer_17 into 6 segments
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 81.90
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 69.78
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 74.97
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 81.90
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 69.78
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 74.97
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 75.48
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 67.24
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 70.40
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 70.42
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 65.73
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 64.99
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 75.56
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 69.74
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 71.63
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 78.15
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 80.43
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 77.12
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 74.98
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 69.40
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 70.75
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 72.84
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 69.25
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 67.98
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 78.06
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 70.40
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 72.63
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 86.93
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 73.31
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 77.92
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 77.69
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 71.05
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 72.35
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 75.19
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 75.54
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 67.93
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 78.38
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 71.25
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 72.65
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 86.40
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 73.80
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 76.06
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 78.55
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 71.37
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 72.88
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 79.03
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 71.02
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 73.39
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 79.14
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 71.50
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 73.28
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 87.77
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 73.22
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 78.57
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 79.57
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 71.61
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 73.67
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 86.69
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 75.37
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 80.39
+03/27/2023 17:44:17 - INFO - __main__ - =====================
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Precision: 79.22
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_Recall: 71.20
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Avg_F1: 73.26
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Precision: 74.46
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_Recall: 66.21
+03/27/2023 17:44:17 - INFO - __main__ - Merge_Cur_F1: 68.14
+03/27/2023 17:44:18 - INFO - __main__ - =====================
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Precision: 79.63
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Recall: 71.48
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_F1: 73.65
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Precision: 85.19
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Recall: 75.60
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_F1: 79.08
+03/27/2023 17:44:18 - INFO - __main__ - =====================
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Precision: 79.37
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Recall: 70.77
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_F1: 73.24
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Precision: 78.60
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Recall: 64.28
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_F1: 69.65
+03/27/2023 17:44:18 - INFO - __main__ - =====================
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Precision: 79.20
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Recall: 70.31
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_F1: 72.80
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Precision: 74.99
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Recall: 64.02
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_F1: 65.57
+03/27/2023 17:44:18 - INFO - __main__ - =====================
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Precision: 78.93
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Recall: 70.39
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_F1: 72.75
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Precision: 73.74
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Recall: 72.25
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_F1: 71.95
+03/27/2023 17:44:18 - INFO - __main__ - =====================
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Precision: 79.09
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Recall: 70.50
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_F1: 72.95
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Precision: 81.90
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Recall: 71.48
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_F1: 75.42
+03/27/2023 17:44:18 - INFO - __main__ - =====================
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Precision: 78.98
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Recall: 70.59
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_F1: 72.93
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Precision: 76.35
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Recall: 72.18
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_F1: 72.16
+03/27/2023 17:44:18 - INFO - __main__ - =====================
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Precision: 79.12
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_Recall: 70.71
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Avg_F1: 73.07
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Precision: 84.25
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_Recall: 75.59
+03/27/2023 17:44:18 - INFO - __main__ - Merge_Cur_F1: 78.56
+03/27/2023 17:44:18 - INFO - split_hybrid - Dump predictions of first document into file predicted.german.512.json
+03/27/2023 17:44:18 - INFO - split_hybrid - Dump merged predictions of first document into file merged.german.512.json
+03/27/2023 17:44:18 - INFO - split_hybrid - Dump raw split into file merged.german.512.json

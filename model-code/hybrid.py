@@ -27,12 +27,12 @@ OVERLAPPING = "overlapping"
 EMBEDDING = "embedding"
 NEURAL = "neural"
 
-METHOD = NEURAL
+METHOD = OVERLAPPING
 
 EMBEDDING_THRESHOLD = 0.7
 
 
-def get_documents_with_predictions(documents, config, runner, model, out_file, skip_predictions=True):
+def get_documents_with_predictions(documents, config, runner, model, out_file, skip_predictions=False):
     tensorizer = Tensorizer(config)
     language = config['language']
     max_seg_len = config['max_segment_len']
@@ -146,54 +146,78 @@ def cluster_indices_to_tokens(documents):
     return enriched_documents
 
 
-def merge_by_overlapping(documents):
+def merge_by_overlapping(documents, use_gold_clusters=False):
+    predictions_str_key = "predictions_str" if not use_gold_clusters else "gold_cluster_str"
+    predictions_key = "predictions" if not use_gold_clusters else "clusters"
     merged_clusters = []
 
-    for document in documents:
+    for index_2, document in enumerate(documents):
         document_clusters = []
         document_clusters_indices = []
 
+        logger.info(f"Evaluating {index_2}")
+
         for index, split_doc_key in enumerate(document):
-            logger.info(f"New split {index}")
             split = document[split_doc_key]
 
             # For the first split we simply take all clusters as they are
             # Obviously no need to merge them with anything.
             if index == 0:
-                document_clusters = split["predictions_str"]
-                document_clusters_indices = split["predictions"]
+                document_clusters = split[predictions_str_key]
+                document_clusters_indices = split[predictions_key]
                 continue
 
-            for cluster_index, cluster in enumerate(split["predictions_str"]):
-                logger.info("=========")
-                logger.info(cluster)
-                cluster_indices_corrected = np.array(split["predictions"][cluster_index]) + split["start_index"]
-                logger.info(cluster_indices_corrected)
+            overlaps = []
 
-                max_overlaps = 0
-                best_index = -1
+            # We check for every existing cluster the overlap
+            # 4 Existing Cluster A, B, C, D
+            # 3 New cluster 1, 2, 3,
+            #
+            # Matrix 4 x 3
+            #
+            # A [ 0, 5, 6 ]
+            # B [ 0, 5, 6 ]
+            # C [ 0, 5, 6 ]
+            # D [ 0, 5, 6 ]
 
-                for existing_cluster_index, existing_cluster in enumerate(document_clusters_indices):
+            for existing_cluster_index, existing_cluster in enumerate(document_clusters_indices):
+                local_overlaps = []
+
+                for cluster_index, cluster in enumerate(split[predictions_str_key]):
+                    cluster_indices_corrected = np.array(split[predictions_key][cluster_index]) + split["start_index"]
                     cluster_intersection = np.intersect1d(existing_cluster, cluster_indices_corrected)
+                    local_overlaps.append(len(cluster_intersection))
 
-                    if len(cluster_intersection) > max_overlaps:
-                        max_overlaps = len(cluster_intersection)
-                        best_index = existing_cluster_index
+                overlaps.append(local_overlaps)
 
-                if max_overlaps > 0:
-                    logger.info(f"Cluster where merged with num overlaps: {max_overlaps / 2}")
-                    logger.info(document_clusters[best_index])
+            already_merged = []
 
-                    document_clusters[best_index] = np.concatenate(
-                        (document_clusters[best_index], cluster))
+            # After all overlaps have been calculated we find for every "new"/"to-be-merged" cluster the
+            # best fitting "existing" cluster
+            for cluster_index, cluster in enumerate(split[predictions_str_key]):
+                best_index = None
+                cluster_indices_corrected = np.array(split[predictions_key][cluster_index]) + split["start_index"]
 
-                    document_clusters_indices[best_index] = np.concatenate(
-                        (document_clusters_indices[best_index], cluster_indices_corrected)
-                    )
-                else:
-                    logger.info(f"No overlaps from the current cluster could be found in existing ones: {cluster}")
+                # Find the best index in that not has been merged until now
+                while best_index in already_merged or best_index is None:
+                    overlap_count_for_cluster = np.array(overlaps)[:, cluster_index]
+                    overlap_count_for_cluster[already_merged] = 0
+                    if max(overlap_count_for_cluster) == 0:
+                        best_index = -1
+                    else:
+                        # Liefert index von bereits bestehendem Cluster (Im Beispiel wäre das hier ein Buchstabe)
+                        best_index = np.argmax(overlap_count_for_cluster)
+
+                # No overlaps in any entity that not has been merged already:
+                if best_index == -1:
                     document_clusters.append(cluster)
                     document_clusters_indices.append(cluster_indices_corrected)
+                    continue
+
+                already_merged.append(best_index)
+                document_clusters[best_index] = np.concatenate((document_clusters[best_index], cluster))
+                document_clusters_indices[best_index] = np.concatenate(
+                    (document_clusters_indices[best_index], cluster_indices_corrected))
 
         merged_clusters.append({
             "str": document_clusters,
@@ -203,8 +227,10 @@ def merge_by_overlapping(documents):
     return merged_clusters
 
 
-def merge_by_string_matching(documents):
+def merge_by_string_matching(documents, use_gold_clusters=False):
     merged_clusters = []
+    predictions_str_key = "predictions_str" if not use_gold_clusters else "gold_cluster_str"
+    predictions_key = "predictions" if not use_gold_clusters else "clusters"
 
     for document in documents:
         document_clusters = []
@@ -212,15 +238,17 @@ def merge_by_string_matching(documents):
 
         for index, split_doc_key in enumerate(document):
             split = document[split_doc_key]
+            pre_merge_clusters = document_clusters
 
             # For the first split we simply take all clusters as they are
             # Obviously no need to merge them with anything.
             if index == 0:
-                document_clusters = split["predictions_str"]
-                document_clusters_indices = split["predictions"]
+                document_clusters = split[predictions_str_key]
+                document_clusters_indices = split[predictions_key]
                 continue
 
-            for cluster_index, cluster in enumerate(split["predictions_str"]):
+            # TODO: Try taken into account the number of occurences in the current entity
+            for cluster_index, cluster in enumerate(split[predictions_str_key]):
                 # Number of clusters that are possible for a merge.
                 # E.g. if one cluster contains the string 5 times and another cluster contains another string also 5
                 # times bother clusters are equally good for merging. possible_matches_count will be 2 in this case.
@@ -232,8 +260,8 @@ def merge_by_string_matching(documents):
                 result = {}
 
                 for token in cluster:
-                    # if token in ["er", "sie", "sich", "sein", "seinem", "ihre", "ihr", "Sie", "Ich", "ich", "ihm",
-                    # "ihn", "seine", "ihres", "seinen", "ihrer", "ihrem", "seiner", "ihren"]: continue
+                    if token in ["er", "sie", "sich", "sein", "seinem", "ihre", "ihr", "Sie", "Ich", "ich", "ihm",
+                                 "ihn", "seine", "ihres", "seinen", "ihrer", "ihrem", "seiner", "ihren"]: continue
 
                     # The cluster that the token possibly matches the best with
                     best_cluster_match = -1
@@ -246,7 +274,9 @@ def merge_by_string_matching(documents):
                     # We need this to check if more than one already merged cluster does contain the current token.
                     clusters_with_match_count = 0
 
-                    for merged_cluster_index, merged_cluster in enumerate(document_clusters):
+                    for merged_cluster_index, merged_cluster in enumerate(pre_merge_clusters):
+                        # TODO: fix that merge in local cluster is not possible
+                        # TODO: ignore the casing
                         token_count = np.count_nonzero(np.array(merged_cluster) == token)
 
                         # The current token does appear in an already merged cluster
@@ -262,6 +292,7 @@ def merge_by_string_matching(documents):
                     if clusters_with_match_count == 1 \
                             and best_token_matches_count == max_token_occurrences \
                             and best_cluster_match != possible_merge_cluster:
+                        # TODO: Irgendwie muss hier noch die Häufigkeit des tokens im to-be-merged entity berücksichtigt werden
                         possible_merges_count += 1
 
                     if clusters_with_match_count == 1 and best_token_matches_count < max_token_occurrences:
@@ -270,7 +301,7 @@ def merge_by_string_matching(documents):
                         possible_merges_count = 1
                         merge_token = token
 
-                cluster_indices_corrected = np.array(split["predictions"][cluster_index]) + split["start_index"]
+                cluster_indices_corrected = np.array(split[predictions_key][cluster_index]) + split["start_index"]
 
                 if possible_merges_count == 1:
                     logger.debug(f"Cluster where merged by token: {merge_token}")
@@ -511,9 +542,6 @@ def merge_by_neural_net(enriched_documents, documents, config, model, runner, ou
 def evaluate(config_name, gpu_id, saved_suffix, out_file):
     config = util.initialize_config(config_name, create_dirs=False)
     runner = Runner(config_name, gpu_id, skip_data_loading=True)
-    # TODO: Ich benutze aktuell das Modell "droc_incremental_no_segment_distance_May02_17-32-58_1800" von GitHub?
-    # TODO: Gibt es ein anderes bereits trainiertes Modell oder doch besser komplett neu trainieren?
-    # TODO: Auf beiden Datensätzen?
     model = runner.initialize_model(saved_suffix)
     model.eval_only = True
     exclude_merge_tokens = False
@@ -531,9 +559,9 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     merged_clusters = []
 
     if METHOD == STRING_MATCHING:
-        merged_clusters = merge_by_string_matching(enriched_documents)
+        merged_clusters = merge_by_string_matching(enriched_documents, True)
     elif METHOD == OVERLAPPING:
-        merged_clusters = merge_by_overlapping(enriched_documents)
+        merged_clusters = merge_by_overlapping(enriched_documents, False)
     elif METHOD == EMBEDDING:
         merged_clusters = merge_by_embedding(enriched_documents)
     elif METHOD == NEURAL:

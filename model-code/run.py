@@ -233,7 +233,8 @@ class Runner:
                     doc_to_prediction[doc_key] = predicted_clusters
             else:
                 with torch.no_grad():
-                    _, _, _, span_starts, span_ends, antecedent_idx, antecedent_scores = model(*example_gpu)
+                    results, _ = model(*example_gpu)
+                    _, _, _, span_starts, span_ends, antecedent_idx, antecedent_scores = results
                 span_starts, span_ends = span_starts.tolist(), span_ends.tolist()
                 antecedent_idx, antecedent_scores = antecedent_idx.tolist(), antecedent_scores.tolist()
                 predicted_clusters = model.update_evaluator(span_starts, span_ends, antecedent_idx, antecedent_scores, gold_clusters, evaluator)

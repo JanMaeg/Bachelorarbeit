@@ -37,9 +37,9 @@ TEST = [
     "Fontane,-Theodor__Stine.xmi.xmi.xmi",
     "Franzos,-Karl-Emil__Der Pojaz.xmi.xmi.xmi",
     "Klabund__Bracke.xml.xmi.xmi.txt.xmi.xmi.xmi",
-#    "May,-Karl__Auf fremden Pfaden.xml.xmi.xmi.txt.xmi.xmi.xmi",
-#    "Pichler,-Karoline__Agathocles.xml.xmi.xmi.txt.xmi.xmi.xmi",
-#    "Sack,-Gustav__Paralyse.xml.xmi.xmi.txt.xmi.xmi.xmi",
+    "May,-Karl__Auf fremden Pfaden.xml.xmi.xmi.txt.xmi.xmi.xmi",
+    "Pichler,-Karoline__Agathocles.xml.xmi.xmi.txt.xmi.xmi.xmi",
+    "Sack,-Gustav__Paralyse.xml.xmi.xmi.txt.xmi.xmi.xmi",
     "Verne,-Jules__Zwanzigtausend Meilen unter'm Meer.xml.xmi.xmi.txt.xmi.xmi.xmi",
 ]
 

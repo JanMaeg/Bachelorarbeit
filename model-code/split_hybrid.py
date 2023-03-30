@@ -58,6 +58,7 @@ def split_document(samples, max_length=400, overlapping=True):
         sentence_index = 0
         overlapping_sub_token_count = 0
 
+        # TODO: Change to add based on real sentences and not the provided split
         while sentence_index < len(sample['sentences']):
             sentence = sample['sentences'][sentence_index]
 
@@ -66,6 +67,7 @@ def split_document(samples, max_length=400, overlapping=True):
             total_sub_token_count += len(sentence)
 
             # At this point we have enough sub-tokens in our current set, so we split at this point.
+            # TODO: Check the max_length + length_of_current_sentence before adding the new sentence
             if token_count > max_length or sentence_index == len(sample['sentences']) - 1:
                 end_index = sub_token_index + token_count - 1
                 split_subtokens = sample['subtoken_map'][sub_token_index: end_index + 1]
@@ -124,6 +126,7 @@ def split_document(samples, max_length=400, overlapping=True):
                 if overlapping and sentence_index != len(sample['sentences']) - 1:
                     # We want to overlap with 2 sentences so instead of increasing by 1, we decrease by 1.
                     # This resets the counter in total by 2
+                    # TODO: check if length of overlap is less than the length of the previous split
                     sentence_index -= 1
                     start_sentence_index = sentence_index
 
