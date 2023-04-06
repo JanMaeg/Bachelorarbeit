@@ -37,8 +37,8 @@ def filter_cluster(clusters, start_index, end_index, normalize=False, correct_in
     return final_clusters
 
 
-def split_document(samples, max_length=400, overlapping=True):
-    logger.info(f"Splitting documents into segment of length of around {max_length} subtokens.")
+def split_document(samples, max_length=500, overlapping=True):
+    logger.info(f"Splitting documents into segment of length of less than {max_length} subtokens.")
     if overlapping:
         logger.info(f"Documents will overlap.")
 
@@ -67,8 +67,7 @@ def split_document(samples, max_length=400, overlapping=True):
             total_sub_token_count += len(sentence)
 
             # At this point we have enough sub-tokens in our current set, so we split at this point.
-            # TODO: Check the max_length + length_of_current_sentence before adding the new sentence
-            if token_count > max_length or sentence_index == len(sample['sentences']) - 1:
+            if sentence_index == len(sample['sentences']) - 1 or token_count + len(sample['sentences'][sentence_index + 1]) > max_length:
                 end_index = sub_token_index + token_count - 1
                 split_subtokens = sample['subtoken_map'][sub_token_index: end_index + 1]
 
@@ -90,6 +89,8 @@ def split_document(samples, max_length=400, overlapping=True):
                 total_token_count += len(split_tokens)
 
                 document_key = f"{sample['doc_key']}#{split_index}"
+
+                logger.info(f"{document_key}: ${token_count} tokens")
 
                 split_sample[document_key] = {
                     "tokens": split_tokens,
