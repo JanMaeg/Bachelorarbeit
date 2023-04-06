@@ -382,7 +382,7 @@ class Runner:
 
     def load_model_checkpoint(self, model, suffix, dir=None):
         if dir is None:
-            dir = self.config['log_dir']
+            dir = self.config['data_dir']
         path_ckpt = join(dir, f'model_{suffix}.bin')
         model.load_state_dict(torch.load(path_ckpt, map_location=torch.device('cpu')), strict=False)
         logger.info('Loaded model from %s' % path_ckpt)

@@ -37,7 +37,7 @@ def filter_cluster(clusters, start_index, end_index, normalize=False, correct_in
     return final_clusters
 
 
-def split_document(samples, max_length=500, overlapping=True):
+def split_document(samples, max_length=512, overlapping=True):
     logger.info(f"Splitting documents into segment of length of less than {max_length} subtokens.")
     if overlapping:
         logger.info(f"Documents will overlap.")
@@ -58,7 +58,6 @@ def split_document(samples, max_length=500, overlapping=True):
         sentence_index = 0
         overlapping_sub_token_count = 0
 
-        # TODO: Change to add based on real sentences and not the provided split
         while sentence_index < len(sample['sentences']):
             sentence = sample['sentences'][sentence_index]
 
@@ -128,13 +127,13 @@ def split_document(samples, max_length=500, overlapping=True):
                     # We want to overlap with 2 sentences so instead of increasing by 1, we decrease by 1.
                     # This resets the counter in total by 2
                     # TODO: check if length of overlap is less than the length of the previous split
-                    sentence_index -= 1
+                    #sentence_index -= 1
                     start_sentence_index = sentence_index
 
                     # Reset the sub_token_index by the token count of the last 2 sentences because we want to add
                     # them again
                     overlapping_sub_token_count = len(sample['sentences'][sentence_index])
-                    overlapping_sub_token_count += len(sample['sentences'][sentence_index + 1])
+                    #overlapping_sub_token_count += len(sample['sentences'][sentence_index + 1])
 
                     sub_token_index -= overlapping_sub_token_count
                 else:

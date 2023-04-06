@@ -28,7 +28,7 @@ EMBEDDING = "embedding"
 NEURAL = "neural"
 
 METHOD = NEURAL
-USE_GOLD_CLUSTER = True
+USE_GOLD_CLUSTER = False
 
 EMBEDDING_THRESHOLD = 0.7
 
@@ -147,6 +147,10 @@ def cluster_indices_to_tokens(documents):
     return enriched_documents
 
 
+def count_intersection(to_be_merged_cluster, existing_cluster):
+    return np.intersect1d(to_be_merged_cluster, existing_cluster)
+
+
 def merge_by_overlapping(documents, use_gold_clusters=False):
     predictions_str_key = "predictions_str" if not use_gold_clusters else "gold_cluster_str"
     predictions_key = "predictions" if not use_gold_clusters else "clusters"
@@ -186,7 +190,7 @@ def merge_by_overlapping(documents, use_gold_clusters=False):
 
                 for cluster_index, cluster in enumerate(split[predictions_str_key]):
                     cluster_indices_corrected = np.array(split[predictions_key][cluster_index]) + split["start_index"]
-                    cluster_intersection = np.intersect1d(existing_cluster, cluster_indices_corrected)
+                    cluster_intersection = count_intersection(cluster_indices_corrected, existing_cluster)
                     local_overlaps.append(len(cluster_intersection))
 
                 overlaps.append(local_overlaps)
@@ -261,8 +265,8 @@ def merge_by_string_matching(documents, use_gold_clusters=False):
                 result = {}
 
                 for token in cluster:
-                    if token in ["er", "sie", "sich", "sein", "seinem", "ihre", "ihr", "Sie", "Ich", "ich", "ihm",
-                                 "ihn", "seine", "ihres", "seinen", "ihrer", "ihrem", "seiner", "ihren"]: continue
+                    #if token in ["er", "sie", "sich", "sein", "seinem", "ihre", "ihr", "Sie", "Ich", "ich", "ihm",
+#                                 "ihn", "seine", "ihres", "seinen", "ihrer", "ihrem", "seiner", "ihren"]: continue
 
                     # The cluster that the token possibly matches the best with
                     best_cluster_match = -1
@@ -484,8 +488,9 @@ def update_evaluator(predicted_clusters, mention_to_cluster_id, gold_clusters, e
     evaluator.update(predicted_clusters, gold_clusters, mention_to_predicted, mention_to_gold)
 
 
-def merge_by_neural_net(enriched_documents, documents, config, model, runner, out_file):
+def merge_by_neural_net(enriched_documents, documents, config, model, runner, out_file, use_gold_clusters=False):
     tensorizer = Tensorizer(config)
+    cluster_indices_key = "clusters" if use_gold_clusters else "predictions"
 
     tensors = []
 
@@ -493,7 +498,7 @@ def merge_by_neural_net(enriched_documents, documents, config, model, runner, ou
         split_starts = [split['start_index'] for split in enriched_doc.values()]
         split_ends = [split['end_index'] for split in enriched_doc.values()]
 
-        predictions = [split['clusters'] for split in enriched_doc.values()]
+        predictions = [split[cluster_indices_key] for split in enriched_doc.values()]
 
         segments_per_split = []
 
@@ -543,7 +548,7 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     f = open(path, 'r')
     documents = [json.loads(line) for line in f.readlines()]
 
-    enriched_documents = get_documents_with_predictions(documents, config, runner, model, out_file)
+    enriched_documents = get_documents_with_predictions(documents, config, runner, model, out_file, skip_predictions=USE_GOLD_CLUSTER)
     enriched_documents = cluster_indices_to_tokens(enriched_documents)
 
     merged_clusters = []
@@ -555,7 +560,7 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     elif METHOD == EMBEDDING:
         merged_clusters = merge_by_embedding(enriched_documents, use_gold_clusters=USE_GOLD_CLUSTER, use_word2vec=True)
     elif METHOD == NEURAL:
-        merged_clusters = merge_by_neural_net(enriched_documents, documents, config, model, runner, out_file)
+        merged_clusters = merge_by_neural_net(enriched_documents, documents, config, model, runner, out_file, use_gold_clusters=USE_GOLD_CLUSTER)
 
     evaluator = CorefEvaluator()
 

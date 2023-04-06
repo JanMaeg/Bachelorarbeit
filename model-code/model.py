@@ -898,99 +898,100 @@ class IncrementalCorefModel(CorefModel):
         losses = []
         cpu_loss = 0.0
 
-        for new_cluster_idx in range(0, torch.max(predictions_cluster_map) + 1):
-            cluster_embs = predictions_span_emb[predictions_cluster_map == new_cluster_idx]
+        if len(predictions_cluster_map) > 0:
+            for new_cluster_idx in range(0, torch.max(predictions_cluster_map) + 1):
+                cluster_embs = predictions_span_emb[predictions_cluster_map == new_cluster_idx]
 
-            #if conf['evict']:
-#                entities.evict(evict_to=cpu_entities)
+                #if conf['evict']:
+    #                entities.evict(evict_to=cpu_entities)
 
-            # TODO: Aktuell wird hier nur der average genommen.
-            # TODO: Macht es Sinn das Ganze zu gewichten, wie?
-            emb = self.calculate_emb_for_cluster(cluster_embs)
-            total_embs.append(emb)
+                # TODO: Aktuell wird hier nur der average genommen.
+                # TODO: Macht es Sinn das Ganze zu gewichten, wie?
+                emb = self.calculate_emb_for_cluster(cluster_embs)
+                total_embs.append(emb)
 
-            feature_list = []
-            if conf['use_features']:
-                # Mention-Distance gibt die Entfernung von der aktuellen Mention zum Cluster an.
-                # Genauer: Anzahl der Mentions, welche seit dem letzten Hinzufügen zum Cluster
-                # zu anderen Clustern hinzugefügt wurden
-                # bucket_distance überführt diese Distance in feste Anzahl von Werten.
-                # Dabei werden größere Mention-Distances immer weiter zusammengefasst
-                #  10 semi-logscale bin: 0, 1, 2, 3, 4, (5-7)->5, (8-15)->6, (16-31)->7, (32-63)->8, (64+)->9
-                dists = util.bucket_distance(entities.mention_distance,
-                                             num_buckets=self.config['num_antecedent_distance_buckets'])
-                antecedent_distance_emb = self.emb_top_antecedent_distance(dists.type(torch.long))
-                feature_list.append(antecedent_distance_emb.reshape(-1, conf['feature_emb_size']))
+                feature_list = []
+                if conf['use_features']:
+                    # Mention-Distance gibt die Entfernung von der aktuellen Mention zum Cluster an.
+                    # Genauer: Anzahl der Mentions, welche seit dem letzten Hinzufügen zum Cluster
+                    # zu anderen Clustern hinzugefügt wurden
+                    # bucket_distance überführt diese Distance in feste Anzahl von Werten.
+                    # Dabei werden größere Mention-Distances immer weiter zusammengefasst
+                    #  10 semi-logscale bin: 0, 1, 2, 3, 4, (5-7)->5, (8-15)->6, (16-31)->7, (32-63)->8, (64+)->9
+                    dists = util.bucket_distance(entities.mention_distance,
+                                                 num_buckets=self.config['num_antecedent_distance_buckets'])
+                    antecedent_distance_emb = self.emb_top_antecedent_distance(dists.type(torch.long))
+                    feature_list.append(antecedent_distance_emb.reshape(-1, conf['feature_emb_size']))
 
-            fast_source_span_emb = self.dropout(self.coarse_bilinear(emb))
-            fast_entity_embs = self.dropout(torch.transpose(entities.emb, 0, 1))
-            fast_coref_scores = torch.matmul(fast_source_span_emb, fast_entity_embs).unsqueeze(-1)
-            feature_emb = torch.cat(feature_list, dim=1)
-            feature_emb = self.dropout(feature_emb)
+                fast_source_span_emb = self.dropout(self.coarse_bilinear(emb))
+                fast_entity_embs = self.dropout(torch.transpose(entities.emb, 0, 1))
+                fast_coref_scores = torch.matmul(fast_source_span_emb, fast_entity_embs).unsqueeze(-1)
+                feature_emb = torch.cat(feature_list, dim=1)
+                feature_emb = self.dropout(feature_emb)
 
-            embs = emb.repeat(entities.emb.shape[0], 1)
-            # Embedding von aktueller Mention wird mit dem Embedding von allen Clustern multipliziert
-            similarity_emb = embs * entities.emb
-            pair_emb = torch.cat([embs, entities.emb, similarity_emb, feature_emb], 1)
-            # It's important for us to also involve the mention span scores,
-            # the only way to prune discovered spans is by turning them into singleton clusters
-            # This is encouraged by explicitly involving the sum of the mention scores
-            original_scores = self.coref_score_ffnn(pair_emb) + fast_coref_scores
-            # if return_singletons:
-            #    scores = torch.cat([new_cluster_threshold, -mention_score.view(1, 1), original_scores])
-            # else:
-            scores = torch.cat([new_cluster_threshold, original_scores])
-            total_scores.append(torch.softmax(scores, 0))
+                embs = emb.repeat(entities.emb.shape[0], 1)
+                # Embedding von aktueller Mention wird mit dem Embedding von allen Clustern multipliziert
+                similarity_emb = embs * entities.emb
+                pair_emb = torch.cat([embs, entities.emb, similarity_emb, feature_emb], 1)
+                # It's important for us to also involve the mention span scores,
+                # the only way to prune discovered spans is by turning them into singleton clusters
+                # This is encouraged by explicitly involving the sum of the mention scores
+                original_scores = self.coref_score_ffnn(pair_emb) + fast_coref_scores
+                # if return_singletons:
+                #    scores = torch.cat([new_cluster_threshold, -mention_score.view(1, 1), original_scores])
+                # else:
+                scores = torch.cat([new_cluster_threshold, original_scores])
+                total_scores.append(torch.softmax(scores, 0))
 
-        for new_cluster_idx, dist in enumerate(total_scores):
-            cluster_starts = predictions_starts[predictions_cluster_map == new_cluster_idx]
-            cluster_ends = predictions_ends[predictions_cluster_map == new_cluster_idx]
-            cluster_embs = predictions_span_emb[predictions_cluster_map == new_cluster_idx]
+            for new_cluster_idx, dist in enumerate(total_scores):
+                cluster_starts = predictions_starts[predictions_cluster_map == new_cluster_idx]
+                cluster_ends = predictions_ends[predictions_cluster_map == new_cluster_idx]
+                cluster_embs = predictions_span_emb[predictions_cluster_map == new_cluster_idx]
 
-            emb = total_embs[new_cluster_idx]
+                emb = total_embs[new_cluster_idx]
 
-            index_to_update = dist.argmax()
-            # picked = None
+                index_to_update = dist.argmax()
+                # picked = None
 
-            if index_to_update > 0:
-                original = index_to_update
+                if index_to_update > 0:
+                    original = index_to_update
 
-                highest_score_cluster = torch.tensor([s[index_to_update] for s in total_scores]).argmax()
-
-                # torch.tensor(total_scores[:index_to_update]).argmax() == new_cluster_idx
-                while index_to_update in already_picked_cluster and index_to_update > 0 and new_cluster_idx > highest_score_cluster:
-                    dist[index_to_update] = 0
-                    index_to_update = dist.argmax()
                     highest_score_cluster = torch.tensor([s[index_to_update] for s in total_scores]).argmax()
 
-                already_picked_cluster.append(index_to_update)
+                    # torch.tensor(total_scores[:index_to_update]).argmax() == new_cluster_idx
+                    while index_to_update in already_picked_cluster and index_to_update > 0 and new_cluster_idx > highest_score_cluster:
+                        dist[index_to_update] = 0
+                        index_to_update = dist.argmax()
+                        highest_score_cluster = torch.tensor([s[index_to_update] for s in total_scores]).argmax()
 
-            cluster_to_update = index_to_update - 1
+                    already_picked_cluster.append(index_to_update)
 
-            for span_start, span_end, span_emb in zip(cluster_starts, cluster_ends, cluster_embs):
+                cluster_to_update = index_to_update - 1
 
-                if index_to_update == 0:
-                    entities.add_entity(emb, None, span_start, span_end, offset=offset)
-                    index_to_update = len(entities.count)
-                    cluster_to_update = torch.tensor(index_to_update - 1)
+                for span_start, span_end, span_emb in zip(cluster_starts, cluster_ends, cluster_embs):
 
-                else:
-                    update_gate = torch.sigmoid(
-                        self.entity_representation_gate(torch.cat(
-                            [
-                                emb,
-                                entities.emb[cluster_to_update],
-                            ],
-                        )))
-                    entities.update_entity(
-                        cluster_to_update,
-                        emb,
-                        None,
-                        span_start,
-                        span_end,
-                        update_gate,
-                        offset=offset
-                    )
+                    if index_to_update == 0:
+                        entities.add_entity(emb, None, span_start, span_end, offset=offset)
+                        index_to_update = len(entities.count)
+                        cluster_to_update = torch.tensor(index_to_update - 1)
+
+                    else:
+                        update_gate = torch.sigmoid(
+                            self.entity_representation_gate(torch.cat(
+                                [
+                                    emb,
+                                    entities.emb[cluster_to_update],
+                                ],
+                            )))
+                        entities.update_entity(
+                            cluster_to_update,
+                            emb,
+                            None,
+                            span_start,
+                            span_end,
+                            update_gate,
+                            offset=offset
+                        )
 
         if len(losses) > 0:
             sum(losses).backward(retain_graph=True)
