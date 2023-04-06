@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 def convert_to_torch_tensor(input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map,
                             is_training, gold_starts, gold_ends, gold_mention_cluster_map,
                             split_starts=None, split_ends=None, predictions_start=None,
-                            predictions_ends=None, predictions_cluster_map=None, predictions_split_map=None):
+                            predictions_ends=None, predictions_cluster_map=None, predictions_split_map=None, segments_per_split=None):
     input_ids = torch.tensor(input_ids, dtype=torch.long)
     input_mask = torch.tensor(input_mask, dtype=torch.long)
     speaker_ids = torch.tensor(speaker_ids, dtype=torch.long)
@@ -38,10 +38,11 @@ def convert_to_torch_tensor(input_ids, input_mask, speaker_ids, sentence_len, ge
         predictions_ends = torch.tensor(predictions_ends, dtype=torch.long)
         predictions_split_map = torch.tensor(predictions_split_map, dtype=torch.long)
         predictions_cluster_map = torch.tensor(predictions_cluster_map, dtype=torch.long)
+        segments_per_split = torch.tensor(segments_per_split, dtype=torch.long)
 
         return input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, \
             is_training, split_starts, split_ends,\
-            predictions_start, predictions_ends, predictions_split_map, predictions_cluster_map, \
+            predictions_start, predictions_ends, predictions_split_map, predictions_cluster_map, segments_per_split, \
             gold_starts, gold_ends, gold_mention_cluster_map
 
 
@@ -79,7 +80,7 @@ class CorefDataProcessor:
                 with open(path, 'r') as f:
                     samples = [json.loads(line) for line in f.readlines()]
                 tensor_samples = itertools.chain(
-                    *(tensorizer.tensorize_example(sample, is_training) for sample in samples)
+                    *(tensorizer.tensorize_example(sample, is_training, is_hybrid=False) for sample in samples)
                 )
                 tensor_samples = list(tensor_samples)
                 self.tensor_samples[split] = [(doc_key, convert_to_torch_tensor(*tensor)) for doc_key, tensor in tensor_samples]
@@ -140,7 +141,7 @@ class Tensorizer:
                 speaker_dict[speaker] = len(speaker_dict)
         return speaker_dict
 
-    def tensorize_example(self, example, is_training, is_hybrid=True, split_starts=None, split_ends=None, predictions=None):
+    def tensorize_example(self, example, is_training, is_hybrid=False, split_starts=None, split_ends=None, predictions=None, segments_per_split=None):
         # Mentions and clusters
         clusters = example['clusters']
         gold_mentions = sorted(tuple(mention) for mention in util.flatten(clusters))
@@ -208,7 +209,7 @@ class Tensorizer:
 
             example_tensor = (input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map, is_training,
                               gold_starts, gold_ends, gold_mention_cluster_map, split_starts, split_ends, predictions_start,
-                              predictions_ends, predictions_cluster_map, predictions_split_map)
+                              predictions_ends, predictions_cluster_map, predictions_split_map, segments_per_split)
 
         if (is_hybrid or is_training) and len(sentences) > self.config['max_training_sentences']:
             if self.long_doc_strategy == 'split':
@@ -219,9 +220,10 @@ class Tensorizer:
                         self.truncate_example(*example_tensor, sentence_offset=sentence_offset)
                     ))
 
-                    self.stored_info['subtoken_maps'][f'{doc_key}_{sentence_offset}'] = example.get('subtoken_map', None)
-                    self.stored_info['gold'][f'{doc_key}_{sentence_offset}'] = example['clusters']
-                    self.stored_info['tokens'][f'{doc_key}_{sentence_offset}'] = example['tokens']
+                    if is_hybrid:
+                        self.stored_info['subtoken_maps'][f'{doc_key}_{sentence_offset}'] = example.get('subtoken_map', None)
+                        self.stored_info['gold'][f'{doc_key}_{sentence_offset}'] = example['clusters']
+                        self.stored_info['tokens'][f'{doc_key}_{sentence_offset}'] = example['tokens']
                 return out
             elif self.long_doc_strategy == 'truncate':
                 return [(doc_key, self.truncate_example(*example_tensor))]

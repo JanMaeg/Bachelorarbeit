@@ -686,7 +686,7 @@ class IncrementalCorefModel(CorefModel):
 
     def get_predictions_incremental(self, input_ids, input_mask, speaker_ids, sentence_len, genre, sentence_map,
                                     is_training, split_starts=None, split_ends=None, predictions_starts=None,
-                                    predictions_ends=None, predictions_split_map=None, predictions_cluster_map=None,
+                                    predictions_ends=None, predictions_split_map=None, predictions_cluster_map=None, segments_per_split=None,
                                     gold_starts=None, gold_ends=None, gold_mention_cluster_map=None,
                                     global_loss_chance=0.0, teacher_forcing=False):
         max_segments = 1  # at the moment each segment equals to one split
@@ -709,8 +709,11 @@ class IncrementalCorefModel(CorefModel):
         offset = 0
         total_loss = torch.tensor([0.0], requires_grad=True, device=self.device)
         total_gold_mask = None
-        for i, start in enumerate(range(0, input_ids.shape[0], max_segments)):
-            end = start + max_segments
+        last_segment = 0
+        #for i, start in enumerate(range(0, input_ids.shape[0], max_segments)):
+        for i, length in enumerate(segments_per_split):
+            start = last_segment
+            end = start + length
             start_offset = torch.sum(input_mask[:start], (0, 1))
             delta_offset = torch.sum(input_mask[start:end], (0, 1))
             end_offset = start_offset + delta_offset
@@ -760,6 +763,7 @@ class IncrementalCorefModel(CorefModel):
                 predictions_cluster_map=windowed_predictions_cluster_map
             )
             offset += torch.sum(input_mask[start:end], (0, 1)).item()
+            last_segment = end
             if do_loss:
                 entities, new_cpu_entities, loss = res
                 total_loss = loss + total_loss
@@ -844,17 +848,17 @@ class IncrementalCorefModel(CorefModel):
             gold_info = None
             labels_for_starts = {}
 
-        candidate_spans = self.get_candidate_spans(num_words, sentence_map, gold_info, device=device)
-        candidate_span_emb = torch.cat(self.build_candidate_embeddings(mention_doc, candidate_spans, device=device),
-                                       dim=1)  # [num candidates, new emb size]
+        #candidate_spans = self.get_candidate_spans(num_words, sentence_map, gold_info, device=device)
+        #candidate_span_emb = torch.cat(self.build_candidate_embeddings(mention_doc, candidate_spans, device=device),
+#                                       dim=1)  # [num candidates, new emb size]
 
         predictions_spans = self.get_predictions_spans(predictions_starts, predictions_ends)
         predictions_span_emb = torch.cat(self.build_candidate_embeddings(mention_doc, predictions_spans, device=device),
                                          dim=1)
 
-        top_spans = self.get_top_spans(candidate_span_emb, candidate_spans, num_words, do_loss=do_loss, device=device)
-        top_span_starts, top_span_ends = top_spans['starts'], top_spans['ends']
-        top_span_emb = top_spans['emb']
+        #top_spans = self.get_top_spans(candidate_span_emb, candidate_spans, num_words, do_loss=do_loss, device=device)
+        #top_span_starts, top_span_ends = top_spans['starts'], top_spans['ends']
+        #top_span_emb = top_spans['emb']
 
         new_cluster_threshold = torch.tensor([conf['new_cluster_threshold']]).unsqueeze(0).to(device)
         cpu_entities = IncrementalEntities(conf, "cpu", gold_strategy=loss_strategy)

@@ -212,12 +212,12 @@ class Runner:
         evaluator = CorefEvaluator()
         doc_to_prediction = {}
 
-        evaluate = False
+        evaluate = True
 
         model.eval()
         for i, (doc_key, tensor_example) in tqdm(enumerate(tensor_examples), total=len(tensor_examples)):
             gold_clusters = stored_info['gold'][doc_key]
-            tensor_example = tensor_example[:7] if not hybrid else tensor_example[:13]  # Strip out gold
+            tensor_example = tensor_example[:7] if not hybrid else tensor_example[:14]  # Strip out gold
             example_gpu = [d.to(self.device) for d in tensor_example]
             if self.config["incremental"]:
                 with torch.no_grad():
@@ -233,8 +233,11 @@ class Runner:
                     doc_to_prediction[doc_key] = predicted_clusters
             else:
                 with torch.no_grad():
-                    results, _ = model(*example_gpu)
-                    _, _, _, span_starts, span_ends, antecedent_idx, antecedent_scores = results
+                    if hybrid:
+                        results, _ = model(*example_gpu)
+                        _, _, _, span_starts, span_ends, antecedent_idx, antecedent_scores = results
+                    else:
+                        _, _, _, span_starts, span_ends, antecedent_idx, antecedent_scores = model(*example_gpu)
                 span_starts, span_ends = span_starts.tolist(), span_ends.tolist()
                 antecedent_idx, antecedent_scores = antecedent_idx.tolist(), antecedent_scores.tolist()
                 predicted_clusters = model.update_evaluator(span_starts, span_ends, antecedent_idx, antecedent_scores, gold_clusters, evaluator)

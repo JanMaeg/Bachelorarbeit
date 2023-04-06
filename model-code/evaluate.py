@@ -12,7 +12,7 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
 
     #runner.evaluate(model, examples_dev, stored_info, 0, official=True, conll_path=runner.config['conll_eval_path'], out_file=out_file)  # Eval dev
     # print('=================================')
-    runner.evaluate(model, examples_test, stored_info, 0, official=True, conll_path=runner.config['conll_test_path'], out_file=out_file)  # Eval test
+    runner.evaluate(model, examples_test, stored_info, 0, official=False, conll_path=runner.config['conll_test_path'], out_file=out_file)  # Eval test
 
 
 if __name__ == '__main__':

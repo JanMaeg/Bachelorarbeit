@@ -27,12 +27,13 @@ OVERLAPPING = "overlapping"
 EMBEDDING = "embedding"
 NEURAL = "neural"
 
-METHOD = OVERLAPPING
+METHOD = NEURAL
+USE_GOLD_CLUSTER = True
 
 EMBEDDING_THRESHOLD = 0.7
 
 
-def get_documents_with_predictions(documents, config, runner, model, out_file, skip_predictions=False):
+def get_documents_with_predictions(documents, config, runner, model, out_file, skip_predictions=True):
     tensorizer = Tensorizer(config)
     language = config['language']
     max_seg_len = config['max_segment_len']
@@ -56,7 +57,7 @@ def get_documents_with_predictions(documents, config, runner, model, out_file, s
             flattened_documents.append(doc[doc_key])
 
     tensor_documents = itertools.chain(
-        *(tensorizer.tensorize_example(doc, False, False) for doc in flattened_documents))
+        *(tensorizer.tensorize_example(doc, False, True) for doc in flattened_documents))
     tensor_documents = list(tensor_documents)
 
     torch_documents = [(doc_key, convert_to_torch_tensor(*tensor)) for doc_key, tensor in tensor_documents]
@@ -494,14 +495,12 @@ def merge_by_neural_net(enriched_documents, documents, config, model, runner, ou
 
         predictions = [split['clusters'] for split in enriched_doc.values()]
 
-        # predictions müssen genau wie die gold_starts und gold_ends aufgebaut sein
-        # also:
-        # predictions_starts
-        # predictions_ends
-        # predictions_cluster_map
-        # predictions_split_map
+        segments_per_split = []
 
-        enriched_tensor = tensorizer.tensorize_example(doc, False, False, split_starts, split_ends, predictions)
+        for enriched_split in enriched_doc.values():
+            segments_per_split.append(len(enriched_split['sentences']))
+
+        enriched_tensor = tensorizer.tensorize_example(doc, False, False, split_starts, split_ends, predictions, segments_per_split)
         tensors.append(enriched_tensor)
 
     tensor_documents = itertools.chain(*tensors)
@@ -529,15 +528,6 @@ def merge_by_neural_net(enriched_documents, documents, config, model, runner, ou
 
     return merged_clusters
 
-    # 1. Call evaluate function from here DONE
-    # 2. Use provided predictions in internal_evaluate instead of mention prediction DONE
-    # 3. Change loop to loop per cluster instead of mention DONE
-    # 4. Calculate a average of mention embedding DONE
-    # 5. Calculate weighted average of mention embedding ?
-    # 6. Try using existing model DONE
-    # 7. Train model on gold data
-    # 8. Evaluate on both datasets
-
 
 def evaluate(config_name, gpu_id, saved_suffix, out_file):
     config = util.initialize_config(config_name, create_dirs=False)
@@ -559,15 +549,19 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     merged_clusters = []
 
     if METHOD == STRING_MATCHING:
-        merged_clusters = merge_by_string_matching(enriched_documents, True)
+        merged_clusters = merge_by_string_matching(enriched_documents, use_gold_clusters=USE_GOLD_CLUSTER)
     elif METHOD == OVERLAPPING:
-        merged_clusters = merge_by_overlapping(enriched_documents, False)
+        merged_clusters = merge_by_overlapping(enriched_documents, use_gold_clusters=USE_GOLD_CLUSTER)
     elif METHOD == EMBEDDING:
-        merged_clusters = merge_by_embedding(enriched_documents)
+        merged_clusters = merge_by_embedding(enriched_documents, use_gold_clusters=USE_GOLD_CLUSTER, use_word2vec=True)
     elif METHOD == NEURAL:
         merged_clusters = merge_by_neural_net(enriched_documents, documents, config, model, runner, out_file)
 
     evaluator = CorefEvaluator()
+
+    f1_total = []
+    p_total = []
+    r_total = []
 
     for doc_index, document in enumerate(enriched_documents):
         evaluator2 = CorefEvaluator()
@@ -588,11 +582,19 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
         p, r, f = evaluator.get_prf()
         p2, r2, f2 = evaluator2.get_prf()
 
+        f1_total.append(f2)
+        p_total.append(p2)
+        r_total.append(r2)
+
         logger.info("=====================")
         metrics = {'Merge_Avg_Precision': p * 100, 'Merge_Avg_Recall': r * 100, 'Merge_Avg_F1': f * 100,
                    'Merge_Cur_Precision': p2 * 100, 'Merge_Cur_Recall': r2 * 100, 'Merge_Cur_F1': f2 * 100}
         for name, score in metrics.items():
             logger.info('%s: %.2f' % (name, score))
+
+    logger.info(f"Documents F1-Scores: {f1_total}")
+    logger.info(f"Documents Recall: {r_total}")
+    logger.info(f"Documents Precision: {p_total}")
 
     exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
     dump_to_file(enriched_documents, config, None,
