@@ -20,3 +20,4 @@ model-code/cc.de.300.bin.gz
 model-code/wandb
 tuba10_gelectra_large
 results/.ipynb_checkpoints
+visualization/src/data
