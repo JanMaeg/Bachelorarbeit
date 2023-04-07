@@ -21,3 +21,4 @@ model-code/wandb
 tuba10_gelectra_large
 results/.ipynb_checkpoints
 visualization/src/data
+model-code/tuebadz-10.0-conll2011.txt
