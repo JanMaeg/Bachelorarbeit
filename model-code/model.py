@@ -238,6 +238,7 @@ class CorefModel(nn.Module):
         candidate_emb_list = [span_start_emb, span_end_emb]
         if self.config['use_features']:
             candidate_width_idx = candidate_ends - candidate_starts
+            candidate_width_idx[candidate_width_idx >= 30] = 0
             candidate_width_emb = self.emb_span_width(candidate_width_idx)
             candidate_width_emb = self.dropout(candidate_width_emb)
             candidate_emb_list.append(candidate_width_emb)

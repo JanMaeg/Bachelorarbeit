@@ -1,0 +1,272 @@
+Log file path: /Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_final_512/log_Apr10_23-21-22.txt
+Loaded model from /Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_final/model_droc_c2f_May12_17-38-53_1800.bin
+Splitting documents into segment of length of less than 1000 subtokens.
+Ahlefeld,-Charlotte-von__Erna_0#0: $998 tokens
+Ahlefeld,-Charlotte-von__Erna_0#1: $941 tokens
+Ahlefeld,-Charlotte-von__Erna_0#2: $997 tokens
+Ahlefeld,-Charlotte-von__Erna_0#3: $968 tokens
+Ahlefeld,-Charlotte-von__Erna_0#4: $503 tokens
+Ahlefeld,-Charlotte-von__Erna_0#5: $922 tokens
+Ahlefeld,-Charlotte-von__Erna_0#6: $956 tokens
+Ahlefeld,-Charlotte-von__Erna_0#7: $907 tokens
+Ahlefeld,-Charlotte-von__Erna_0#8: $697 tokens
+Splitted document Ahlefeld,-Charlotte-von__Erna_0 into 9 segments
+Anonym__Schwester_Monika_1#0: $975 tokens
+Anonym__Schwester_Monika_1#1: $507 tokens
+Anonym__Schwester_Monika_1#2: $1000 tokens
+Anonym__Schwester_Monika_1#3: $985 tokens
+Anonym__Schwester_Monika_1#4: $932 tokens
+Anonym__Schwester_Monika_1#5: $498 tokens
+Anonym__Schwester_Monika_1#6: $983 tokens
+Anonym__Schwester_Monika_1#7: $942 tokens
+Anonym__Schwester_Monika_1#8: $231 tokens
+Splitted document Anonym__Schwester_Monika_1 into 9 segments
+Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_2#0: $508 tokens
+Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_2#1: $983 tokens
+Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_2#2: $998 tokens
+Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_2#3: $499 tokens
+Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_2#4: $512 tokens
+Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_2#5: $496 tokens
+Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_2#6: $667 tokens
+Splitted document Arnim-Bettina-von__Goethes-Briefwechsel-mit-einem-Kinde_2 into 7 segments
+Aston,-Louise__Revolution_und_Contrerevolution_3#0: $985 tokens
+Aston,-Louise__Revolution_und_Contrerevolution_3#1: $501 tokens
+Aston,-Louise__Revolution_und_Contrerevolution_3#2: $995 tokens
+Aston,-Louise__Revolution_und_Contrerevolution_3#3: $504 tokens
+Aston,-Louise__Revolution_und_Contrerevolution_3#4: $1000 tokens
+Aston,-Louise__Revolution_und_Contrerevolution_3#5: $910 tokens
+Aston,-Louise__Revolution_und_Contrerevolution_3#6: $504 tokens
+Splitted document Aston,-Louise__Revolution_und_Contrerevolution_3 into 7 segments
+Auerbach,-Berthold__Der_Lehnhold_4#0: $972 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#1: $996 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#2: $963 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#3: $975 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#4: $970 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#5: $998 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#6: $986 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#7: $992 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#8: $971 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#9: $937 tokens
+Auerbach,-Berthold__Der_Lehnhold_4#10: $565 tokens
+Splitted document Auerbach,-Berthold__Der_Lehnhold_4 into 11 segments
+Balzac,-Honoré-de__Vater_Goriot_5#0: $983 tokens
+Balzac,-Honoré-de__Vater_Goriot_5#1: $980 tokens
+Balzac,-Honoré-de__Vater_Goriot_5#2: $930 tokens
+Balzac,-Honoré-de__Vater_Goriot_5#3: $507 tokens
+Balzac,-Honoré-de__Vater_Goriot_5#4: $878 tokens
+Splitted document Balzac,-Honoré-de__Vater_Goriot_5 into 5 segments
+Bierbaum,-Otto-Julius__Stilpe_6#0: $503 tokens
+Bierbaum,-Otto-Julius__Stilpe_6#1: $975 tokens
+Bierbaum,-Otto-Julius__Stilpe_6#2: $984 tokens
+Bierbaum,-Otto-Julius__Stilpe_6#3: $502 tokens
+Bierbaum,-Otto-Julius__Stilpe_6#4: $654 tokens
+Splitted document Bierbaum,-Otto-Julius__Stilpe_6 into 5 segments
+Bruckbräu,-Friedrich-Wilhelm__Mittheilungen_aus_den_geheimen_Memoiren_einer_deutschen_Sängerin_7#0: $974 tokens
+Bruckbräu,-Friedrich-Wilhelm__Mittheilungen_aus_den_geheimen_Memoiren_einer_deutschen_Sängerin_7#1: $958 tokens
+Bruckbräu,-Friedrich-Wilhelm__Mittheilungen_aus_den_geheimen_Memoiren_einer_deutschen_Sängerin_7#2: $981 tokens
+Bruckbräu,-Friedrich-Wilhelm__Mittheilungen_aus_den_geheimen_Memoiren_einer_deutschen_Sängerin_7#3: $990 tokens
+Bruckbräu,-Friedrich-Wilhelm__Mittheilungen_aus_den_geheimen_Memoiren_einer_deutschen_Sängerin_7#4: $496 tokens
+Bruckbräu,-Friedrich-Wilhelm__Mittheilungen_aus_den_geheimen_Memoiren_einer_deutschen_Sängerin_7#5: $708 tokens
+Splitted document Bruckbräu,-Friedrich-Wilhelm__Mittheilungen_aus_den_geheimen_Memoiren_einer_deutschen_Sängerin_7 into 6 segments
+Duncker,-Dora__Großstadt_8#0: $979 tokens
+Duncker,-Dora__Großstadt_8#1: $500 tokens
+Duncker,-Dora__Großstadt_8#2: $510 tokens
+Duncker,-Dora__Großstadt_8#3: $508 tokens
+Duncker,-Dora__Großstadt_8#4: $995 tokens
+Duncker,-Dora__Großstadt_8#5: $842 tokens
+Splitted document Duncker,-Dora__Großstadt_8 into 6 segments
+Fischer,-Caroline-Auguste__Gustavs_Verirrungen_9#0: $999 tokens
+Fischer,-Caroline-Auguste__Gustavs_Verirrungen_9#1: $507 tokens
+Fischer,-Caroline-Auguste__Gustavs_Verirrungen_9#2: $512 tokens
+Fischer,-Caroline-Auguste__Gustavs_Verirrungen_9#3: $612 tokens
+Splitted document Fischer,-Caroline-Auguste__Gustavs_Verirrungen_9 into 4 segments
+Fontane,-Theodor__Quitt_10#0: $942 tokens
+Fontane,-Theodor__Quitt_10#1: $935 tokens
+Fontane,-Theodor__Quitt_10#2: $507 tokens
+Fontane,-Theodor__Quitt_10#3: $510 tokens
+Fontane,-Theodor__Quitt_10#4: $991 tokens
+Fontane,-Theodor__Quitt_10#5: $954 tokens
+Fontane,-Theodor__Quitt_10#6: $169 tokens
+Splitted document Fontane,-Theodor__Quitt_10 into 7 segments
+Fontane,-Theodor__Stine_11#0: $987 tokens
+Fontane,-Theodor__Stine_11#1: $995 tokens
+Fontane,-Theodor__Stine_11#2: $507 tokens
+Fontane,-Theodor__Stine_11#3: $994 tokens
+Fontane,-Theodor__Stine_11#4: $280 tokens
+Splitted document Fontane,-Theodor__Stine_11 into 5 segments
+Franzos,-Karl-Emil__Der_Pojaz_12#0: $494 tokens
+Franzos,-Karl-Emil__Der_Pojaz_12#1: $510 tokens
+Franzos,-Karl-Emil__Der_Pojaz_12#2: $506 tokens
+Franzos,-Karl-Emil__Der_Pojaz_12#3: $512 tokens
+Franzos,-Karl-Emil__Der_Pojaz_12#4: $512 tokens
+Franzos,-Karl-Emil__Der_Pojaz_12#5: $995 tokens
+Franzos,-Karl-Emil__Der_Pojaz_12#6: $506 tokens
+Franzos,-Karl-Emil__Der_Pojaz_12#7: $511 tokens
+Franzos,-Karl-Emil__Der_Pojaz_12#8: $779 tokens
+Splitted document Franzos,-Karl-Emil__Der_Pojaz_12 into 9 segments
+Klabund__Bracke_13#0: $964 tokens
+Klabund__Bracke_13#1: $502 tokens
+Klabund__Bracke_13#2: $512 tokens
+Klabund__Bracke_13#3: $806 tokens
+Splitted document Klabund__Bracke_13 into 4 segments
+May,-Karl__Auf_fremden_Pfaden_14#0: $969 tokens
+May,-Karl__Auf_fremden_Pfaden_14#1: $508 tokens
+May,-Karl__Auf_fremden_Pfaden_14#2: $502 tokens
+May,-Karl__Auf_fremden_Pfaden_14#3: $509 tokens
+May,-Karl__Auf_fremden_Pfaden_14#4: $578 tokens
+Splitted document May,-Karl__Auf_fremden_Pfaden_14 into 5 segments
+Pichler,-Karoline__Agathocles_15#0: $963 tokens
+Pichler,-Karoline__Agathocles_15#1: $964 tokens
+Pichler,-Karoline__Agathocles_15#2: $968 tokens
+Pichler,-Karoline__Agathocles_15#3: $978 tokens
+Pichler,-Karoline__Agathocles_15#4: $181 tokens
+Splitted document Pichler,-Karoline__Agathocles_15 into 5 segments
+Sack,-Gustav__Paralyse_16#0: $877 tokens
+Sack,-Gustav__Paralyse_16#1: $988 tokens
+Sack,-Gustav__Paralyse_16#2: $989 tokens
+Sack,-Gustav__Paralyse_16#3: $947 tokens
+Sack,-Gustav__Paralyse_16#4: $923 tokens
+Sack,-Gustav__Paralyse_16#5: $958 tokens
+Sack,-Gustav__Paralyse_16#6: $54 tokens
+Splitted document Sack,-Gustav__Paralyse_16 into 7 segments
+Verne,-Jules__Zwanzigtausend_Meilen_unter'm_Meer_17#0: $991 tokens
+Verne,-Jules__Zwanzigtausend_Meilen_unter'm_Meer_17#1: $978 tokens
+Verne,-Jules__Zwanzigtausend_Meilen_unter'm_Meer_17#2: $577 tokens
+Splitted document Verne,-Jules__Zwanzigtausend_Meilen_unter'm_Meer_17 into 3 segments
+Step 0: evaluating on 114 samples...
+Eval_Avg_Precision: 72.74
+Eval_Avg_Recall: 65.51
+Eval_Avg_F1: 68.49
+Removed 0 documents because only 1 split given. 18 documents left.
+[9, 9, 7, 7, 11, 5, 5, 6, 6, 4, 7, 5, 9, 4, 5, 5, 7, 3]
+loading projection weights from vectors_full.txt
+KeyedVectors lifecycle event {'msg': 'loaded (854776, 300) matrix of type float32 from vectors_full.txt', 'binary': False, 'encoding': 'utf8', 'datetime': '2023-04-10T23:25:50.054469', 'gensim': '4.3.0', 'python': '3.10.6 (main, Aug 11 2022, 13:49:25) [Clang 13.1.6 (clang-1316.0.21.2.5)]', 'platform': 'macOS-13.2.1-x86_64-i386-64bit', 'event': 'load_word2vec_format'}
+=====================
+Merge_Avg_Precision: 65.11
+Merge_Avg_Recall: 53.77
+Merge_Avg_F1: 58.46
+Merge_Cur_Precision: 65.11
+Merge_Cur_Recall: 53.77
+Merge_Cur_F1: 58.46
+=====================
+Merge_Avg_Precision: 64.82
+Merge_Avg_Recall: 51.68
+Merge_Avg_F1: 56.87
+Merge_Cur_Precision: 64.47
+Merge_Cur_Recall: 50.11
+Merge_Cur_F1: 55.56
+=====================
+Merge_Avg_Precision: 65.29
+Merge_Avg_Recall: 53.25
+Merge_Avg_F1: 58.17
+Merge_Cur_Precision: 66.28
+Merge_Cur_Recall: 59.07
+Merge_Cur_F1: 62.22
+=====================
+Merge_Avg_Precision: 63.60
+Merge_Avg_Recall: 52.53
+Merge_Avg_F1: 57.11
+Merge_Cur_Precision: 58.78
+Merge_Cur_Recall: 50.26
+Merge_Cur_F1: 53.94
+=====================
+Merge_Avg_Precision: 62.79
+Merge_Avg_Recall: 52.78
+Merge_Avg_F1: 57.00
+Merge_Cur_Precision: 60.56
+Merge_Cur_Recall: 53.73
+Merge_Cur_F1: 56.71
+=====================
+Merge_Avg_Precision: 62.66
+Merge_Avg_Recall: 52.83
+Merge_Avg_F1: 56.97
+Merge_Cur_Precision: 62.37
+Merge_Cur_Recall: 53.66
+Merge_Cur_F1: 56.17
+=====================
+Merge_Avg_Precision: 62.85
+Merge_Avg_Recall: 53.10
+Merge_Avg_F1: 57.21
+Merge_Cur_Precision: 64.31
+Merge_Cur_Recall: 55.72
+Merge_Cur_F1: 59.35
+=====================
+Merge_Avg_Precision: 62.95
+Merge_Avg_Recall: 53.77
+Merge_Avg_F1: 57.69
+Merge_Cur_Precision: 61.58
+Merge_Cur_Recall: 57.59
+Merge_Cur_F1: 59.39
+=====================
+Merge_Avg_Precision: 63.28
+Merge_Avg_Recall: 53.85
+Merge_Avg_F1: 57.84
+Merge_Cur_Precision: 67.61
+Merge_Cur_Recall: 56.76
+Merge_Cur_F1: 60.14
+=====================
+Merge_Avg_Precision: 63.51
+Merge_Avg_Recall: 54.43
+Merge_Avg_F1: 58.31
+Merge_Cur_Precision: 67.46
+Merge_Cur_Recall: 65.92
+Merge_Cur_F1: 66.58
+=====================
+Merge_Avg_Precision: 63.82
+Merge_Avg_Recall: 54.44
+Merge_Avg_F1: 58.43
+Merge_Cur_Precision: 68.23
+Merge_Cur_Recall: 54.56
+Merge_Cur_F1: 59.95
+=====================
+Merge_Avg_Precision: 64.29
+Merge_Avg_Recall: 54.79
+Merge_Avg_F1: 58.83
+Merge_Cur_Precision: 70.95
+Merge_Cur_Recall: 59.84
+Merge_Cur_F1: 64.61
+=====================
+Merge_Avg_Precision: 63.85
+Merge_Avg_Recall: 54.51
+Merge_Avg_F1: 58.47
+Merge_Cur_Precision: 59.46
+Merge_Cur_Recall: 52.91
+Merge_Cur_F1: 55.27
+=====================
+Merge_Avg_Precision: 63.82
+Merge_Avg_Recall: 54.43
+Merge_Avg_F1: 58.38
+Merge_Cur_Precision: 62.08
+Merge_Cur_Recall: 53.38
+Merge_Cur_F1: 56.61
+=====================
+Merge_Avg_Precision: 63.34
+Merge_Avg_Recall: 54.09
+Merge_Avg_F1: 58.03
+Merge_Cur_Precision: 55.92
+Merge_Cur_Recall: 47.56
+Merge_Cur_F1: 50.87
+=====================
+Merge_Avg_Precision: 63.43
+Merge_Avg_Recall: 53.98
+Merge_Avg_F1: 57.99
+Merge_Cur_Precision: 64.66
+Merge_Cur_Recall: 52.13
+Merge_Cur_F1: 57.25
+=====================
+Merge_Avg_Precision: 63.30
+Merge_Avg_Recall: 54.16
+Merge_Avg_F1: 58.03
+Merge_Cur_Precision: 60.23
+Merge_Cur_Recall: 57.40
+Merge_Cur_F1: 57.81
+=====================
+Merge_Avg_Precision: 63.56
+Merge_Avg_Recall: 54.42
+Merge_Avg_F1: 58.29
+Merge_Cur_Precision: 72.91
+Merge_Cur_Recall: 64.94
+Merge_Cur_F1: 68.52
+Documents F1-Scores: [0.5845537593341411, 0.555579134962377, 0.6221847163212041, 0.5393897277834414, 0.5670629455912689, 0.5617129008097449, 0.593531016091571, 0.5939152653440344, 0.6013915395996643, 0.6658344668050633, 0.5994784713818687, 0.6461016005088197, 0.5527237121820008, 0.5661382903729414, 0.5086855758335047, 0.5725341156826617, 0.5781319145725666, 0.6851826319639085]
+Documents Recall: [0.5376876480279682, 0.5010768556253917, 0.5907393319100555, 0.5026177594948058, 0.5373378291476667, 0.5365646093965926, 0.5572005342127878, 0.575908247365862, 0.567588991023763, 0.6592221929010428, 0.5455868145115162, 0.5983798786631431, 0.5290831115634739, 0.5337790767823781, 0.47564507718574034, 0.5212616158556865, 0.5739610525369758, 0.6493782565148699]
+Documents Precision: [0.6511112986649624, 0.6446999785281529, 0.6628196090820605, 0.5877923656849743, 0.6056406790371929, 0.6236893009832708, 0.6431057918098695, 0.6157897493624349, 0.6761249867979441, 0.6745665315419994, 0.6822752409304017, 0.7094545929050318, 0.5946171595505795, 0.6208036639230093, 0.5592123694978904, 0.6466026195508237, 0.6023181136743717, 0.7290944017373316]

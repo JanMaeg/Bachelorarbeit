@@ -1,0 +1,3929 @@
+Log file path: /Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_final_inc_news/log_Apr10_22-25-47.txt
+Loaded model from /Users/jan/Documents/Studium/Bachelorarbeit/repository/model-code/data/droc_final_news/model_droc_incremental_no_segment_distance_May02_17-32-58_1800.bin
+Splitting documents into segment of length of less than 512 subtokens.
+Documents will overlap.
+T990507_2#0: $447 tokens
+T990507_2#1: $458 tokens
+T990507_2#2: $177 tokens
+Splitted document T990507_2 into 3 segments
+T990507_3#0: $300 tokens
+Splitted document T990507_3 into 1 segments
+T990507_4#0: $337 tokens
+Splitted document T990507_4 into 1 segments
+T990507_5#0: $290 tokens
+Splitted document T990507_5 into 1 segments
+T990507_7#0: $182 tokens
+Splitted document T990507_7 into 1 segments
+T990507_9#0: $132 tokens
+Splitted document T990507_9 into 1 segments
+T990507_10#0: $82 tokens
+Splitted document T990507_10 into 1 segments
+T990507_11#0: $117 tokens
+Splitted document T990507_11 into 1 segments
+T990507_12#0: $370 tokens
+Splitted document T990507_12 into 1 segments
+T990507_13#0: $455 tokens
+T990507_13#1: $370 tokens
+Splitted document T990507_13 into 2 segments
+T990507_15#0: $417 tokens
+T990507_15#1: $457 tokens
+Splitted document T990507_15 into 2 segments
+T990507_16#0: $86 tokens
+Splitted document T990507_16 into 1 segments
+T990507_17#0: $93 tokens
+Splitted document T990507_17 into 1 segments
+T990507_18#0: $87 tokens
+Splitted document T990507_18 into 1 segments
+T990507_19#0: $404 tokens
+Splitted document T990507_19 into 1 segments
+T990507_20#0: $74 tokens
+Splitted document T990507_20 into 1 segments
+T990507_21#0: $219 tokens
+Splitted document T990507_21 into 1 segments
+T990507_22#0: $361 tokens
+Splitted document T990507_22 into 1 segments
+T990507_23#0: $460 tokens
+T990507_23#1: $443 tokens
+T990507_23#2: $369 tokens
+Splitted document T990507_23 into 3 segments
+T990507_24#0: $437 tokens
+T990507_24#1: $402 tokens
+Splitted document T990507_24 into 2 segments
+T990507_25#0: $203 tokens
+Splitted document T990507_25 into 1 segments
+T990507_27#0: $353 tokens
+Splitted document T990507_27 into 1 segments
+T990507_28#0: $466 tokens
+T990507_28#1: $336 tokens
+Splitted document T990507_28 into 2 segments
+T990507_29#0: $93 tokens
+Splitted document T990507_29 into 1 segments
+T990507_30#0: $102 tokens
+Splitted document T990507_30 into 1 segments
+T990507_31#0: $137 tokens
+Splitted document T990507_31 into 1 segments
+T990507_33#0: $488 tokens
+T990507_33#1: $459 tokens
+Splitted document T990507_33 into 2 segments
+T990507_34#0: $101 tokens
+Splitted document T990507_34 into 1 segments
+T990507_35#0: $458 tokens
+T990507_35#1: $325 tokens
+Splitted document T990507_35 into 2 segments
+T990507_36#0: $405 tokens
+Splitted document T990507_36 into 1 segments
+T990507_37#0: $340 tokens
+Splitted document T990507_37 into 1 segments
+T990507_39#0: $461 tokens
+T990507_39#1: $401 tokens
+Splitted document T990507_39 into 2 segments
+T990507_40#0: $476 tokens
+T990507_40#1: $199 tokens
+Splitted document T990507_40 into 2 segments
+T990507_41#0: $379 tokens
+Splitted document T990507_41 into 1 segments
+T990507_42#0: $236 tokens
+Splitted document T990507_42 into 1 segments
+T990507_44#0: $331 tokens
+Splitted document T990507_44 into 1 segments
+T990507_46#0: $460 tokens
+T990507_46#1: $245 tokens
+Splitted document T990507_46 into 2 segments
+T990507_47#0: $447 tokens
+T990507_47#1: $194 tokens
+Splitted document T990507_47 into 2 segments
+T990507_48#0: $359 tokens
+Splitted document T990507_48 into 1 segments
+T990507_49#0: $61 tokens
+Splitted document T990507_49 into 1 segments
+T990507_50#0: $61 tokens
+Splitted document T990507_50 into 1 segments
+T990507_51#0: $72 tokens
+Splitted document T990507_51 into 1 segments
+T990507_52#0: $59 tokens
+Splitted document T990507_52 into 1 segments
+T990507_53#0: $85 tokens
+Splitted document T990507_53 into 1 segments
+T990507_54#0: $50 tokens
+Splitted document T990507_54 into 1 segments
+T990507_56#0: $447 tokens
+T990507_56#1: $450 tokens
+Splitted document T990507_56 into 2 segments
+T990507_57#0: $481 tokens
+Splitted document T990507_57 into 1 segments
+T990507_58#0: $399 tokens
+Splitted document T990507_58 into 1 segments
+T990507_59#0: $135 tokens
+Splitted document T990507_59 into 1 segments
+T990507_60#0: $82 tokens
+Splitted document T990507_60 into 1 segments
+T990507_61#0: $75 tokens
+Splitted document T990507_61 into 1 segments
+T990507_62#0: $90 tokens
+Splitted document T990507_62 into 1 segments
+T990507_63#0: $85 tokens
+Splitted document T990507_63 into 1 segments
+T990507_66#0: $473 tokens
+T990507_66#1: $425 tokens
+T990507_66#2: $359 tokens
+Splitted document T990507_66 into 3 segments
+T990507_70#0: $466 tokens
+Splitted document T990507_70 into 1 segments
+T990507_84#0: $504 tokens
+T990507_84#1: $456 tokens
+T990507_84#2: $235 tokens
+Splitted document T990507_84 into 3 segments
+T990507_85#0: $359 tokens
+Splitted document T990507_85 into 1 segments
+T990507_86#0: $116 tokens
+Splitted document T990507_86 into 1 segments
+T990507_87#0: $79 tokens
+Splitted document T990507_87 into 1 segments
+T990507_88#0: $76 tokens
+Splitted document T990507_88 into 1 segments
+T990507_89#0: $68 tokens
+Splitted document T990507_89 into 1 segments
+T990507_90#0: $114 tokens
+Splitted document T990507_90 into 1 segments
+T990507_91#0: $106 tokens
+Splitted document T990507_91 into 1 segments
+T990507_92#0: $100 tokens
+Splitted document T990507_92 into 1 segments
+T990507_93#0: $463 tokens
+T990507_93#1: $145 tokens
+Splitted document T990507_93 into 2 segments
+T990507_94#0: $453 tokens
+T990507_94#1: $469 tokens
+T990507_94#2: $208 tokens
+Splitted document T990507_94 into 3 segments
+T990507_96#0: $78 tokens
+Splitted document T990507_96 into 1 segments
+T990507_97#0: $94 tokens
+Splitted document T990507_97 into 1 segments
+T990507_98#0: $81 tokens
+Splitted document T990507_98 into 1 segments
+T990507_99#0: $458 tokens
+T990507_99#1: $435 tokens
+Splitted document T990507_99 into 2 segments
+T990507_101#0: $261 tokens
+Splitted document T990507_101 into 1 segments
+T990507_102#0: $453 tokens
+T990507_102#1: $320 tokens
+Splitted document T990507_102 into 2 segments
+T990507_103#0: $398 tokens
+Splitted document T990507_103 into 1 segments
+T990507_104#0: $451 tokens
+T990507_104#1: $319 tokens
+Splitted document T990507_104 into 2 segments
+T990507_105#0: $445 tokens
+Splitted document T990507_105 into 1 segments
+T990507_106#0: $89 tokens
+Splitted document T990507_106 into 1 segments
+T990507_107#0: $404 tokens
+T990507_107#1: $461 tokens
+T990507_107#2: $434 tokens
+T990507_107#3: $461 tokens
+T990507_107#4: $461 tokens
+T990507_107#5: $436 tokens
+Splitted document T990507_107 into 6 segments
+T990507_111#0: $412 tokens
+T990507_111#1: $511 tokens
+T990507_111#2: $176 tokens
+Splitted document T990507_111 into 3 segments
+T990507_112#0: $459 tokens
+T990507_112#1: $448 tokens
+T990507_112#2: $508 tokens
+Splitted document T990507_112 into 3 segments
+T990507_113#0: $461 tokens
+T990507_113#1: $443 tokens
+T990507_113#2: $393 tokens
+Splitted document T990507_113 into 3 segments
+T990507_114#0: $259 tokens
+Splitted document T990507_114 into 1 segments
+T990507_116#0: $425 tokens
+Splitted document T990507_116 into 1 segments
+T990507_117#0: $174 tokens
+Splitted document T990507_117 into 1 segments
+T990507_118#0: $241 tokens
+Splitted document T990507_118 into 1 segments
+T990507_119#0: $429 tokens
+T990507_119#1: $418 tokens
+T990507_119#2: $424 tokens
+Splitted document T990507_119 into 3 segments
+T990507_123#0: $476 tokens
+T990507_123#1: $413 tokens
+T990507_123#2: $399 tokens
+T990507_123#3: $381 tokens
+Splitted document T990507_123 into 4 segments
+T990507_124#0: $436 tokens
+T990507_124#1: $425 tokens
+Splitted document T990507_124 into 2 segments
+T990507_125#0: $403 tokens
+Splitted document T990507_125 into 1 segments
+T990507_128#0: $211 tokens
+Splitted document T990507_128 into 1 segments
+T990507_129#0: $121 tokens
+Splitted document T990507_129 into 1 segments
+T990507_130#0: $111 tokens
+Splitted document T990507_130 into 1 segments
+T990507_131#0: $139 tokens
+Splitted document T990507_131 into 1 segments
+T990507_132#0: $464 tokens
+T990507_132#1: $234 tokens
+Splitted document T990507_132 into 2 segments
+T990507_133#0: $287 tokens
+Splitted document T990507_133 into 1 segments
+T990507_134#0: $443 tokens
+T990507_134#1: $465 tokens
+Splitted document T990507_134 into 2 segments
+T990507_135#0: $143 tokens
+Splitted document T990507_135 into 1 segments
+T990507_136#0: $484 tokens
+T990507_136#1: $200 tokens
+Splitted document T990507_136 into 2 segments
+T990507_137#0: $421 tokens
+T990507_137#1: $202 tokens
+Splitted document T990507_137 into 2 segments
+T990507_139#0: $173 tokens
+Splitted document T990507_139 into 1 segments
+T990507_140#0: $439 tokens
+Splitted document T990507_140 into 1 segments
+T990507_141#0: $435 tokens
+Splitted document T990507_141 into 1 segments
+T990507_143#0: $438 tokens
+T990507_143#1: $266 tokens
+Splitted document T990507_143 into 2 segments
+T990507_145#0: $102 tokens
+Splitted document T990507_145 into 1 segments
+T990507_146#0: $149 tokens
+Splitted document T990507_146 into 1 segments
+T990507_147#0: $86 tokens
+Splitted document T990507_147 into 1 segments
+T990507_148#0: $68 tokens
+Splitted document T990507_148 into 1 segments
+T990507_149#0: $134 tokens
+Splitted document T990507_149 into 1 segments
+T990507_150#0: $89 tokens
+Splitted document T990507_150 into 1 segments
+T990507_151#0: $106 tokens
+Splitted document T990507_151 into 1 segments
+T990507_152#0: $77 tokens
+Splitted document T990507_152 into 1 segments
+T990507_153#0: $485 tokens
+T990507_153#1: $296 tokens
+Splitted document T990507_153 into 2 segments
+T990507_154#0: $442 tokens
+T990507_154#1: $440 tokens
+T990507_154#2: $392 tokens
+T990507_154#3: $454 tokens
+T990507_154#4: $199 tokens
+Splitted document T990507_154 into 5 segments
+T990507_156#0: $427 tokens
+T990507_156#1: $493 tokens
+Splitted document T990507_156 into 2 segments
+T990507_157#0: $359 tokens
+Splitted document T990507_157 into 1 segments
+T990507_158#0: $468 tokens
+T990507_158#1: $483 tokens
+Splitted document T990507_158 into 2 segments
+T990507_160#0: $168 tokens
+Splitted document T990507_160 into 1 segments
+T990507_161#0: $120 tokens
+Splitted document T990507_161 into 1 segments
+T990507_162#0: $435 tokens
+T990507_162#1: $459 tokens
+T990507_162#2: $447 tokens
+T990507_162#3: $505 tokens
+T990507_162#4: $195 tokens
+Splitted document T990507_162 into 5 segments
+T990507_164#0: $454 tokens
+T990507_164#1: $221 tokens
+Splitted document T990507_164 into 2 segments
+T990507_165#0: $481 tokens
+T990507_165#1: $388 tokens
+Splitted document T990507_165 into 2 segments
+T990507_166#0: $86 tokens
+Splitted document T990507_166 into 1 segments
+T990507_167#0: $215 tokens
+Splitted document T990507_167 into 1 segments
+T990507_168#0: $163 tokens
+Splitted document T990507_168 into 1 segments
+T990507_169#0: $466 tokens
+T990507_169#1: $451 tokens
+T990507_169#2: $362 tokens
+Splitted document T990507_169 into 3 segments
+T990507_173#0: $494 tokens
+T990507_173#1: $320 tokens
+Splitted document T990507_173 into 2 segments
+T990507_174#0: $406 tokens
+T990507_174#1: $412 tokens
+T990507_174#2: $476 tokens
+T990507_174#3: $215 tokens
+Splitted document T990507_174 into 4 segments
+T990507_175#0: $474 tokens
+T990507_175#1: $432 tokens
+T990507_175#2: $210 tokens
+Splitted document T990507_175 into 3 segments
+T990507_176#0: $49 tokens
+Splitted document T990507_176 into 1 segments
+T990507_178#0: $503 tokens
+Splitted document T990507_178 into 1 segments
+T990507_179#0: $457 tokens
+T990507_179#1: $187 tokens
+Splitted document T990507_179 into 2 segments
+T990507_180#0: $499 tokens
+T990507_180#1: $437 tokens
+T990507_180#2: $487 tokens
+T990507_180#3: $250 tokens
+Splitted document T990507_180 into 4 segments
+T990507_181#0: $488 tokens
+Splitted document T990507_181 into 1 segments
+T990507_182#0: $475 tokens
+T990507_182#1: $323 tokens
+Splitted document T990507_182 into 2 segments
+T990507_184#0: $408 tokens
+Splitted document T990507_184 into 1 segments
+T990507_186#0: $295 tokens
+Splitted document T990507_186 into 1 segments
+T990507_187#0: $95 tokens
+Splitted document T990507_187 into 1 segments
+T990507_188#0: $83 tokens
+Splitted document T990507_188 into 1 segments
+T990507_189#0: $80 tokens
+Splitted document T990507_189 into 1 segments
+T990507_190#0: $104 tokens
+Splitted document T990507_190 into 1 segments
+T990507_191#0: $95 tokens
+Splitted document T990507_191 into 1 segments
+T990507_192#0: $77 tokens
+Splitted document T990507_192 into 1 segments
+T990507_193#0: $103 tokens
+Splitted document T990507_193 into 1 segments
+T990507_194#0: $437 tokens
+T990507_194#1: $208 tokens
+Splitted document T990507_194 into 2 segments
+T990507_196#0: $416 tokens
+Splitted document T990507_196 into 1 segments
+T990507_197#0: $449 tokens
+Splitted document T990507_197 into 1 segments
+T990507_198#0: $410 tokens
+Splitted document T990507_198 into 1 segments
+T990507_199#0: $405 tokens
+T990507_199#1: $435 tokens
+T990507_199#2: $439 tokens
+T990507_199#3: $462 tokens
+T990507_199#4: $481 tokens
+T990507_199#5: $446 tokens
+T990507_199#6: $456 tokens
+Splitted document T990507_199 into 7 segments
+T990507_201#0: $454 tokens
+Splitted document T990507_201 into 1 segments
+T990507_202#0: $465 tokens
+T990507_202#1: $448 tokens
+T990507_202#2: $470 tokens
+T990507_202#3: $210 tokens
+Splitted document T990507_202 into 4 segments
+T990507_205#0: $345 tokens
+Splitted document T990507_205 into 1 segments
+T990507_207#0: $465 tokens
+T990507_207#1: $483 tokens
+Splitted document T990507_207 into 2 segments
+T990507_211#0: $433 tokens
+T990507_211#1: $471 tokens
+T990507_211#2: $371 tokens
+Splitted document T990507_211 into 3 segments
+T990507_212#0: $427 tokens
+T990507_212#1: $423 tokens
+T990507_212#2: $362 tokens
+Splitted document T990507_212 into 3 segments
+T990507_213#0: $454 tokens
+T990507_213#1: $422 tokens
+T990507_213#2: $263 tokens
+Splitted document T990507_213 into 3 segments
+T990507_214#0: $440 tokens
+T990507_214#1: $327 tokens
+Splitted document T990507_214 into 2 segments
+T990507_215#0: $449 tokens
+T990507_215#1: $253 tokens
+Splitted document T990507_215 into 2 segments
+T990507_217#0: $451 tokens
+T990507_217#1: $426 tokens
+T990507_217#2: $331 tokens
+Splitted document T990507_217 into 3 segments
+T990507_219#0: $500 tokens
+Splitted document T990507_219 into 1 segments
+T990507_221#0: $497 tokens
+T990507_221#1: $463 tokens
+T990507_221#2: $417 tokens
+Splitted document T990507_221 into 3 segments
+T990507_222#0: $380 tokens
+Splitted document T990507_222 into 1 segments
+T990507_224#0: $336 tokens
+Splitted document T990507_224 into 1 segments
+T990507_226#0: $73 tokens
+Splitted document T990507_226 into 1 segments
+T990506_2#0: $487 tokens
+T990506_2#1: $504 tokens
+Splitted document T990506_2 into 2 segments
+T990506_3#0: $234 tokens
+Splitted document T990506_3 into 1 segments
+T990506_4#0: $483 tokens
+T990506_4#1: $349 tokens
+Splitted document T990506_4 into 2 segments
+T990506_5#0: $290 tokens
+Splitted document T990506_5 into 1 segments
+T990506_7#0: $139 tokens
+Splitted document T990506_7 into 1 segments
+T990506_8#0: $127 tokens
+Splitted document T990506_8 into 1 segments
+T990506_9#0: $106 tokens
+Splitted document T990506_9 into 1 segments
+T990506_10#0: $114 tokens
+Splitted document T990506_10 into 1 segments
+T990506_11#0: $491 tokens
+T990506_11#1: $184 tokens
+Splitted document T990506_11 into 2 segments
+T990506_12#0: $468 tokens
+T990506_12#1: $486 tokens
+Splitted document T990506_12 into 2 segments
+T990506_14#0: $171 tokens
+Splitted document T990506_14 into 1 segments
+T990506_15#0: $69 tokens
+Splitted document T990506_15 into 1 segments
+T990506_16#0: $65 tokens
+Splitted document T990506_16 into 1 segments
+T990506_17#0: $175 tokens
+Splitted document T990506_17 into 1 segments
+T990506_19#0: $254 tokens
+Splitted document T990506_19 into 1 segments
+T990506_20#0: $82 tokens
+Splitted document T990506_20 into 1 segments
+T990506_21#0: $122 tokens
+Splitted document T990506_21 into 1 segments
+T990506_23#0: $502 tokens
+T990506_23#1: $491 tokens
+T990506_23#2: $439 tokens
+T990506_23#3: $445 tokens
+T990506_23#4: $495 tokens
+T990506_23#5: $418 tokens
+T990506_23#6: $439 tokens
+T990506_23#7: $486 tokens
+T990506_23#8: $410 tokens
+T990506_23#9: $458 tokens
+T990506_23#10: $418 tokens
+T990506_23#11: $448 tokens
+T990506_23#12: $488 tokens
+T990506_23#13: $418 tokens
+T990506_23#14: $421 tokens
+T990506_23#15: $425 tokens
+T990506_23#16: $408 tokens
+T990506_23#17: $424 tokens
+T990506_23#18: $431 tokens
+T990506_23#19: $459 tokens
+T990506_23#20: $419 tokens
+T990506_23#21: $422 tokens
+T990506_23#22: $424 tokens
+T990506_23#23: $449 tokens
+T990506_23#24: $429 tokens
+T990506_23#25: $449 tokens
+T990506_23#26: $347 tokens
+Splitted document T990506_23 into 27 segments
+T990506_24#0: $404 tokens
+T990506_24#1: $386 tokens
+Splitted document T990506_24 into 2 segments
+T990506_25#0: $452 tokens
+T990506_25#1: $474 tokens
+T990506_25#2: $472 tokens
+T990506_25#3: $441 tokens
+T990506_25#4: $439 tokens
+T990506_25#5: $256 tokens
+Splitted document T990506_25 into 6 segments
+T990506_26#0: $190 tokens
+Splitted document T990506_26 into 1 segments
+T990506_27#0: $184 tokens
+Splitted document T990506_27 into 1 segments
+T990506_28#0: $91 tokens
+Splitted document T990506_28 into 1 segments
+T990506_29#0: $82 tokens
+Splitted document T990506_29 into 1 segments
+T990506_30#0: $101 tokens
+Splitted document T990506_30 into 1 segments
+T990506_31#0: $68 tokens
+Splitted document T990506_31 into 1 segments
+T990506_32#0: $79 tokens
+Splitted document T990506_32 into 1 segments
+T990506_34#0: $420 tokens
+Splitted document T990506_34 into 1 segments
+T990506_35#0: $429 tokens
+T990506_35#1: $454 tokens
+Splitted document T990506_35 into 2 segments
+T990506_36#0: $59 tokens
+Splitted document T990506_36 into 1 segments
+T990506_37#0: $97 tokens
+Splitted document T990506_37 into 1 segments
+T990506_38#0: $186 tokens
+Splitted document T990506_38 into 1 segments
+T990506_41#0: $456 tokens
+T990506_41#1: $430 tokens
+Splitted document T990506_41 into 2 segments
+T990506_44#0: $472 tokens
+Splitted document T990506_44 into 1 segments
+T990506_48#0: $455 tokens
+T990506_48#1: $464 tokens
+T990506_48#2: $211 tokens
+Splitted document T990506_48 into 3 segments
+T990506_49#0: $480 tokens
+T990506_49#1: $148 tokens
+Splitted document T990506_49 into 2 segments
+T990506_50#0: $389 tokens
+Splitted document T990506_50 into 1 segments
+T990506_51#0: $329 tokens
+Splitted document T990506_51 into 1 segments
+T990506_52#0: $157 tokens
+Splitted document T990506_52 into 1 segments
+T990506_53#0: $460 tokens
+T990506_53#1: $481 tokens
+T990506_53#2: $374 tokens
+Splitted document T990506_53 into 3 segments
+T990506_54#0: $444 tokens
+T990506_54#1: $319 tokens
+Splitted document T990506_54 into 2 segments
+T990506_55#0: $375 tokens
+Splitted document T990506_55 into 1 segments
+T990506_56#0: $454 tokens
+T990506_56#1: $326 tokens
+Splitted document T990506_56 into 2 segments
+T990506_59#0: $463 tokens
+T990506_59#1: $235 tokens
+Splitted document T990506_59 into 2 segments
+T990506_60#0: $363 tokens
+Splitted document T990506_60 into 1 segments
+T990506_61#0: $490 tokens
+T990506_61#1: $193 tokens
+Splitted document T990506_61 into 2 segments
+T990506_62#0: $354 tokens
+Splitted document T990506_62 into 1 segments
+T990506_63#0: $109 tokens
+Splitted document T990506_63 into 1 segments
+T990506_64#0: $117 tokens
+Splitted document T990506_64 into 1 segments
+T990506_65#0: $133 tokens
+Splitted document T990506_65 into 1 segments
+T990506_66#0: $111 tokens
+Splitted document T990506_66 into 1 segments
+T990506_67#0: $71 tokens
+Splitted document T990506_67 into 1 segments
+T990506_68#0: $448 tokens
+T990506_68#1: $462 tokens
+T990506_68#2: $483 tokens
+T990506_68#3: $464 tokens
+T990506_68#4: $205 tokens
+Splitted document T990506_68 into 5 segments
+T990506_72#0: $273 tokens
+Splitted document T990506_72 into 1 segments
+T990506_73#0: $426 tokens
+T990506_73#1: $410 tokens
+Splitted document T990506_73 into 2 segments
+T990506_75#0: $458 tokens
+T990506_75#1: $300 tokens
+Splitted document T990506_75 into 2 segments
+T990506_76#0: $308 tokens
+Splitted document T990506_76 into 1 segments
+T990506_77#0: $412 tokens
+T990506_77#1: $446 tokens
+T990506_77#2: $348 tokens
+Splitted document T990506_77 into 3 segments
+T990506_78#0: $487 tokens
+T990506_78#1: $508 tokens
+T990506_78#2: $404 tokens
+T990506_78#3: $450 tokens
+T990506_78#4: $464 tokens
+T990506_78#5: $283 tokens
+Splitted document T990506_78 into 6 segments
+T990506_79#0: $403 tokens
+T990506_79#1: $400 tokens
+T990506_79#2: $364 tokens
+Splitted document T990506_79 into 3 segments
+T990506_80#0: $113 tokens
+Splitted document T990506_80 into 1 segments
+T990506_81#0: $242 tokens
+Splitted document T990506_81 into 1 segments
+T990506_82#0: $164 tokens
+Splitted document T990506_82 into 1 segments
+T990506_84#0: $460 tokens
+Splitted document T990506_84 into 1 segments
+T990506_87#0: $431 tokens
+Splitted document T990506_87 into 1 segments
+T990506_88#0: $449 tokens
+T990506_88#1: $428 tokens
+T990506_88#2: $283 tokens
+Splitted document T990506_88 into 3 segments
+T990506_89#0: $344 tokens
+Splitted document T990506_89 into 1 segments
+T990506_90#0: $446 tokens
+T990506_90#1: $484 tokens
+T990506_90#2: $413 tokens
+T990506_90#3: $223 tokens
+Splitted document T990506_90 into 4 segments
+T990506_93#0: $218 tokens
+Splitted document T990506_93 into 1 segments
+T990506_94#0: $128 tokens
+Splitted document T990506_94 into 1 segments
+T990506_95#0: $180 tokens
+Splitted document T990506_95 into 1 segments
+T990506_96#0: $431 tokens
+T990506_96#1: $415 tokens
+T990506_96#2: $477 tokens
+Splitted document T990506_96 into 3 segments
+T990506_97#0: $249 tokens
+Splitted document T990506_97 into 1 segments
+T990506_98#0: $413 tokens
+T990506_98#1: $432 tokens
+Splitted document T990506_98 into 2 segments
+T990506_99#0: $134 tokens
+Splitted document T990506_99 into 1 segments
+T990506_100#0: $438 tokens
+T990506_100#1: $407 tokens
+Splitted document T990506_100 into 2 segments
+T990506_101#0: $488 tokens
+T990506_101#1: $214 tokens
+Splitted document T990506_101 into 2 segments
+T990506_103#0: $457 tokens
+Splitted document T990506_103 into 1 segments
+T990506_104#0: $98 tokens
+Splitted document T990506_104 into 1 segments
+T990506_105#0: $479 tokens
+T990506_105#1: $235 tokens
+Splitted document T990506_105 into 2 segments
+T990506_107#0: $500 tokens
+Splitted document T990506_107 into 1 segments
+T990506_108#0: $143 tokens
+Splitted document T990506_108 into 1 segments
+T990506_109#0: $86 tokens
+Splitted document T990506_109 into 1 segments
+T990506_110#0: $64 tokens
+Splitted document T990506_110 into 1 segments
+T990506_111#0: $75 tokens
+Splitted document T990506_111 into 1 segments
+T990506_112#0: $119 tokens
+Splitted document T990506_112 into 1 segments
+T990506_113#0: $401 tokens
+T990506_113#1: $323 tokens
+Splitted document T990506_113 into 2 segments
+T990506_114#0: $441 tokens
+T990506_114#1: $335 tokens
+Splitted document T990506_114 into 2 segments
+T990506_116#0: $489 tokens
+T990506_116#1: $511 tokens
+T990506_116#2: $161 tokens
+Splitted document T990506_116 into 3 segments
+T990506_117#0: $453 tokens
+T990506_117#1: $505 tokens
+T990506_117#2: $485 tokens
+T990506_117#3: $276 tokens
+Splitted document T990506_117 into 4 segments
+T990506_118#0: $480 tokens
+T990506_118#1: $476 tokens
+T990506_118#2: $468 tokens
+T990506_118#3: $355 tokens
+Splitted document T990506_118 into 4 segments
+T990506_120#0: $151 tokens
+Splitted document T990506_120 into 1 segments
+T990506_121#0: $147 tokens
+Splitted document T990506_121 into 1 segments
+T990506_122#0: $179 tokens
+Splitted document T990506_122 into 1 segments
+T990506_123#0: $141 tokens
+Splitted document T990506_123 into 1 segments
+T990506_125#0: $113 tokens
+Splitted document T990506_125 into 1 segments
+T990506_126#0: $151 tokens
+Splitted document T990506_126 into 1 segments
+T990506_127#0: $114 tokens
+Splitted document T990506_127 into 1 segments
+T990506_128#0: $476 tokens
+T990506_128#1: $203 tokens
+Splitted document T990506_128 into 2 segments
+T990506_129#0: $466 tokens
+T990506_129#1: $433 tokens
+T990506_129#2: $289 tokens
+Splitted document T990506_129 into 3 segments
+T990506_131#0: $480 tokens
+T990506_131#1: $221 tokens
+Splitted document T990506_131 into 2 segments
+T990506_134#0: $169 tokens
+Splitted document T990506_134 into 1 segments
+T990506_135#0: $192 tokens
+Splitted document T990506_135 into 1 segments
+T990506_136#0: $493 tokens
+T990506_136#1: $499 tokens
+T990506_136#2: $159 tokens
+Splitted document T990506_136 into 3 segments
+T990506_137#0: $439 tokens
+T990506_137#1: $497 tokens
+Splitted document T990506_137 into 2 segments
+T990506_138#0: $448 tokens
+T990506_138#1: $484 tokens
+T990506_138#2: $161 tokens
+Splitted document T990506_138 into 3 segments
+T990506_139#0: $451 tokens
+T990506_139#1: $427 tokens
+T990506_139#2: $480 tokens
+T990506_139#3: $466 tokens
+T990506_139#4: $225 tokens
+Splitted document T990506_139 into 5 segments
+T990506_140#0: $70 tokens
+Splitted document T990506_140 into 1 segments
+T990506_141#0: $415 tokens
+T990506_141#1: $462 tokens
+Splitted document T990506_141 into 2 segments
+T990506_142#0: $273 tokens
+Splitted document T990506_142 into 1 segments
+T990506_143#0: $391 tokens
+Splitted document T990506_143 into 1 segments
+T990506_144#0: $50 tokens
+Splitted document T990506_144 into 1 segments
+T990506_146#0: $492 tokens
+T990506_146#1: $234 tokens
+Splitted document T990506_146 into 2 segments
+T990506_147#0: $448 tokens
+T990506_147#1: $222 tokens
+Splitted document T990506_147 into 2 segments
+T990506_148#0: $424 tokens
+T990506_148#1: $466 tokens
+T990506_148#2: $487 tokens
+T990506_148#3: $306 tokens
+Splitted document T990506_148 into 4 segments
+T990506_149#0: $396 tokens
+Splitted document T990506_149 into 1 segments
+T990506_150#0: $456 tokens
+T990506_150#1: $437 tokens
+Splitted document T990506_150 into 2 segments
+T990506_152#0: $135 tokens
+Splitted document T990506_152 into 1 segments
+T990506_153#0: $453 tokens
+T990506_153#1: $189 tokens
+Splitted document T990506_153 into 2 segments
+T990506_154#0: $103 tokens
+Splitted document T990506_154 into 1 segments
+T990506_155#0: $165 tokens
+Splitted document T990506_155 into 1 segments
+T990506_156#0: $99 tokens
+Splitted document T990506_156 into 1 segments
+T990506_157#0: $159 tokens
+Splitted document T990506_157 into 1 segments
+T990506_158#0: $148 tokens
+Splitted document T990506_158 into 1 segments
+T990506_159#0: $140 tokens
+Splitted document T990506_159 into 1 segments
+T990506_160#0: $135 tokens
+Splitted document T990506_160 into 1 segments
+T990506_161#0: $143 tokens
+Splitted document T990506_161 into 1 segments
+T990506_162#0: $501 tokens
+T990506_162#1: $350 tokens
+Splitted document T990506_162 into 2 segments
+T990506_163#0: $57 tokens
+Splitted document T990506_163 into 1 segments
+T990506_164#0: $478 tokens
+Splitted document T990506_164 into 1 segments
+T990506_165#0: $480 tokens
+Splitted document T990506_165 into 1 segments
+T990506_166#0: $193 tokens
+Splitted document T990506_166 into 1 segments
+T990506_167#0: $425 tokens
+T990506_167#1: $429 tokens
+Splitted document T990506_167 into 2 segments
+T990506_168#0: $431 tokens
+T990506_168#1: $239 tokens
+Splitted document T990506_168 into 2 segments
+T990506_170#0: $327 tokens
+Splitted document T990506_170 into 1 segments
+T990506_171#0: $509 tokens
+Splitted document T990506_171 into 1 segments
+T990506_174#0: $286 tokens
+Splitted document T990506_174 into 1 segments
+T990506_179#0: $475 tokens
+T990506_179#1: $489 tokens
+T990506_179#2: $462 tokens
+T990506_179#3: $461 tokens
+T990506_179#4: $511 tokens
+T990506_179#5: $492 tokens
+T990506_179#6: $480 tokens
+T990506_179#7: $214 tokens
+Splitted document T990506_179 into 8 segments
+T990506_180#0: $414 tokens
+T990506_180#1: $499 tokens
+Splitted document T990506_180 into 2 segments
+T990506_182#0: $304 tokens
+Splitted document T990506_182 into 1 segments
+T990506_183#0: $456 tokens
+T990506_183#1: $170 tokens
+Splitted document T990506_183 into 2 segments
+T990506_185#0: $443 tokens
+T990506_185#1: $281 tokens
+Splitted document T990506_185 into 2 segments
+T990506_186#0: $466 tokens
+Splitted document T990506_186 into 1 segments
+T990506_187#0: $392 tokens
+Splitted document T990506_187 into 1 segments
+T990506_188#0: $324 tokens
+Splitted document T990506_188 into 1 segments
+T990506_189#0: $231 tokens
+Splitted document T990506_189 into 1 segments
+T990506_191#0: $307 tokens
+Splitted document T990506_191 into 1 segments
+T990506_192#0: $452 tokens
+T990506_192#1: $268 tokens
+Splitted document T990506_192 into 2 segments
+T990506_193#0: $448 tokens
+T990506_193#1: $190 tokens
+Splitted document T990506_193 into 2 segments
+T990506_194#0: $229 tokens
+Splitted document T990506_194 into 1 segments
+T990506_195#0: $427 tokens
+Splitted document T990506_195 into 1 segments
+T990506_196#0: $51 tokens
+Splitted document T990506_196 into 1 segments
+T990506_197#0: $95 tokens
+Splitted document T990506_197 into 1 segments
+T990506_198#0: $50 tokens
+Splitted document T990506_198 into 1 segments
+T990506_199#0: $65 tokens
+Splitted document T990506_199 into 1 segments
+T990506_200#0: $68 tokens
+Splitted document T990506_200 into 1 segments
+T990506_201#0: $84 tokens
+Splitted document T990506_201 into 1 segments
+T990506_203#0: $455 tokens
+T990506_203#1: $328 tokens
+Splitted document T990506_203 into 2 segments
+T990506_204#0: $119 tokens
+Splitted document T990506_204 into 1 segments
+T990506_206#0: $104 tokens
+Splitted document T990506_206 into 1 segments
+T990506_207#0: $350 tokens
+Splitted document T990506_207 into 1 segments
+T990506_209#0: $148 tokens
+Splitted document T990506_209 into 1 segments
+T990506_210#0: $172 tokens
+Splitted document T990506_210 into 1 segments
+T990506_211#0: $305 tokens
+Splitted document T990506_211 into 1 segments
+T990506_212#0: $235 tokens
+Splitted document T990506_212 into 1 segments
+T990506_213#0: $197 tokens
+Splitted document T990506_213 into 1 segments
+T990506_214#0: $229 tokens
+Splitted document T990506_214 into 1 segments
+T990506_216#0: $455 tokens
+T990506_216#1: $439 tokens
+Splitted document T990506_216 into 2 segments
+T990506_217#0: $388 tokens
+Splitted document T990506_217 into 1 segments
+T990506_218#0: $122 tokens
+Splitted document T990506_218 into 1 segments
+T990506_219#0: $147 tokens
+Splitted document T990506_219 into 1 segments
+T990506_220#0: $58 tokens
+Splitted document T990506_220 into 1 segments
+T990506_222#0: $468 tokens
+T990506_222#1: $262 tokens
+Splitted document T990506_222 into 2 segments
+T990506_223#0: $457 tokens
+T990506_223#1: $226 tokens
+Splitted document T990506_223 into 2 segments
+T990506_224#0: $133 tokens
+Splitted document T990506_224 into 1 segments
+T990506_225#0: $88 tokens
+Splitted document T990506_225 into 1 segments
+T990506_226#0: $102 tokens
+Splitted document T990506_226 into 1 segments
+T990506_227#0: $106 tokens
+Splitted document T990506_227 into 1 segments
+T990506_228#0: $73 tokens
+Splitted document T990506_228 into 1 segments
+T990506_229#0: $446 tokens
+T990506_229#1: $443 tokens
+T990506_229#2: $285 tokens
+Splitted document T990506_229 into 3 segments
+T990506_230#0: $397 tokens
+T990506_230#1: $498 tokens
+T990506_230#2: $235 tokens
+Splitted document T990506_230 into 3 segments
+T990506_231#0: $315 tokens
+Splitted document T990506_231 into 1 segments
+T990506_232#0: $121 tokens
+Splitted document T990506_232 into 1 segments
+T990506_233#0: $145 tokens
+Splitted document T990506_233 into 1 segments
+T990506_234#0: $111 tokens
+Splitted document T990506_234 into 1 segments
+T990506_237#0: $493 tokens
+T990506_237#1: $508 tokens
+Splitted document T990506_237 into 2 segments
+T990506_238#0: $475 tokens
+T990506_238#1: $289 tokens
+Splitted document T990506_238 into 2 segments
+T990506_239#0: $466 tokens
+T990506_239#1: $276 tokens
+Splitted document T990506_239 into 2 segments
+T990506_240#0: $92 tokens
+Splitted document T990506_240 into 1 segments
+T990506_241#0: $122 tokens
+Splitted document T990506_241 into 1 segments
+T990506_242#0: $81 tokens
+Splitted document T990506_242 into 1 segments
+T990506_243#0: $91 tokens
+Splitted document T990506_243 into 1 segments
+T990506_244#0: $437 tokens
+Splitted document T990506_244 into 1 segments
+T990506_245#0: $229 tokens
+Splitted document T990506_245 into 1 segments
+T990506_246#0: $449 tokens
+Splitted document T990506_246 into 1 segments
+T990506_247#0: $290 tokens
+Splitted document T990506_247 into 1 segments
+T990506_248#0: $174 tokens
+Splitted document T990506_248 into 1 segments
+T990506_249#0: $109 tokens
+Splitted document T990506_249 into 1 segments
+T990506_250#0: $193 tokens
+Splitted document T990506_250 into 1 segments
+T990506_251#0: $500 tokens
+T990506_251#1: $455 tokens
+Splitted document T990506_251 into 2 segments
+T990506_252#0: $435 tokens
+T990506_252#1: $422 tokens
+Splitted document T990506_252 into 2 segments
+T990506_253#0: $337 tokens
+Splitted document T990506_253 into 1 segments
+T990506_254#0: $477 tokens
+T990506_254#1: $488 tokens
+Splitted document T990506_254 into 2 segments
+T990506_255#0: $495 tokens
+T990506_255#1: $437 tokens
+T990506_255#2: $500 tokens
+Splitted document T990506_255 into 3 segments
+T990506_256#0: $481 tokens
+T990506_256#1: $475 tokens
+T990506_256#2: $228 tokens
+Splitted document T990506_256 into 3 segments
+T990503_2#0: $450 tokens
+T990503_2#1: $464 tokens
+T990503_2#2: $177 tokens
+Splitted document T990503_2 into 3 segments
+T990503_3#0: $255 tokens
+Splitted document T990503_3 into 1 segments
+T990503_4#0: $289 tokens
+Splitted document T990503_4 into 1 segments
+T990503_6#0: $110 tokens
+Splitted document T990503_6 into 1 segments
+T990503_7#0: $84 tokens
+Splitted document T990503_7 into 1 segments
+T990503_8#0: $65 tokens
+Splitted document T990503_8 into 1 segments
+T990503_10#0: $178 tokens
+Splitted document T990503_10 into 1 segments
+T990503_12#0: $371 tokens
+Splitted document T990503_12 into 1 segments
+T990503_13#0: $508 tokens
+T990503_13#1: $471 tokens
+T990503_13#2: $242 tokens
+Splitted document T990503_13 into 3 segments
+T990503_14#0: $247 tokens
+Splitted document T990503_14 into 1 segments
+T990503_15#0: $449 tokens
+T990503_15#1: $460 tokens
+T990503_15#2: $447 tokens
+T990503_15#3: $282 tokens
+Splitted document T990503_15 into 4 segments
+T990503_17#0: $81 tokens
+Splitted document T990503_17 into 1 segments
+T990503_18#0: $438 tokens
+T990503_18#1: $433 tokens
+Splitted document T990503_18 into 2 segments
+T990503_19#0: $456 tokens
+T990503_19#1: $460 tokens
+T990503_19#2: $268 tokens
+Splitted document T990503_19 into 3 segments
+T990503_20#0: $105 tokens
+Splitted document T990503_20 into 1 segments
+T990503_21#0: $50 tokens
+Splitted document T990503_21 into 1 segments
+T990503_22#0: $80 tokens
+Splitted document T990503_22 into 1 segments
+T990503_23#0: $106 tokens
+Splitted document T990503_23 into 1 segments
+T990503_25#0: $449 tokens
+T990503_25#1: $211 tokens
+Splitted document T990503_25 into 2 segments
+T990503_28#0: $480 tokens
+Splitted document T990503_28 into 1 segments
+T990503_44#0: $348 tokens
+Splitted document T990503_44 into 1 segments
+T990503_51#0: $407 tokens
+T990503_51#1: $450 tokens
+Splitted document T990503_51 into 2 segments
+T990503_52#0: $469 tokens
+T990503_52#1: $198 tokens
+Splitted document T990503_52 into 2 segments
+T990503_53#0: $472 tokens
+T990503_53#1: $271 tokens
+Splitted document T990503_53 into 2 segments
+T990503_54#0: $427 tokens
+T990503_54#1: $461 tokens
+T990503_54#2: $301 tokens
+Splitted document T990503_54 into 3 segments
+T990503_56#0: $394 tokens
+T990503_56#1: $479 tokens
+T990503_56#2: $325 tokens
+Splitted document T990503_56 into 3 segments
+T990503_57#0: $440 tokens
+T990503_57#1: $430 tokens
+T990503_57#2: $507 tokens
+Splitted document T990503_57 into 3 segments
+T990503_58#0: $462 tokens
+T990503_58#1: $235 tokens
+Splitted document T990503_58 into 2 segments
+T990503_59#0: $346 tokens
+Splitted document T990503_59 into 1 segments
+T990503_60#0: $97 tokens
+Splitted document T990503_60 into 1 segments
+T990503_65#0: $462 tokens
+T990503_65#1: $289 tokens
+Splitted document T990503_65 into 2 segments
+T990503_67#0: $395 tokens
+Splitted document T990503_67 into 1 segments
+T990503_68#0: $475 tokens
+T990503_68#1: $443 tokens
+T990503_68#2: $427 tokens
+Splitted document T990503_68 into 3 segments
+T990503_69#0: $133 tokens
+Splitted document T990503_69 into 1 segments
+T990503_70#0: $84 tokens
+Splitted document T990503_70 into 1 segments
+T990503_71#0: $70 tokens
+Splitted document T990503_71 into 1 segments
+T990503_72#0: $134 tokens
+Splitted document T990503_72 into 1 segments
+T990503_73#0: $139 tokens
+Splitted document T990503_73 into 1 segments
+T990503_75#0: $488 tokens
+T990503_75#1: $504 tokens
+Splitted document T990503_75 into 2 segments
+T990503_76#0: $454 tokens
+T990503_76#1: $426 tokens
+T990503_76#2: $277 tokens
+Splitted document T990503_76 into 3 segments
+T990503_77#0: $492 tokens
+T990503_77#1: $239 tokens
+Splitted document T990503_77 into 2 segments
+T990503_78#0: $85 tokens
+Splitted document T990503_78 into 1 segments
+T990503_79#0: $136 tokens
+Splitted document T990503_79 into 1 segments
+T990503_80#0: $162 tokens
+Splitted document T990503_80 into 1 segments
+T990503_81#0: $82 tokens
+Splitted document T990503_81 into 1 segments
+T990503_82#0: $117 tokens
+Splitted document T990503_82 into 1 segments
+T990503_83#0: $441 tokens
+T990503_83#1: $447 tokens
+T990503_83#2: $194 tokens
+Splitted document T990503_83 into 3 segments
+T990503_84#0: $186 tokens
+Splitted document T990503_84 into 1 segments
+T990503_85#0: $161 tokens
+Splitted document T990503_85 into 1 segments
+T990503_87#0: $471 tokens
+T990503_87#1: $200 tokens
+Splitted document T990503_87 into 2 segments
+T990503_88#0: $476 tokens
+T990503_88#1: $159 tokens
+Splitted document T990503_88 into 2 segments
+T990503_89#0: $160 tokens
+Splitted document T990503_89 into 1 segments
+T990503_90#0: $80 tokens
+Splitted document T990503_90 into 1 segments
+T990503_91#0: $447 tokens
+T990503_91#1: $452 tokens
+T990503_91#2: $481 tokens
+T990503_91#3: $458 tokens
+T990503_91#4: $443 tokens
+T990503_91#5: $431 tokens
+Splitted document T990503_91 into 6 segments
+T990503_92#0: $245 tokens
+Splitted document T990503_92 into 1 segments
+T990503_95#0: $426 tokens
+T990503_95#1: $501 tokens
+T990503_95#2: $453 tokens
+T990503_95#3: $457 tokens
+T990503_95#4: $469 tokens
+T990503_95#5: $502 tokens
+Splitted document T990503_95 into 6 segments
+T990503_96#0: $512 tokens
+Splitted document T990503_96 into 1 segments
+T990503_97#0: $269 tokens
+Splitted document T990503_97 into 1 segments
+T990503_98#0: $506 tokens
+T990503_98#1: $428 tokens
+T990503_98#2: $449 tokens
+T990503_98#3: $226 tokens
+Splitted document T990503_98 into 4 segments
+T990503_99#0: $478 tokens
+T990503_99#1: $443 tokens
+T990503_99#2: $210 tokens
+Splitted document T990503_99 into 3 segments
+T990503_101#0: $422 tokens
+Splitted document T990503_101 into 1 segments
+T990503_102#0: $495 tokens
+Splitted document T990503_102 into 1 segments
+T990503_103#0: $493 tokens
+Splitted document T990503_103 into 1 segments
+T990503_105#0: $110 tokens
+Splitted document T990503_105 into 1 segments
+T990503_106#0: $249 tokens
+Splitted document T990503_106 into 1 segments
+T990503_107#0: $477 tokens
+T990503_107#1: $299 tokens
+Splitted document T990503_107 into 2 segments
+T990503_108#0: $478 tokens
+T990503_108#1: $410 tokens
+Splitted document T990503_108 into 2 segments
+T990503_109#0: $158 tokens
+Splitted document T990503_109 into 1 segments
+T990503_110#0: $467 tokens
+T990503_110#1: $203 tokens
+Splitted document T990503_110 into 2 segments
+T990503_111#0: $461 tokens
+T990503_111#1: $273 tokens
+Splitted document T990503_111 into 2 segments
+T990503_113#0: $465 tokens
+Splitted document T990503_113 into 1 segments
+T990503_114#0: $69 tokens
+Splitted document T990503_114 into 1 segments
+T990503_115#0: $89 tokens
+Splitted document T990503_115 into 1 segments
+T990503_116#0: $476 tokens
+T990503_116#1: $270 tokens
+Splitted document T990503_116 into 2 segments
+T990503_119#0: $508 tokens
+Splitted document T990503_119 into 1 segments
+T990503_120#0: $149 tokens
+Splitted document T990503_120 into 1 segments
+T990503_121#0: $226 tokens
+Splitted document T990503_121 into 1 segments
+T990503_122#0: $166 tokens
+Splitted document T990503_122 into 1 segments
+T990503_123#0: $182 tokens
+Splitted document T990503_123 into 1 segments
+T990503_124#0: $135 tokens
+Splitted document T990503_124 into 1 segments
+T990503_125#0: $345 tokens
+Splitted document T990503_125 into 1 segments
+T990503_126#0: $491 tokens
+T990503_126#1: $493 tokens
+T990503_126#2: $352 tokens
+Splitted document T990503_126 into 3 segments
+T990503_128#0: $443 tokens
+T990503_128#1: $257 tokens
+Splitted document T990503_128 into 2 segments
+T990503_129#0: $466 tokens
+T990503_129#1: $312 tokens
+Splitted document T990503_129 into 2 segments
+T990503_130#0: $198 tokens
+Splitted document T990503_130 into 1 segments
+T990503_131#0: $293 tokens
+Splitted document T990503_131 into 1 segments
+T990503_132#0: $193 tokens
+Splitted document T990503_132 into 1 segments
+T990503_133#0: $77 tokens
+Splitted document T990503_133 into 1 segments
+T990503_134#0: $86 tokens
+Splitted document T990503_134 into 1 segments
+T990503_135#0: $144 tokens
+Splitted document T990503_135 into 1 segments
+T990503_136#0: $150 tokens
+Splitted document T990503_136 into 1 segments
+T990503_137#0: $471 tokens
+T990503_137#1: $464 tokens
+T990503_137#2: $248 tokens
+Splitted document T990503_137 into 3 segments
+T990503_138#0: $420 tokens
+T990503_138#1: $416 tokens
+Splitted document T990503_138 into 2 segments
+T990503_140#0: $426 tokens
+T990503_140#1: $450 tokens
+T990503_140#2: $476 tokens
+T990503_140#3: $318 tokens
+Splitted document T990503_140 into 4 segments
+T990503_141#0: $464 tokens
+T990503_141#1: $419 tokens
+T990503_141#2: $455 tokens
+T990503_141#3: $440 tokens
+T990503_141#4: $328 tokens
+Splitted document T990503_141 into 5 segments
+T990503_142#0: $113 tokens
+Splitted document T990503_142 into 1 segments
+T990503_143#0: $45 tokens
+Splitted document T990503_143 into 1 segments
+T990503_145#0: $375 tokens
+Splitted document T990503_145 into 1 segments
+T990503_146#0: $448 tokens
+Splitted document T990503_146 into 1 segments
+T990503_147#0: $290 tokens
+Splitted document T990503_147 into 1 segments
+T990503_148#0: $399 tokens
+T990503_148#1: $446 tokens
+T990503_148#2: $448 tokens
+T990503_148#3: $423 tokens
+Splitted document T990503_148 into 4 segments
+T990503_149#0: $407 tokens
+Splitted document T990503_149 into 1 segments
+T990503_150#0: $409 tokens
+Splitted document T990503_150 into 1 segments
+T990503_152#0: $189 tokens
+Splitted document T990503_152 into 1 segments
+T990503_153#0: $375 tokens
+Splitted document T990503_153 into 1 segments
+T990503_154#0: $188 tokens
+Splitted document T990503_154 into 1 segments
+T990503_155#0: $137 tokens
+Splitted document T990503_155 into 1 segments
+T990503_156#0: $109 tokens
+Splitted document T990503_156 into 1 segments
+T990503_157#0: $105 tokens
+Splitted document T990503_157 into 1 segments
+T990503_158#0: $123 tokens
+Splitted document T990503_158 into 1 segments
+T990503_159#0: $82 tokens
+Splitted document T990503_159 into 1 segments
+T990503_160#0: $86 tokens
+Splitted document T990503_160 into 1 segments
+T990503_161#0: $106 tokens
+Splitted document T990503_161 into 1 segments
+T990503_162#0: $442 tokens
+T990503_162#1: $410 tokens
+T990503_162#2: $236 tokens
+Splitted document T990503_162 into 3 segments
+T990503_163#0: $309 tokens
+Splitted document T990503_163 into 1 segments
+T990503_164#0: $108 tokens
+Splitted document T990503_164 into 1 segments
+T990503_165#0: $451 tokens
+Splitted document T990503_165 into 1 segments
+T990503_166#0: $447 tokens
+T990503_166#1: $209 tokens
+Splitted document T990503_166 into 2 segments
+T990503_168#0: $213 tokens
+Splitted document T990503_168 into 1 segments
+T990503_169#0: $482 tokens
+T990503_169#1: $363 tokens
+Splitted document T990503_169 into 2 segments
+T990503_170#0: $398 tokens
+Splitted document T990503_170 into 1 segments
+T990503_172#0: $455 tokens
+T990503_172#1: $478 tokens
+Splitted document T990503_172 into 2 segments
+T990503_175#0: $246 tokens
+Splitted document T990503_175 into 1 segments
+T990503_177#0: $426 tokens
+T990503_177#1: $188 tokens
+Splitted document T990503_177 into 2 segments
+T990503_178#0: $404 tokens
+T990503_178#1: $509 tokens
+T990503_178#2: $476 tokens
+T990503_178#3: $457 tokens
+Splitted document T990503_178 into 4 segments
+T990503_179#0: $483 tokens
+T990503_179#1: $368 tokens
+Splitted document T990503_179 into 2 segments
+T990503_181#0: $487 tokens
+T990503_181#1: $411 tokens
+Splitted document T990503_181 into 2 segments
+T990503_182#0: $426 tokens
+Splitted document T990503_182 into 1 segments
+T990503_184#0: $479 tokens
+T990503_184#1: $221 tokens
+Splitted document T990503_184 into 2 segments
+T990503_187#0: $475 tokens
+T990503_187#1: $265 tokens
+Splitted document T990503_187 into 2 segments
+T990503_189#0: $460 tokens
+T990503_189#1: $434 tokens
+T990503_189#2: $496 tokens
+T990503_189#3: $392 tokens
+Splitted document T990503_189 into 4 segments
+T990503_191#0: $476 tokens
+T990503_191#1: $488 tokens
+T990503_191#2: $174 tokens
+Splitted document T990503_191 into 3 segments
+T990503_192#0: $408 tokens
+T990503_192#1: $342 tokens
+Splitted document T990503_192 into 2 segments
+T990503_193#0: $201 tokens
+Splitted document T990503_193 into 1 segments
+T990503_195#0: $349 tokens
+Splitted document T990503_195 into 1 segments
+T990503_196#0: $352 tokens
+Splitted document T990503_196 into 1 segments
+T990503_197#0: $281 tokens
+Splitted document T990503_197 into 1 segments
+T990503_198#0: $194 tokens
+Splitted document T990503_198 into 1 segments
+T990503_201#0: $325 tokens
+Splitted document T990503_201 into 1 segments
+T990503_203#0: $510 tokens
+T990503_203#1: $504 tokens
+Splitted document T990503_203 into 2 segments
+T990503_204#0: $206 tokens
+Splitted document T990503_204 into 1 segments
+T990503_205#0: $86 tokens
+Splitted document T990503_205 into 1 segments
+T990503_206#0: $64 tokens
+Splitted document T990503_206 into 1 segments
+T990503_207#0: $79 tokens
+Splitted document T990503_207 into 1 segments
+T990503_208#0: $64 tokens
+Splitted document T990503_208 into 1 segments
+T990503_209#0: $58 tokens
+Splitted document T990503_209 into 1 segments
+T990503_210#0: $43 tokens
+Splitted document T990503_210 into 1 segments
+T990503_212#0: $475 tokens
+T990503_212#1: $416 tokens
+Splitted document T990503_212 into 2 segments
+T990503_213#0: $472 tokens
+T990503_213#1: $280 tokens
+Splitted document T990503_213 into 2 segments
+T990503_214#0: $494 tokens
+Splitted document T990503_214 into 1 segments
+T990503_215#0: $96 tokens
+Splitted document T990503_215 into 1 segments
+T990503_216#0: $76 tokens
+Splitted document T990503_216 into 1 segments
+T990503_217#0: $106 tokens
+Splitted document T990503_217 into 1 segments
+T990503_218#0: $44 tokens
+Splitted document T990503_218 into 1 segments
+T990503_219#0: $64 tokens
+Splitted document T990503_219 into 1 segments
+T990503_222#0: $306 tokens
+Splitted document T990503_222 into 1 segments
+T990504_1#0: $431 tokens
+T990504_1#1: $209 tokens
+Splitted document T990504_1 into 2 segments
+T990504_15#0: $484 tokens
+T990504_15#1: $152 tokens
+Splitted document T990504_15 into 2 segments
+T990504_23#0: $452 tokens
+T990504_23#1: $407 tokens
+Splitted document T990504_23 into 2 segments
+T990504_24#0: $261 tokens
+Splitted document T990504_24 into 1 segments
+T990504_25#0: $507 tokens
+T990504_25#1: $331 tokens
+Splitted document T990504_25 into 2 segments
+T990504_26#0: $322 tokens
+Splitted document T990504_26 into 1 segments
+T990504_27#0: $470 tokens
+T990504_27#1: $401 tokens
+Splitted document T990504_27 into 2 segments
+T990504_28#0: $437 tokens
+Splitted document T990504_28 into 1 segments
+T990504_29#0: $449 tokens
+T990504_29#1: $478 tokens
+Splitted document T990504_29 into 2 segments
+T990504_30#0: $417 tokens
+T990504_30#1: $480 tokens
+T990504_30#2: $172 tokens
+Splitted document T990504_30 into 3 segments
+T990504_33#0: $482 tokens
+T990504_33#1: $351 tokens
+Splitted document T990504_33 into 2 segments
+T990504_34#0: $245 tokens
+Splitted document T990504_34 into 1 segments
+T990504_35#0: $427 tokens
+Splitted document T990504_35 into 1 segments
+T990504_36#0: $115 tokens
+Splitted document T990504_36 into 1 segments
+T990504_37#0: $100 tokens
+Splitted document T990504_37 into 1 segments
+T990504_38#0: $110 tokens
+Splitted document T990504_38 into 1 segments
+T990504_39#0: $102 tokens
+Splitted document T990504_39 into 1 segments
+T990504_40#0: $91 tokens
+Splitted document T990504_40 into 1 segments
+T990504_41#0: $437 tokens
+T990504_41#1: $377 tokens
+Splitted document T990504_41 into 2 segments
+T990504_42#0: $444 tokens
+T990504_42#1: $198 tokens
+Splitted document T990504_42 into 2 segments
+T990504_43#0: $274 tokens
+Splitted document T990504_43 into 1 segments
+T990504_45#0: $451 tokens
+T990504_45#1: $200 tokens
+Splitted document T990504_45 into 2 segments
+T990504_46#0: $452 tokens
+T990504_46#1: $459 tokens
+Splitted document T990504_46 into 2 segments
+T990504_47#0: $99 tokens
+Splitted document T990504_47 into 1 segments
+T990504_48#0: $128 tokens
+Splitted document T990504_48 into 1 segments
+T990504_49#0: $97 tokens
+Splitted document T990504_49 into 1 segments
+T990504_50#0: $142 tokens
+Splitted document T990504_50 into 1 segments
+T990504_51#0: $439 tokens
+T990504_51#1: $497 tokens
+T990504_51#2: $410 tokens
+T990504_51#3: $434 tokens
+T990504_51#4: $480 tokens
+T990504_51#5: $448 tokens
+T990504_51#6: $332 tokens
+Splitted document T990504_51 into 7 segments
+T990504_52#0: $75 tokens
+Splitted document T990504_52 into 1 segments
+T990504_55#0: $407 tokens
+T990504_55#1: $502 tokens
+T990504_55#2: $178 tokens
+Splitted document T990504_55 into 3 segments
+T990504_56#0: $426 tokens
+T990504_56#1: $411 tokens
+T990504_56#2: $440 tokens
+T990504_56#3: $303 tokens
+Splitted document T990504_56 into 4 segments
+T990504_57#0: $147 tokens
+Splitted document T990504_57 into 1 segments
+T990504_58#0: $445 tokens
+T990504_58#1: $398 tokens
+T990504_58#2: $400 tokens
+Splitted document T990504_58 into 3 segments
+T990504_59#0: $434 tokens
+T990504_59#1: $214 tokens
+Splitted document T990504_59 into 2 segments
+T990504_60#0: $449 tokens
+Splitted document T990504_60 into 1 segments
+T990504_64#0: $453 tokens
+T990504_64#1: $352 tokens
+Splitted document T990504_64 into 2 segments
+T990504_65#0: $489 tokens
+T990504_65#1: $423 tokens
+T990504_65#2: $361 tokens
+Splitted document T990504_65 into 3 segments
+T990504_66#0: $467 tokens
+T990504_66#1: $452 tokens
+T990504_66#2: $303 tokens
+Splitted document T990504_66 into 3 segments
+T990504_67#0: $338 tokens
+Splitted document T990504_67 into 1 segments
+T990504_69#0: $230 tokens
+Splitted document T990504_69 into 1 segments
+T990504_70#0: $156 tokens
+Splitted document T990504_70 into 1 segments
+T990504_71#0: $105 tokens
+Splitted document T990504_71 into 1 segments
+T990504_72#0: $90 tokens
+Splitted document T990504_72 into 1 segments
+T990504_73#0: $434 tokens
+T990504_73#1: $476 tokens
+T990504_73#2: $179 tokens
+Splitted document T990504_73 into 3 segments
+T990504_74#0: $238 tokens
+Splitted document T990504_74 into 1 segments
+T990504_75#0: $511 tokens
+T990504_75#1: $397 tokens
+Splitted document T990504_75 into 2 segments
+T990504_76#0: $158 tokens
+Splitted document T990504_76 into 1 segments
+T990504_77#0: $458 tokens
+T990504_77#1: $358 tokens
+Splitted document T990504_77 into 2 segments
+T990504_78#0: $260 tokens
+Splitted document T990504_78 into 1 segments
+T990504_79#0: $295 tokens
+Splitted document T990504_79 into 1 segments
+T990504_81#0: $426 tokens
+Splitted document T990504_81 into 1 segments
+T990504_82#0: $134 tokens
+Splitted document T990504_82 into 1 segments
+T990504_83#0: $92 tokens
+Splitted document T990504_83 into 1 segments
+T990504_84#0: $166 tokens
+Splitted document T990504_84 into 1 segments
+T990504_85#0: $461 tokens
+T990504_85#1: $304 tokens
+Splitted document T990504_85 into 2 segments
+T990504_86#0: $123 tokens
+Splitted document T990504_86 into 1 segments
+T990504_87#0: $314 tokens
+Splitted document T990504_87 into 1 segments
+T990504_89#0: $325 tokens
+Splitted document T990504_89 into 1 segments
+T990504_90#0: $174 tokens
+Splitted document T990504_90 into 1 segments
+T990504_91#0: $140 tokens
+Splitted document T990504_91 into 1 segments
+T990504_92#0: $168 tokens
+Splitted document T990504_92 into 1 segments
+T990504_93#0: $81 tokens
+Splitted document T990504_93 into 1 segments
+T990504_94#0: $50 tokens
+Splitted document T990504_94 into 1 segments
+T990504_95#0: $139 tokens
+Splitted document T990504_95 into 1 segments
+T990504_96#0: $80 tokens
+Splitted document T990504_96 into 1 segments
+T990504_97#0: $276 tokens
+Splitted document T990504_97 into 1 segments
+T990504_98#0: $433 tokens
+T990504_98#1: $448 tokens
+Splitted document T990504_98 into 2 segments
+T990504_100#0: $482 tokens
+T990504_100#1: $183 tokens
+Splitted document T990504_100 into 2 segments
+T990504_101#0: $509 tokens
+Splitted document T990504_101 into 1 segments
+T990504_102#0: $448 tokens
+T990504_102#1: $311 tokens
+Splitted document T990504_102 into 2 segments
+T990504_103#0: $473 tokens
+T990504_103#1: $437 tokens
+Splitted document T990504_103 into 2 segments
+T990504_105#0: $192 tokens
+Splitted document T990504_105 into 1 segments
+T990504_106#0: $75 tokens
+Splitted document T990504_106 into 1 segments
+T990504_107#0: $93 tokens
+Splitted document T990504_107 into 1 segments
+T990504_109#0: $109 tokens
+Splitted document T990504_109 into 1 segments
+T990504_110#0: $84 tokens
+Splitted document T990504_110 into 1 segments
+T990504_111#0: $180 tokens
+Splitted document T990504_111 into 1 segments
+T990504_112#0: $490 tokens
+T990504_112#1: $454 tokens
+T990504_112#2: $401 tokens
+Splitted document T990504_112 into 3 segments
+T990504_113#0: $458 tokens
+T990504_113#1: $443 tokens
+T990504_113#2: $390 tokens
+Splitted document T990504_113 into 3 segments
+T990504_116#0: $413 tokens
+T990504_116#1: $185 tokens
+Splitted document T990504_116 into 2 segments
+T990504_117#0: $458 tokens
+T990504_117#1: $434 tokens
+T990504_117#2: $437 tokens
+T990504_117#3: $251 tokens
+Splitted document T990504_117 into 4 segments
+T990504_118#0: $493 tokens
+T990504_118#1: $301 tokens
+Splitted document T990504_118 into 2 segments
+T990504_119#0: $56 tokens
+Splitted document T990504_119 into 1 segments
+T990504_121#0: $480 tokens
+Splitted document T990504_121 into 1 segments
+T990504_122#0: $512 tokens
+Splitted document T990504_122 into 1 segments
+T990504_123#0: $509 tokens
+T990504_123#1: $473 tokens
+T990504_123#2: $450 tokens
+T990504_123#3: $247 tokens
+Splitted document T990504_123 into 4 segments
+T990504_124#0: $483 tokens
+Splitted document T990504_124 into 1 segments
+T990504_125#0: $454 tokens
+T990504_125#1: $229 tokens
+Splitted document T990504_125 into 2 segments
+T990504_127#0: $273 tokens
+Splitted document T990504_127 into 1 segments
+T990504_128#0: $95 tokens
+Splitted document T990504_128 into 1 segments
+T990504_129#0: $108 tokens
+Splitted document T990504_129 into 1 segments
+T990504_130#0: $99 tokens
+Splitted document T990504_130 into 1 segments
+T990504_131#0: $136 tokens
+Splitted document T990504_131 into 1 segments
+T990504_132#0: $103 tokens
+Splitted document T990504_132 into 1 segments
+T990504_133#0: $144 tokens
+Splitted document T990504_133 into 1 segments
+T990504_134#0: $117 tokens
+Splitted document T990504_134 into 1 segments
+T990504_135#0: $117 tokens
+Splitted document T990504_135 into 1 segments
+T990504_136#0: $125 tokens
+Splitted document T990504_136 into 1 segments
+T990504_137#0: $295 tokens
+Splitted document T990504_137 into 1 segments
+T990504_138#0: $457 tokens
+T990504_138#1: $445 tokens
+T990504_138#2: $241 tokens
+Splitted document T990504_138 into 3 segments
+T990504_139#0: $437 tokens
+T990504_139#1: $224 tokens
+Splitted document T990504_139 into 2 segments
+T990504_140#0: $482 tokens
+Splitted document T990504_140 into 1 segments
+T990504_141#0: $381 tokens
+Splitted document T990504_141 into 1 segments
+T990504_142#0: $457 tokens
+T990504_142#1: $435 tokens
+T990504_142#2: $472 tokens
+T990504_142#3: $471 tokens
+T990504_142#4: $493 tokens
+T990504_142#5: $479 tokens
+T990504_142#6: $162 tokens
+Splitted document T990504_142 into 7 segments
+T990504_144#0: $484 tokens
+Splitted document T990504_144 into 1 segments
+T990504_145#0: $448 tokens
+T990504_145#1: $473 tokens
+Splitted document T990504_145 into 2 segments
+T990504_147#0: $350 tokens
+Splitted document T990504_147 into 1 segments
+T990504_148#0: $490 tokens
+Splitted document T990504_148 into 1 segments
+T990504_149#0: $213 tokens
+Splitted document T990504_149 into 1 segments
+T990504_154#0: $416 tokens
+T990504_154#1: $315 tokens
+Splitted document T990504_154 into 2 segments
+T990504_155#0: $443 tokens
+T990504_155#1: $430 tokens
+T990504_155#2: $468 tokens
+T990504_155#3: $399 tokens
+Splitted document T990504_155 into 4 segments
+T990504_156#0: $497 tokens
+T990504_156#1: $441 tokens
+T990504_156#2: $437 tokens
+Splitted document T990504_156 into 3 segments
+T990504_157#0: $427 tokens
+T990504_157#1: $255 tokens
+Splitted document T990504_157 into 2 segments
+T990504_159#0: $484 tokens
+T990504_159#1: $425 tokens
+Splitted document T990504_159 into 2 segments
+T990504_160#0: $425 tokens
+T990504_160#1: $446 tokens
+T990504_160#2: $471 tokens
+T990504_160#3: $399 tokens
+T990504_160#4: $422 tokens
+Splitted document T990504_160 into 5 segments
+T990504_162#0: $469 tokens
+T990504_162#1: $175 tokens
+Splitted document T990504_162 into 2 segments
+T990504_164#0: $449 tokens
+T990504_164#1: $360 tokens
+Splitted document T990504_164 into 2 segments
+T990504_165#0: $218 tokens
+Splitted document T990504_165 into 1 segments
+T990504_166#0: $476 tokens
+Splitted document T990504_166 into 1 segments
+T990504_167#0: $271 tokens
+Splitted document T990504_167 into 1 segments
+T990504_169#0: $100 tokens
+Splitted document T990504_169 into 1 segments
+T990504_170#0: $124 tokens
+Splitted document T990504_170 into 1 segments
+T990504_171#0: $127 tokens
+Splitted document T990504_171 into 1 segments
+T990504_172#0: $114 tokens
+Splitted document T990504_172 into 1 segments
+T990504_174#0: $295 tokens
+Splitted document T990504_174 into 1 segments
+T990504_175#0: $463 tokens
+T990504_175#1: $478 tokens
+Splitted document T990504_175 into 2 segments
+T990504_177#0: $284 tokens
+Splitted document T990504_177 into 1 segments
+T990504_178#0: $161 tokens
+Splitted document T990504_178 into 1 segments
+T990504_179#0: $122 tokens
+Splitted document T990504_179 into 1 segments
+T990504_180#0: $171 tokens
+Splitted document T990504_180 into 1 segments
+T990504_181#0: $399 tokens
+Splitted document T990504_181 into 1 segments
+T990504_182#0: $244 tokens
+Splitted document T990504_182 into 1 segments
+T990504_183#0: $433 tokens
+Splitted document T990504_183 into 1 segments
+T990504_185#0: $461 tokens
+T990504_185#1: $244 tokens
+Splitted document T990504_185 into 2 segments
+T990504_186#0: $323 tokens
+Splitted document T990504_186 into 1 segments
+T990504_187#0: $404 tokens
+T990504_187#1: $414 tokens
+Splitted document T990504_187 into 2 segments
+T990504_188#0: $466 tokens
+T990504_188#1: $445 tokens
+T990504_188#2: $438 tokens
+Splitted document T990504_188 into 3 segments
+T990504_189#0: $394 tokens
+Splitted document T990504_189 into 1 segments
+T990504_190#0: $488 tokens
+T990504_190#1: $319 tokens
+Splitted document T990504_190 into 2 segments
+T990504_191#0: $102 tokens
+Splitted document T990504_191 into 1 segments
+T990504_192#0: $58 tokens
+Splitted document T990504_192 into 1 segments
+T990504_193#0: $114 tokens
+Splitted document T990504_193 into 1 segments
+T990504_195#0: $455 tokens
+Splitted document T990504_195 into 1 segments
+T990504_196#0: $127 tokens
+Splitted document T990504_196 into 1 segments
+T990504_197#0: $380 tokens
+Splitted document T990504_197 into 1 segments
+T990504_198#0: $425 tokens
+Splitted document T990504_198 into 1 segments
+T990504_199#0: $199 tokens
+Splitted document T990504_199 into 1 segments
+T990504_201#0: $450 tokens
+T990504_201#1: $409 tokens
+Splitted document T990504_201 into 2 segments
+T990504_202#0: $422 tokens
+Splitted document T990504_202 into 1 segments
+T990504_203#0: $461 tokens
+T990504_203#1: $248 tokens
+Splitted document T990504_203 into 2 segments
+T990504_205#0: $445 tokens
+T990504_205#1: $232 tokens
+Splitted document T990504_205 into 2 segments
+T990504_206#0: $438 tokens
+Splitted document T990504_206 into 1 segments
+T990504_207#0: $478 tokens
+Splitted document T990504_207 into 1 segments
+T990504_208#0: $308 tokens
+Splitted document T990504_208 into 1 segments
+T990504_209#0: $219 tokens
+Splitted document T990504_209 into 1 segments
+T990504_211#0: $318 tokens
+Splitted document T990504_211 into 1 segments
+T990504_212#0: $431 tokens
+T990504_212#1: $222 tokens
+Splitted document T990504_212 into 2 segments
+T990504_213#0: $155 tokens
+Splitted document T990504_213 into 1 segments
+T990504_214#0: $450 tokens
+T990504_214#1: $177 tokens
+Splitted document T990504_214 into 2 segments
+T990504_215#0: $348 tokens
+Splitted document T990504_215 into 1 segments
+T990504_216#0: $49 tokens
+Splitted document T990504_216 into 1 segments
+T990504_217#0: $61 tokens
+Splitted document T990504_217 into 1 segments
+T990504_218#0: $72 tokens
+Splitted document T990504_218 into 1 segments
+T990504_219#0: $79 tokens
+Splitted document T990504_219 into 1 segments
+T990504_220#0: $127 tokens
+Splitted document T990504_220 into 1 segments
+T990505_16#0: $431 tokens
+T990505_16#1: $187 tokens
+Splitted document T990505_16 into 2 segments
+T990505_18#0: $500 tokens
+T990505_18#1: $359 tokens
+Splitted document T990505_18 into 2 segments
+T990505_20#0: $437 tokens
+T990505_20#1: $472 tokens
+T990505_20#2: $459 tokens
+T990505_20#3: $462 tokens
+T990505_20#4: $176 tokens
+Splitted document T990505_20 into 5 segments
+T990505_21#0: $172 tokens
+Splitted document T990505_21 into 1 segments
+T990505_22#0: $451 tokens
+T990505_22#1: $285 tokens
+Splitted document T990505_22 into 2 segments
+T990505_23#0: $198 tokens
+Splitted document T990505_23 into 1 segments
+T990505_24#0: $281 tokens
+Splitted document T990505_24 into 1 segments
+T990505_27#0: $462 tokens
+T990505_27#1: $399 tokens
+Splitted document T990505_27 into 2 segments
+T990505_28#0: $293 tokens
+Splitted document T990505_28 into 1 segments
+T990505_29#0: $464 tokens
+T990505_29#1: $169 tokens
+Splitted document T990505_29 into 2 segments
+T990505_30#0: $306 tokens
+Splitted document T990505_30 into 1 segments
+T990505_32#0: $166 tokens
+Splitted document T990505_32 into 1 segments
+T990505_34#0: $135 tokens
+Splitted document T990505_34 into 1 segments
+T990505_35#0: $77 tokens
+Splitted document T990505_35 into 1 segments
+T990505_36#0: $90 tokens
+Splitted document T990505_36 into 1 segments
+T990505_37#0: $464 tokens
+T990505_37#1: $175 tokens
+Splitted document T990505_37 into 2 segments
+T990505_38#0: $433 tokens
+T990505_38#1: $487 tokens
+Splitted document T990505_38 into 2 segments
+T990505_39#0: $136 tokens
+Splitted document T990505_39 into 1 segments
+T990505_40#0: $128 tokens
+Splitted document T990505_40 into 1 segments
+T990505_41#0: $509 tokens
+Splitted document T990505_41 into 1 segments
+T990505_42#0: $403 tokens
+Splitted document T990505_42 into 1 segments
+T990505_43#0: $313 tokens
+Splitted document T990505_43 into 1 segments
+T990505_45#0: $460 tokens
+T990505_45#1: $466 tokens
+T990505_45#2: $451 tokens
+Splitted document T990505_45 into 3 segments
+T990505_46#0: $433 tokens
+T990505_46#1: $319 tokens
+Splitted document T990505_46 into 2 segments
+T990505_47#0: $471 tokens
+T990505_47#1: $417 tokens
+Splitted document T990505_47 into 2 segments
+T990505_49#0: $469 tokens
+T990505_49#1: $284 tokens
+Splitted document T990505_49 into 2 segments
+T990505_50#0: $79 tokens
+Splitted document T990505_50 into 1 segments
+T990505_51#0: $90 tokens
+Splitted document T990505_51 into 1 segments
+T990505_52#0: $126 tokens
+Splitted document T990505_52 into 1 segments
+T990505_58#0: $455 tokens
+T990505_58#1: $368 tokens
+Splitted document T990505_58 into 2 segments
+T990505_59#0: $255 tokens
+Splitted document T990505_59 into 1 segments
+T990505_60#0: $432 tokens
+T990505_60#1: $248 tokens
+Splitted document T990505_60 into 2 segments
+T990505_61#0: $93 tokens
+Splitted document T990505_61 into 1 segments
+T990505_62#0: $83 tokens
+Splitted document T990505_62 into 1 segments
+T990505_63#0: $84 tokens
+Splitted document T990505_63 into 1 segments
+T990505_65#0: $416 tokens
+T990505_65#1: $328 tokens
+Splitted document T990505_65 into 2 segments
+T990505_66#0: $413 tokens
+T990505_66#1: $259 tokens
+Splitted document T990505_66 into 2 segments
+T990505_68#0: $312 tokens
+Splitted document T990505_68 into 1 segments
+T990505_69#0: $82 tokens
+Splitted document T990505_69 into 1 segments
+Removed 473 documents because only 1 split given. 254 documents left.
+[3, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 3, 2, 2, 2, 6, 3, 3, 3, 3, 4, 2, 2, 2, 2, 2, 2, 2, 5, 2, 2, 5, 2, 2, 3, 2, 4, 3, 2, 4, 2, 2, 7, 4, 2, 3, 3, 3, 2, 2, 3, 3, 2, 2, 2, 2, 27, 2, 6, 2, 2, 3, 2, 3, 2, 2, 2, 2, 5, 2, 2, 3, 6, 3, 3, 4, 3, 2, 2, 2, 2, 2, 2, 3, 4, 4, 2, 3, 2, 3, 2, 3, 5, 2, 2, 2, 4, 2, 2, 2, 2, 2, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 2, 3, 2, 2, 2, 2, 3, 3, 3, 2, 2, 3, 2, 3, 2, 3, 2, 2, 6, 6, 4, 3, 2, 2, 2, 2, 2, 3, 2, 2, 3, 2, 4, 5, 4, 3, 2, 2, 2, 2, 4, 2, 2, 2, 2, 4, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 7, 3, 4, 3, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 4, 2, 4, 2, 3, 2, 7, 2, 2, 4, 3, 2, 2, 5, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 5, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2]
+Evaluating 0
+Evaluating 1
+Evaluating 2
+Evaluating 3
+Evaluating 4
+Evaluating 5
+Evaluating 6
+Evaluating 7
+Evaluating 8
+Evaluating 9
+Evaluating 10
+Evaluating 11
+Evaluating 12
+Evaluating 13
+Evaluating 14
+Evaluating 15
+Evaluating 16
+Evaluating 17
+Evaluating 18
+Evaluating 19
+Evaluating 20
+Evaluating 21
+Evaluating 22
+Evaluating 23
+Evaluating 24
+Evaluating 25
+Evaluating 26
+Evaluating 27
+Evaluating 28
+Evaluating 29
+Evaluating 30
+Evaluating 31
+Evaluating 32
+Evaluating 33
+Evaluating 34
+Evaluating 35
+Evaluating 36
+Evaluating 37
+Evaluating 38
+Evaluating 39
+Evaluating 40
+Evaluating 41
+Evaluating 42
+Evaluating 43
+Evaluating 44
+Evaluating 45
+Evaluating 46
+Evaluating 47
+Evaluating 48
+Evaluating 49
+Evaluating 50
+Evaluating 51
+Evaluating 52
+Evaluating 53
+Evaluating 54
+Evaluating 55
+Evaluating 56
+Evaluating 57
+Evaluating 58
+Evaluating 59
+Evaluating 60
+Evaluating 61
+Evaluating 62
+Evaluating 63
+Evaluating 64
+Evaluating 65
+Evaluating 66
+Evaluating 67
+Evaluating 68
+Evaluating 69
+Evaluating 70
+Evaluating 71
+Evaluating 72
+Evaluating 73
+Evaluating 74
+Evaluating 75
+Evaluating 76
+Evaluating 77
+Evaluating 78
+Evaluating 79
+Evaluating 80
+Evaluating 81
+Evaluating 82
+Evaluating 83
+Evaluating 84
+Evaluating 85
+Evaluating 86
+Evaluating 87
+Evaluating 88
+Evaluating 89
+Evaluating 90
+Evaluating 91
+Evaluating 92
+Evaluating 93
+Evaluating 94
+Evaluating 95
+Evaluating 96
+Evaluating 97
+Evaluating 98
+Evaluating 99
+Evaluating 100
+Evaluating 101
+Evaluating 102
+Evaluating 103
+Evaluating 104
+Evaluating 105
+Evaluating 106
+Evaluating 107
+Evaluating 108
+Evaluating 109
+Evaluating 110
+Evaluating 111
+Evaluating 112
+Evaluating 113
+Evaluating 114
+Evaluating 115
+Evaluating 116
+Evaluating 117
+Evaluating 118
+Evaluating 119
+Evaluating 120
+Evaluating 121
+Evaluating 122
+Evaluating 123
+Evaluating 124
+Evaluating 125
+Evaluating 126
+Evaluating 127
+Evaluating 128
+Evaluating 129
+Evaluating 130
+Evaluating 131
+Evaluating 132
+Evaluating 133
+Evaluating 134
+Evaluating 135
+Evaluating 136
+Evaluating 137
+Evaluating 138
+Evaluating 139
+Evaluating 140
+Evaluating 141
+Evaluating 142
+Evaluating 143
+Evaluating 144
+Evaluating 145
+Evaluating 146
+Evaluating 147
+Evaluating 148
+Evaluating 149
+Evaluating 150
+Evaluating 151
+Evaluating 152
+Evaluating 153
+Evaluating 154
+Evaluating 155
+Evaluating 156
+Evaluating 157
+Evaluating 158
+Evaluating 159
+Evaluating 160
+Evaluating 161
+Evaluating 162
+Evaluating 163
+Evaluating 164
+Evaluating 165
+Evaluating 166
+Evaluating 167
+Evaluating 168
+Evaluating 169
+Evaluating 170
+Evaluating 171
+Evaluating 172
+Evaluating 173
+Evaluating 174
+Evaluating 175
+Evaluating 176
+Evaluating 177
+Evaluating 178
+Evaluating 179
+Evaluating 180
+Evaluating 181
+Evaluating 182
+Evaluating 183
+Evaluating 184
+Evaluating 185
+Evaluating 186
+Evaluating 187
+Evaluating 188
+Evaluating 189
+Evaluating 190
+Evaluating 191
+Evaluating 192
+Evaluating 193
+Evaluating 194
+Evaluating 195
+Evaluating 196
+Evaluating 197
+Evaluating 198
+Evaluating 199
+Evaluating 200
+Evaluating 201
+Evaluating 202
+Evaluating 203
+Evaluating 204
+Evaluating 205
+Evaluating 206
+Evaluating 207
+Evaluating 208
+Evaluating 209
+Evaluating 210
+Evaluating 211
+Evaluating 212
+Evaluating 213
+Evaluating 214
+Evaluating 215
+Evaluating 216
+Evaluating 217
+Evaluating 218
+Evaluating 219
+Evaluating 220
+Evaluating 221
+Evaluating 222
+Evaluating 223
+Evaluating 224
+Evaluating 225
+Evaluating 226
+Evaluating 227
+Evaluating 228
+Evaluating 229
+Evaluating 230
+Evaluating 231
+Evaluating 232
+Evaluating 233
+Evaluating 234
+Evaluating 235
+Evaluating 236
+Evaluating 237
+Evaluating 238
+Evaluating 239
+Evaluating 240
+Evaluating 241
+Evaluating 242
+Evaluating 243
+Evaluating 244
+Evaluating 245
+Evaluating 246
+Evaluating 247
+Evaluating 248
+Evaluating 249
+Evaluating 250
+Evaluating 251
+Evaluating 252
+Evaluating 253
+=====================
+Merge_Avg_Precision: 96.30
+Merge_Avg_Recall: 94.07
+Merge_Avg_F1: 95.17
+Merge_Cur_Precision: 96.30
+Merge_Cur_Recall: 94.07
+Merge_Cur_F1: 95.17
+=====================
+Merge_Avg_Precision: 96.94
+Merge_Avg_Recall: 94.37
+Merge_Avg_F1: 95.63
+Merge_Cur_Precision: 97.78
+Merge_Cur_Recall: 93.97
+Merge_Cur_F1: 95.82
+=====================
+Merge_Avg_Precision: 96.86
+Merge_Avg_Recall: 94.77
+Merge_Avg_F1: 95.78
+Merge_Cur_Precision: 96.70
+Merge_Cur_Recall: 95.37
+Merge_Cur_F1: 95.96
+=====================
+Merge_Avg_Precision: 96.10
+Merge_Avg_Recall: 92.34
+Merge_Avg_F1: 94.16
+Merge_Cur_Precision: 93.41
+Merge_Cur_Recall: 85.87
+Merge_Cur_F1: 89.47
+=====================
+Merge_Avg_Precision: 95.82
+Merge_Avg_Recall: 92.06
+Merge_Avg_F1: 93.86
+Merge_Cur_Precision: 94.66
+Merge_Cur_Recall: 91.20
+Merge_Cur_F1: 92.68
+=====================
+Merge_Avg_Precision: 95.63
+Merge_Avg_Recall: 91.96
+Merge_Avg_F1: 93.71
+Merge_Cur_Precision: 94.75
+Merge_Cur_Recall: 91.44
+Merge_Cur_F1: 92.96
+=====================
+Merge_Avg_Precision: 95.46
+Merge_Avg_Recall: 91.33
+Merge_Avg_F1: 93.26
+Merge_Cur_Precision: 94.84
+Merge_Cur_Recall: 88.88
+Merge_Cur_F1: 91.41
+=====================
+Merge_Avg_Precision: 95.57
+Merge_Avg_Recall: 90.49
+Merge_Avg_F1: 92.90
+Merge_Cur_Precision: 96.63
+Merge_Cur_Recall: 83.73
+Merge_Cur_F1: 89.62
+=====================
+Merge_Avg_Precision: 95.62
+Merge_Avg_Recall: 90.43
+Merge_Avg_F1: 92.90
+Merge_Cur_Precision: 96.10
+Merge_Cur_Recall: 89.69
+Merge_Cur_F1: 92.73
+=====================
+Merge_Avg_Precision: 95.65
+Merge_Avg_Recall: 90.67
+Merge_Avg_F1: 93.04
+Merge_Cur_Precision: 96.44
+Merge_Cur_Recall: 96.44
+Merge_Cur_F1: 96.44
+=====================
+Merge_Avg_Precision: 95.62
+Merge_Avg_Recall: 90.58
+Merge_Avg_F1: 92.97
+Merge_Cur_Precision: 95.29
+Merge_Cur_Recall: 88.31
+Merge_Cur_F1: 91.39
+=====================
+Merge_Avg_Precision: 95.78
+Merge_Avg_Recall: 90.91
+Merge_Avg_F1: 93.23
+Merge_Cur_Precision: 98.05
+Merge_Cur_Recall: 98.05
+Merge_Cur_F1: 98.05
+=====================
+Merge_Avg_Precision: 95.68
+Merge_Avg_Recall: 90.77
+Merge_Avg_F1: 93.09
+Merge_Cur_Precision: 94.78
+Merge_Cur_Recall: 89.65
+Merge_Cur_F1: 91.99
+=====================
+Merge_Avg_Precision: 95.02
+Merge_Avg_Recall: 88.85
+Merge_Avg_F1: 91.73
+Merge_Cur_Precision: 90.15
+Merge_Cur_Recall: 73.32
+Merge_Cur_F1: 80.24
+=====================
+Merge_Avg_Precision: 95.12
+Merge_Avg_Recall: 88.87
+Merge_Avg_F1: 91.80
+Merge_Cur_Precision: 97.53
+Merge_Cur_Recall: 90.01
+Merge_Cur_F1: 93.61
+=====================
+Merge_Avg_Precision: 95.16
+Merge_Avg_Recall: 89.17
+Merge_Avg_F1: 91.99
+Merge_Cur_Precision: 96.18
+Merge_Cur_Recall: 96.18
+Merge_Cur_F1: 96.18
+=====================
+Merge_Avg_Precision: 94.97
+Merge_Avg_Recall: 89.53
+Merge_Avg_F1: 92.09
+Merge_Cur_Precision: 92.38
+Merge_Cur_Recall: 92.94
+Merge_Cur_F1: 92.52
+=====================
+Merge_Avg_Precision: 95.05
+Merge_Avg_Recall: 89.54
+Merge_Avg_F1: 92.13
+Merge_Cur_Precision: 95.99
+Merge_Cur_Recall: 89.43
+Merge_Cur_F1: 92.52
+=====================
+Merge_Avg_Precision: 95.13
+Merge_Avg_Recall: 89.83
+Merge_Avg_F1: 92.33
+Merge_Cur_Precision: 96.92
+Merge_Cur_Recall: 96.92
+Merge_Cur_F1: 96.92
+=====================
+Merge_Avg_Precision: 95.27
+Merge_Avg_Recall: 90.13
+Merge_Avg_F1: 92.56
+Merge_Cur_Precision: 97.93
+Merge_Cur_Recall: 97.93
+Merge_Cur_F1: 97.93
+=====================
+Merge_Avg_Precision: 94.97
+Merge_Avg_Recall: 88.90
+Merge_Avg_F1: 91.74
+Merge_Cur_Precision: 92.19
+Merge_Cur_Recall: 77.46
+Merge_Cur_F1: 83.64
+=====================
+Merge_Avg_Precision: 94.98
+Merge_Avg_Recall: 89.01
+Merge_Avg_F1: 91.81
+Merge_Cur_Precision: 95.23
+Merge_Cur_Recall: 91.59
+Merge_Cur_F1: 93.36
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.11
+Merge_Avg_F1: 91.80
+Merge_Cur_Precision: 93.12
+Merge_Cur_Recall: 90.72
+Merge_Cur_F1: 91.58
+=====================
+Merge_Avg_Precision: 94.89
+Merge_Avg_Recall: 89.17
+Merge_Avg_F1: 91.84
+Merge_Cur_Precision: 95.28
+Merge_Cur_Recall: 89.92
+Merge_Cur_F1: 92.41
+=====================
+Merge_Avg_Precision: 94.80
+Merge_Avg_Recall: 89.00
+Merge_Avg_F1: 91.71
+Merge_Cur_Precision: 92.96
+Merge_Cur_Recall: 85.92
+Merge_Cur_F1: 89.11
+=====================
+Merge_Avg_Precision: 94.48
+Merge_Avg_Recall: 88.56
+Merge_Avg_F1: 91.31
+Merge_Cur_Precision: 89.01
+Merge_Cur_Recall: 82.01
+Merge_Cur_F1: 84.90
+=====================
+Merge_Avg_Precision: 94.41
+Merge_Avg_Recall: 88.43
+Merge_Avg_F1: 91.20
+Merge_Cur_Precision: 91.95
+Merge_Cur_Recall: 84.33
+Merge_Cur_F1: 87.60
+=====================
+Merge_Avg_Precision: 94.48
+Merge_Avg_Recall: 88.68
+Merge_Avg_F1: 91.37
+Merge_Cur_Precision: 97.89
+Merge_Cur_Recall: 97.89
+Merge_Cur_F1: 97.89
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 88.95
+Merge_Avg_F1: 91.58
+Merge_Cur_Precision: 98.02
+Merge_Cur_Recall: 96.34
+Merge_Cur_F1: 97.17
+=====================
+Merge_Avg_Precision: 94.70
+Merge_Avg_Recall: 89.22
+Merge_Avg_F1: 91.78
+Merge_Cur_Precision: 97.50
+Merge_Cur_Recall: 97.50
+Merge_Cur_F1: 97.50
+=====================
+Merge_Avg_Precision: 94.72
+Merge_Avg_Recall: 89.34
+Merge_Avg_F1: 91.85
+Merge_Cur_Precision: 95.57
+Merge_Cur_Recall: 95.57
+Merge_Cur_F1: 95.57
+=====================
+Merge_Avg_Precision: 94.70
+Merge_Avg_Recall: 89.22
+Merge_Avg_F1: 91.78
+Merge_Cur_Precision: 94.16
+Merge_Cur_Recall: 85.20
+Merge_Cur_F1: 89.35
+=====================
+Merge_Avg_Precision: 94.70
+Merge_Avg_Recall: 89.18
+Merge_Avg_F1: 91.76
+Merge_Cur_Precision: 94.73
+Merge_Cur_Recall: 87.73
+Merge_Cur_F1: 90.86
+=====================
+Merge_Avg_Precision: 94.57
+Merge_Avg_Recall: 89.04
+Merge_Avg_F1: 91.62
+Merge_Cur_Precision: 92.77
+Merge_Cur_Recall: 85.87
+Merge_Cur_F1: 88.92
+=====================
+Merge_Avg_Precision: 94.57
+Merge_Avg_Recall: 89.06
+Merge_Avg_F1: 91.62
+Merge_Cur_Precision: 94.58
+Merge_Cur_Recall: 89.65
+Merge_Cur_F1: 91.87
+=====================
+Merge_Avg_Precision: 94.59
+Merge_Avg_Recall: 89.08
+Merge_Avg_F1: 91.64
+Merge_Cur_Precision: 95.34
+Merge_Cur_Recall: 89.92
+Merge_Cur_F1: 92.30
+=====================
+Merge_Avg_Precision: 94.55
+Merge_Avg_Recall: 88.98
+Merge_Avg_F1: 91.57
+Merge_Cur_Precision: 93.84
+Merge_Cur_Recall: 86.96
+Merge_Cur_F1: 89.97
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.08
+Merge_Avg_F1: 91.65
+Merge_Cur_Precision: 96.76
+Merge_Cur_Recall: 94.16
+Merge_Cur_F1: 95.43
+=====================
+Merge_Avg_Precision: 94.67
+Merge_Avg_Recall: 89.22
+Merge_Avg_F1: 91.76
+Merge_Cur_Precision: 98.12
+Merge_Cur_Recall: 93.90
+Merge_Cur_F1: 95.94
+=====================
+Merge_Avg_Precision: 94.71
+Merge_Avg_Recall: 89.34
+Merge_Avg_F1: 91.84
+Merge_Cur_Precision: 96.26
+Merge_Cur_Recall: 93.23
+Merge_Cur_F1: 94.71
+=====================
+Merge_Avg_Precision: 94.73
+Merge_Avg_Recall: 89.38
+Merge_Avg_F1: 91.88
+Merge_Cur_Precision: 95.37
+Merge_Cur_Recall: 91.10
+Merge_Cur_F1: 93.15
+=====================
+Merge_Avg_Precision: 94.70
+Merge_Avg_Recall: 89.43
+Merge_Avg_F1: 91.89
+Merge_Cur_Precision: 93.68
+Merge_Cur_Recall: 90.84
+Merge_Cur_F1: 92.04
+=====================
+Merge_Avg_Precision: 94.72
+Merge_Avg_Recall: 89.42
+Merge_Avg_F1: 91.89
+Merge_Cur_Precision: 96.36
+Merge_Cur_Recall: 88.64
+Merge_Cur_F1: 92.34
+=====================
+Merge_Avg_Precision: 94.81
+Merge_Avg_Recall: 89.54
+Merge_Avg_F1: 92.00
+Merge_Cur_Precision: 98.23
+Merge_Cur_Recall: 94.68
+Merge_Cur_F1: 96.42
+=====================
+Merge_Avg_Precision: 94.51
+Merge_Avg_Recall: 89.18
+Merge_Avg_F1: 91.66
+Merge_Cur_Precision: 85.50
+Merge_Cur_Recall: 76.28
+Merge_Cur_F1: 79.33
+=====================
+Merge_Avg_Precision: 94.49
+Merge_Avg_Recall: 89.21
+Merge_Avg_F1: 91.66
+Merge_Cur_Precision: 93.53
+Merge_Cur_Recall: 90.46
+Merge_Cur_F1: 91.87
+=====================
+Merge_Avg_Precision: 94.56
+Merge_Avg_Recall: 89.36
+Merge_Avg_F1: 91.78
+Merge_Cur_Precision: 98.43
+Merge_Cur_Recall: 98.43
+Merge_Cur_F1: 98.43
+=====================
+Merge_Avg_Precision: 94.06
+Merge_Avg_Recall: 88.56
+Merge_Avg_F1: 91.09
+Merge_Cur_Precision: 86.24
+Merge_Cur_Recall: 74.41
+Merge_Cur_F1: 78.24
+=====================
+Merge_Avg_Precision: 94.06
+Merge_Avg_Recall: 88.58
+Merge_Avg_F1: 91.10
+Merge_Cur_Precision: 94.07
+Merge_Cur_Recall: 89.18
+Merge_Cur_F1: 91.47
+=====================
+Merge_Avg_Precision: 94.11
+Merge_Avg_Recall: 88.50
+Merge_Avg_F1: 91.09
+Merge_Cur_Precision: 96.49
+Merge_Cur_Recall: 84.97
+Merge_Cur_F1: 90.27
+=====================
+Merge_Avg_Precision: 94.11
+Merge_Avg_Recall: 88.52
+Merge_Avg_F1: 91.10
+Merge_Cur_Precision: 94.20
+Merge_Cur_Recall: 89.51
+Merge_Cur_F1: 91.71
+=====================
+Merge_Avg_Precision: 94.07
+Merge_Avg_Recall: 88.31
+Merge_Avg_F1: 90.97
+Merge_Cur_Precision: 92.64
+Merge_Cur_Recall: 80.57
+Merge_Cur_F1: 86.04
+=====================
+Merge_Avg_Precision: 94.07
+Merge_Avg_Recall: 88.31
+Merge_Avg_F1: 90.97
+Merge_Cur_Precision: 94.22
+Merge_Cur_Recall: 88.33
+Merge_Cur_F1: 91.12
+=====================
+Merge_Avg_Precision: 94.11
+Merge_Avg_Recall: 88.34
+Merge_Avg_F1: 91.01
+Merge_Cur_Precision: 96.87
+Merge_Cur_Recall: 90.34
+Merge_Cur_F1: 93.49
+=====================
+Merge_Avg_Precision: 94.05
+Merge_Avg_Recall: 88.36
+Merge_Avg_F1: 90.99
+Merge_Cur_Precision: 91.02
+Merge_Cur_Recall: 89.63
+Merge_Cur_F1: 90.10
+=====================
+Merge_Avg_Precision: 94.13
+Merge_Avg_Recall: 88.59
+Merge_Avg_F1: 91.16
+Merge_Cur_Precision: 98.46
+Merge_Cur_Recall: 95.86
+Merge_Cur_F1: 97.14
+=====================
+Merge_Avg_Precision: 94.12
+Merge_Avg_Recall: 88.55
+Merge_Avg_F1: 91.13
+Merge_Cur_Precision: 93.29
+Merge_Cur_Recall: 86.70
+Merge_Cur_F1: 89.70
+=====================
+Merge_Avg_Precision: 94.15
+Merge_Avg_Recall: 88.66
+Merge_Avg_F1: 91.21
+Merge_Cur_Precision: 96.19
+Merge_Cur_Recall: 95.57
+Merge_Cur_F1: 95.83
+=====================
+Merge_Avg_Precision: 94.20
+Merge_Avg_Recall: 88.74
+Merge_Avg_F1: 91.28
+Merge_Cur_Precision: 96.63
+Merge_Cur_Recall: 93.35
+Merge_Cur_F1: 94.95
+=====================
+Merge_Avg_Precision: 94.21
+Merge_Avg_Recall: 88.73
+Merge_Avg_F1: 91.28
+Merge_Cur_Precision: 96.18
+Merge_Cur_Recall: 87.63
+Merge_Cur_F1: 91.69
+=====================
+Merge_Avg_Precision: 94.26
+Merge_Avg_Recall: 88.83
+Merge_Avg_F1: 91.36
+Merge_Cur_Precision: 98.33
+Merge_Cur_Recall: 95.42
+Merge_Cur_F1: 96.84
+=====================
+Merge_Avg_Precision: 94.53
+Merge_Avg_Recall: 89.52
+Merge_Avg_F1: 91.87
+Merge_Cur_Precision: 95.99
+Merge_Cur_Recall: 94.24
+Merge_Cur_F1: 95.11
+=====================
+Merge_Avg_Precision: 94.57
+Merge_Avg_Recall: 89.58
+Merge_Avg_F1: 91.92
+Merge_Cur_Precision: 98.92
+Merge_Cur_Recall: 98.92
+Merge_Cur_F1: 98.92
+=====================
+Merge_Avg_Precision: 94.49
+Merge_Avg_Recall: 89.41
+Merge_Avg_F1: 91.79
+Merge_Cur_Precision: 91.55
+Merge_Cur_Recall: 82.55
+Merge_Cur_F1: 86.53
+=====================
+Merge_Avg_Precision: 94.51
+Merge_Avg_Recall: 89.42
+Merge_Avg_F1: 91.81
+Merge_Cur_Precision: 99.30
+Merge_Cur_Recall: 90.97
+Merge_Cur_F1: 94.90
+=====================
+Merge_Avg_Precision: 94.56
+Merge_Avg_Recall: 89.41
+Merge_Avg_F1: 91.83
+Merge_Cur_Precision: 97.88
+Merge_Cur_Recall: 89.24
+Merge_Cur_F1: 93.36
+=====================
+Merge_Avg_Precision: 94.58
+Merge_Avg_Recall: 89.46
+Merge_Avg_F1: 91.86
+Merge_Cur_Precision: 95.79
+Merge_Cur_Recall: 93.86
+Merge_Cur_F1: 94.71
+=====================
+Merge_Avg_Precision: 94.59
+Merge_Avg_Recall: 89.49
+Merge_Avg_F1: 91.88
+Merge_Cur_Precision: 98.67
+Merge_Cur_Recall: 98.67
+Merge_Cur_F1: 98.67
+=====================
+Merge_Avg_Precision: 94.59
+Merge_Avg_Recall: 89.45
+Merge_Avg_F1: 91.86
+Merge_Cur_Precision: 94.51
+Merge_Cur_Recall: 87.82
+Merge_Cur_F1: 90.81
+=====================
+Merge_Avg_Precision: 94.60
+Merge_Avg_Recall: 89.43
+Merge_Avg_F1: 91.86
+Merge_Cur_Precision: 95.89
+Merge_Cur_Recall: 87.68
+Merge_Cur_F1: 91.60
+=====================
+Merge_Avg_Precision: 94.63
+Merge_Avg_Recall: 89.43
+Merge_Avg_F1: 91.87
+Merge_Cur_Precision: 97.73
+Merge_Cur_Recall: 88.70
+Merge_Cur_F1: 92.98
+=====================
+Merge_Avg_Precision: 94.66
+Merge_Avg_Recall: 89.49
+Merge_Avg_F1: 91.92
+Merge_Cur_Precision: 98.12
+Merge_Cur_Recall: 98.12
+Merge_Cur_F1: 98.12
+=====================
+Merge_Avg_Precision: 94.67
+Merge_Avg_Recall: 89.50
+Merge_Avg_F1: 91.93
+Merge_Cur_Precision: 96.67
+Merge_Cur_Recall: 91.64
+Merge_Cur_F1: 94.05
+=====================
+Merge_Avg_Precision: 94.69
+Merge_Avg_Recall: 89.60
+Merge_Avg_F1: 92.00
+Merge_Cur_Precision: 95.77
+Merge_Cur_Recall: 94.05
+Merge_Cur_F1: 94.90
+=====================
+Merge_Avg_Precision: 94.66
+Merge_Avg_Recall: 89.54
+Merge_Avg_F1: 91.95
+Merge_Cur_Precision: 91.35
+Merge_Cur_Recall: 82.26
+Merge_Cur_F1: 86.28
+=====================
+Merge_Avg_Precision: 94.69
+Merge_Avg_Recall: 89.51
+Merge_Avg_F1: 91.95
+Merge_Cur_Precision: 98.96
+Merge_Cur_Recall: 86.73
+Merge_Cur_F1: 92.42
+=====================
+Merge_Avg_Precision: 94.71
+Merge_Avg_Recall: 89.58
+Merge_Avg_F1: 92.00
+Merge_Cur_Precision: 96.45
+Merge_Cur_Recall: 96.45
+Merge_Cur_F1: 96.45
+=====================
+Merge_Avg_Precision: 94.60
+Merge_Avg_Recall: 89.32
+Merge_Avg_F1: 91.80
+Merge_Cur_Precision: 89.80
+Merge_Cur_Recall: 78.36
+Merge_Cur_F1: 83.21
+=====================
+Merge_Avg_Precision: 94.60
+Merge_Avg_Recall: 89.30
+Merge_Avg_F1: 91.79
+Merge_Cur_Precision: 94.86
+Merge_Cur_Recall: 88.00
+Merge_Cur_F1: 91.15
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.27
+Merge_Avg_F1: 91.78
+Merge_Cur_Precision: 95.28
+Merge_Cur_Recall: 84.44
+Merge_Cur_F1: 89.38
+=====================
+Merge_Avg_Precision: 94.56
+Merge_Avg_Recall: 89.21
+Merge_Avg_F1: 91.72
+Merge_Cur_Precision: 89.87
+Merge_Cur_Recall: 84.08
+Merge_Cur_F1: 86.70
+=====================
+Merge_Avg_Precision: 94.56
+Merge_Avg_Recall: 89.19
+Merge_Avg_F1: 91.71
+Merge_Cur_Precision: 94.83
+Merge_Cur_Recall: 87.70
+Merge_Cur_F1: 90.68
+=====================
+Merge_Avg_Precision: 94.60
+Merge_Avg_Recall: 89.25
+Merge_Avg_F1: 91.76
+Merge_Cur_Precision: 98.52
+Merge_Cur_Recall: 98.52
+Merge_Cur_F1: 98.52
+=====================
+Merge_Avg_Precision: 94.57
+Merge_Avg_Recall: 89.24
+Merge_Avg_F1: 91.74
+Merge_Cur_Precision: 91.51
+Merge_Cur_Recall: 87.67
+Merge_Cur_F1: 89.16
+=====================
+Merge_Avg_Precision: 94.60
+Merge_Avg_Recall: 89.30
+Merge_Avg_F1: 91.79
+Merge_Cur_Precision: 97.19
+Merge_Cur_Recall: 97.19
+Merge_Cur_F1: 97.19
+=====================
+Merge_Avg_Precision: 94.62
+Merge_Avg_Recall: 89.34
+Merge_Avg_F1: 91.82
+Merge_Cur_Precision: 97.34
+Merge_Cur_Recall: 94.72
+Merge_Cur_F1: 96.00
+=====================
+Merge_Avg_Precision: 94.64
+Merge_Avg_Recall: 89.40
+Merge_Avg_F1: 91.86
+Merge_Cur_Precision: 97.74
+Merge_Cur_Recall: 97.74
+Merge_Cur_F1: 97.74
+=====================
+Merge_Avg_Precision: 94.62
+Merge_Avg_Recall: 89.34
+Merge_Avg_F1: 91.82
+Merge_Cur_Precision: 91.38
+Merge_Cur_Recall: 80.63
+Merge_Cur_F1: 85.06
+=====================
+Merge_Avg_Precision: 94.63
+Merge_Avg_Recall: 89.35
+Merge_Avg_F1: 91.83
+Merge_Cur_Precision: 97.04
+Merge_Cur_Recall: 88.00
+Merge_Cur_F1: 92.19
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.36
+Merge_Avg_F1: 91.82
+Merge_Cur_Precision: 93.43
+Merge_Cur_Recall: 90.38
+Merge_Cur_F1: 91.74
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.42
+Merge_Avg_F1: 91.86
+Merge_Cur_Precision: 94.20
+Merge_Cur_Recall: 93.09
+Merge_Cur_F1: 93.64
+=====================
+Merge_Avg_Precision: 94.63
+Merge_Avg_Recall: 89.47
+Merge_Avg_F1: 91.89
+Merge_Cur_Precision: 98.41
+Merge_Cur_Recall: 98.41
+Merge_Cur_F1: 98.41
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.38
+Merge_Avg_F1: 91.84
+Merge_Cur_Precision: 91.87
+Merge_Cur_Recall: 81.70
+Merge_Cur_F1: 86.46
+=====================
+Merge_Avg_Precision: 94.64
+Merge_Avg_Recall: 89.47
+Merge_Avg_F1: 91.90
+Merge_Cur_Precision: 98.35
+Merge_Cur_Recall: 98.35
+Merge_Cur_F1: 98.35
+=====================
+Merge_Avg_Precision: 94.63
+Merge_Avg_Recall: 89.51
+Merge_Avg_F1: 91.92
+Merge_Cur_Precision: 93.55
+Merge_Cur_Recall: 91.88
+Merge_Cur_F1: 92.63
+=====================
+Merge_Avg_Precision: 94.64
+Merge_Avg_Recall: 89.56
+Merge_Avg_F1: 91.95
+Merge_Cur_Precision: 97.50
+Merge_Cur_Recall: 97.50
+Merge_Cur_F1: 97.50
+=====================
+Merge_Avg_Precision: 94.64
+Merge_Avg_Recall: 89.57
+Merge_Avg_F1: 91.96
+Merge_Cur_Precision: 94.50
+Merge_Cur_Recall: 91.73
+Merge_Cur_F1: 92.96
+=====================
+Merge_Avg_Precision: 94.60
+Merge_Avg_Recall: 89.43
+Merge_Avg_F1: 91.86
+Merge_Cur_Precision: 92.29
+Merge_Cur_Recall: 79.79
+Merge_Cur_F1: 85.40
+=====================
+Merge_Avg_Precision: 94.62
+Merge_Avg_Recall: 89.45
+Merge_Avg_F1: 91.89
+Merge_Cur_Precision: 97.50
+Merge_Cur_Recall: 92.85
+Merge_Cur_F1: 95.12
+=====================
+Merge_Avg_Precision: 94.64
+Merge_Avg_Recall: 89.49
+Merge_Avg_F1: 91.91
+Merge_Cur_Precision: 96.77
+Merge_Cur_Recall: 96.77
+Merge_Cur_F1: 96.77
+=====================
+Merge_Avg_Precision: 94.66
+Merge_Avg_Recall: 89.53
+Merge_Avg_F1: 91.94
+Merge_Cur_Precision: 96.51
+Merge_Cur_Recall: 94.55
+Merge_Cur_F1: 95.51
+=====================
+Merge_Avg_Precision: 94.65
+Merge_Avg_Recall: 89.50
+Merge_Avg_F1: 91.92
+Merge_Cur_Precision: 93.74
+Merge_Cur_Recall: 85.95
+Merge_Cur_F1: 89.35
+=====================
+Merge_Avg_Precision: 94.68
+Merge_Avg_Recall: 89.54
+Merge_Avg_F1: 91.96
+Merge_Cur_Precision: 98.52
+Merge_Cur_Recall: 93.98
+Merge_Cur_F1: 96.17
+=====================
+Merge_Avg_Precision: 94.71
+Merge_Avg_Recall: 89.56
+Merge_Avg_F1: 91.99
+Merge_Cur_Precision: 98.23
+Merge_Cur_Recall: 93.39
+Merge_Cur_F1: 95.75
+=====================
+Merge_Avg_Precision: 94.73
+Merge_Avg_Recall: 89.55
+Merge_Avg_F1: 91.99
+Merge_Cur_Precision: 98.02
+Merge_Cur_Recall: 86.64
+Merge_Cur_F1: 91.96
+=====================
+Merge_Avg_Precision: 94.76
+Merge_Avg_Recall: 89.62
+Merge_Avg_F1: 92.04
+Merge_Cur_Precision: 97.94
+Merge_Cur_Recall: 97.94
+Merge_Cur_F1: 97.94
+=====================
+Merge_Avg_Precision: 94.75
+Merge_Avg_Recall: 89.63
+Merge_Avg_F1: 92.04
+Merge_Cur_Precision: 94.29
+Merge_Cur_Recall: 91.78
+Merge_Cur_F1: 92.75
+=====================
+Merge_Avg_Precision: 94.53
+Merge_Avg_Recall: 89.22
+Merge_Avg_F1: 91.70
+Merge_Cur_Precision: 88.80
+Merge_Cur_Recall: 80.92
+Merge_Cur_F1: 83.36
+=====================
+Merge_Avg_Precision: 94.55
+Merge_Avg_Recall: 89.31
+Merge_Avg_F1: 91.76
+Merge_Cur_Precision: 96.56
+Merge_Cur_Recall: 96.62
+Merge_Cur_F1: 96.57
+=====================
+Merge_Avg_Precision: 94.57
+Merge_Avg_Recall: 89.36
+Merge_Avg_F1: 91.80
+Merge_Cur_Precision: 97.65
+Merge_Cur_Recall: 97.65
+Merge_Cur_F1: 97.65
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.42
+Merge_Avg_F1: 91.84
+Merge_Cur_Precision: 98.82
+Merge_Cur_Recall: 98.82
+Merge_Cur_F1: 98.82
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.45
+Merge_Avg_F1: 91.86
+Merge_Cur_Precision: 94.77
+Merge_Cur_Recall: 94.77
+Merge_Cur_F1: 94.77
+=====================
+Merge_Avg_Precision: 94.62
+Merge_Avg_Recall: 89.47
+Merge_Avg_F1: 91.88
+Merge_Cur_Precision: 98.61
+Merge_Cur_Recall: 98.61
+Merge_Cur_F1: 98.61
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.48
+Merge_Avg_F1: 91.88
+Merge_Cur_Precision: 93.87
+Merge_Cur_Recall: 90.60
+Merge_Cur_F1: 92.11
+=====================
+Merge_Avg_Precision: 94.63
+Merge_Avg_Recall: 89.51
+Merge_Avg_F1: 91.91
+Merge_Cur_Precision: 97.22
+Merge_Cur_Recall: 97.22
+Merge_Cur_F1: 97.22
+=====================
+Merge_Avg_Precision: 94.64
+Merge_Avg_Recall: 89.53
+Merge_Avg_F1: 91.92
+Merge_Cur_Precision: 97.34
+Merge_Cur_Recall: 93.27
+Merge_Cur_F1: 95.24
+=====================
+Merge_Avg_Precision: 94.65
+Merge_Avg_Recall: 89.54
+Merge_Avg_F1: 91.93
+Merge_Cur_Precision: 100.00
+Merge_Cur_Recall: 100.00
+Merge_Cur_F1: 100.00
+=====================
+Merge_Avg_Precision: 94.66
+Merge_Avg_Recall: 89.52
+Merge_Avg_F1: 91.93
+Merge_Cur_Precision: 96.37
+Merge_Cur_Recall: 86.21
+Merge_Cur_F1: 91.00
+=====================
+Merge_Avg_Precision: 94.68
+Merge_Avg_Recall: 89.56
+Merge_Avg_F1: 91.96
+Merge_Cur_Precision: 96.89
+Merge_Cur_Recall: 95.17
+Merge_Cur_F1: 96.02
+=====================
+Merge_Avg_Precision: 94.71
+Merge_Avg_Recall: 89.63
+Merge_Avg_F1: 92.01
+Merge_Cur_Precision: 98.43
+Merge_Cur_Recall: 98.43
+Merge_Cur_F1: 98.43
+=====================
+Merge_Avg_Precision: 94.72
+Merge_Avg_Recall: 89.63
+Merge_Avg_F1: 92.02
+Merge_Cur_Precision: 98.35
+Merge_Cur_Recall: 89.60
+Merge_Cur_F1: 93.73
+=====================
+Merge_Avg_Precision: 94.74
+Merge_Avg_Recall: 89.67
+Merge_Avg_F1: 92.05
+Merge_Cur_Precision: 97.75
+Merge_Cur_Recall: 97.75
+Merge_Cur_F1: 97.75
+=====================
+Merge_Avg_Precision: 94.76
+Merge_Avg_Recall: 89.72
+Merge_Avg_F1: 92.09
+Merge_Cur_Precision: 97.74
+Merge_Cur_Recall: 95.79
+Merge_Cur_F1: 96.75
+=====================
+Merge_Avg_Precision: 94.78
+Merge_Avg_Recall: 89.74
+Merge_Avg_F1: 92.11
+Merge_Cur_Precision: 96.38
+Merge_Cur_Recall: 92.63
+Merge_Cur_F1: 94.45
+=====================
+Merge_Avg_Precision: 94.78
+Merge_Avg_Recall: 89.74
+Merge_Avg_F1: 92.11
+Merge_Cur_Precision: 94.73
+Merge_Cur_Recall: 89.98
+Merge_Cur_F1: 92.26
+=====================
+Merge_Avg_Precision: 94.78
+Merge_Avg_Recall: 89.79
+Merge_Avg_F1: 92.14
+Merge_Cur_Precision: 95.19
+Merge_Cur_Recall: 92.83
+Merge_Cur_F1: 93.99
+=====================
+Merge_Avg_Precision: 94.78
+Merge_Avg_Recall: 89.82
+Merge_Avg_F1: 92.15
+Merge_Cur_Precision: 94.26
+Merge_Cur_Recall: 94.03
+Merge_Cur_F1: 94.10
+=====================
+Merge_Avg_Precision: 94.76
+Merge_Avg_Recall: 89.75
+Merge_Avg_F1: 92.11
+Merge_Cur_Precision: 93.45
+Merge_Cur_Recall: 81.19
+Merge_Cur_F1: 86.68
+=====================
+Merge_Avg_Precision: 94.77
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.13
+Merge_Cur_Precision: 96.68
+Merge_Cur_Recall: 93.67
+Merge_Cur_F1: 95.14
+=====================
+Merge_Avg_Precision: 94.76
+Merge_Avg_Recall: 89.74
+Merge_Avg_F1: 92.10
+Merge_Cur_Precision: 93.14
+Merge_Cur_Recall: 86.67
+Merge_Cur_F1: 89.66
+=====================
+Merge_Avg_Precision: 94.78
+Merge_Avg_Recall: 89.79
+Merge_Avg_F1: 92.14
+Merge_Cur_Precision: 98.82
+Merge_Cur_Recall: 98.82
+Merge_Cur_F1: 98.82
+=====================
+Merge_Avg_Precision: 94.76
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.12
+Merge_Cur_Precision: 93.04
+Merge_Cur_Recall: 87.52
+Merge_Cur_F1: 90.00
+=====================
+Merge_Avg_Precision: 94.78
+Merge_Avg_Recall: 89.79
+Merge_Avg_F1: 92.13
+Merge_Cur_Precision: 97.61
+Merge_Cur_Recall: 94.56
+Merge_Cur_F1: 96.05
+=====================
+Merge_Avg_Precision: 94.79
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.13
+Merge_Cur_Precision: 97.87
+Merge_Cur_Recall: 84.87
+Merge_Cur_F1: 90.90
+=====================
+Merge_Avg_Precision: 94.79
+Merge_Avg_Recall: 89.80
+Merge_Avg_F1: 92.15
+Merge_Cur_Precision: 96.72
+Merge_Cur_Recall: 96.72
+Merge_Cur_F1: 96.72
+=====================
+Merge_Avg_Precision: 94.80
+Merge_Avg_Recall: 89.83
+Merge_Avg_F1: 92.17
+Merge_Cur_Precision: 97.90
+Merge_Cur_Recall: 97.90
+Merge_Cur_F1: 97.90
+=====================
+Merge_Avg_Precision: 94.79
+Merge_Avg_Recall: 89.82
+Merge_Avg_F1: 92.16
+Merge_Cur_Precision: 93.46
+Merge_Cur_Recall: 88.87
+Merge_Cur_F1: 90.99
+=====================
+Merge_Avg_Precision: 94.73
+Merge_Avg_Recall: 89.65
+Merge_Avg_F1: 92.04
+Merge_Cur_Precision: 87.74
+Merge_Cur_Recall: 69.58
+Merge_Cur_F1: 76.96
+=====================
+Merge_Avg_Precision: 94.72
+Merge_Avg_Recall: 89.60
+Merge_Avg_F1: 92.01
+Merge_Cur_Precision: 93.15
+Merge_Cur_Recall: 82.76
+Merge_Cur_F1: 87.49
+=====================
+Merge_Avg_Precision: 94.74
+Merge_Avg_Recall: 89.63
+Merge_Avg_F1: 92.03
+Merge_Cur_Precision: 98.54
+Merge_Cur_Recall: 96.52
+Merge_Cur_F1: 97.51
+=====================
+Merge_Avg_Precision: 94.74
+Merge_Avg_Recall: 89.65
+Merge_Avg_F1: 92.05
+Merge_Cur_Precision: 95.38
+Merge_Cur_Recall: 93.59
+Merge_Cur_F1: 94.39
+=====================
+Merge_Avg_Precision: 94.72
+Merge_Avg_Recall: 89.65
+Merge_Avg_F1: 92.04
+Merge_Cur_Precision: 92.57
+Merge_Cur_Recall: 89.42
+Merge_Cur_F1: 90.79
+=====================
+Merge_Avg_Precision: 94.74
+Merge_Avg_Recall: 89.71
+Merge_Avg_F1: 92.08
+Merge_Cur_Precision: 98.14
+Merge_Cur_Recall: 96.89
+Merge_Cur_F1: 97.51
+=====================
+Merge_Avg_Precision: 94.75
+Merge_Avg_Recall: 89.69
+Merge_Avg_F1: 92.07
+Merge_Cur_Precision: 95.02
+Merge_Cur_Recall: 87.70
+Merge_Cur_F1: 91.14
+=====================
+Merge_Avg_Precision: 94.76
+Merge_Avg_Recall: 89.73
+Merge_Avg_F1: 92.10
+Merge_Cur_Precision: 97.49
+Merge_Cur_Recall: 95.49
+Merge_Cur_F1: 96.48
+=====================
+Merge_Avg_Precision: 94.74
+Merge_Avg_Recall: 89.69
+Merge_Avg_F1: 92.06
+Merge_Cur_Precision: 91.47
+Merge_Cur_Recall: 80.87
+Merge_Cur_F1: 85.23
+=====================
+Merge_Avg_Precision: 94.73
+Merge_Avg_Recall: 89.69
+Merge_Avg_F1: 92.06
+Merge_Cur_Precision: 89.68
+Merge_Cur_Recall: 88.77
+Merge_Cur_F1: 88.96
+=====================
+Merge_Avg_Precision: 94.73
+Merge_Avg_Recall: 89.69
+Merge_Avg_F1: 92.06
+Merge_Cur_Precision: 95.75
+Merge_Cur_Recall: 90.32
+Merge_Cur_F1: 92.92
+=====================
+Merge_Avg_Precision: 94.74
+Merge_Avg_Recall: 89.72
+Merge_Avg_F1: 92.08
+Merge_Cur_Precision: 94.93
+Merge_Cur_Recall: 92.10
+Merge_Cur_F1: 93.46
+=====================
+Merge_Avg_Precision: 94.63
+Merge_Avg_Recall: 89.42
+Merge_Avg_F1: 91.87
+Merge_Cur_Precision: 89.70
+Merge_Cur_Recall: 74.78
+Merge_Cur_F1: 80.73
+=====================
+Merge_Avg_Precision: 94.60
+Merge_Avg_Recall: 89.39
+Merge_Avg_F1: 91.83
+Merge_Cur_Precision: 90.88
+Merge_Cur_Recall: 86.65
+Merge_Cur_F1: 88.35
+=====================
+Merge_Avg_Precision: 94.58
+Merge_Avg_Recall: 89.36
+Merge_Avg_F1: 91.80
+Merge_Cur_Precision: 91.27
+Merge_Cur_Recall: 82.01
+Merge_Cur_F1: 86.13
+=====================
+Merge_Avg_Precision: 94.60
+Merge_Avg_Recall: 89.38
+Merge_Avg_F1: 91.83
+Merge_Cur_Precision: 99.59
+Merge_Cur_Recall: 99.59
+Merge_Cur_F1: 99.59
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.46
+Merge_Avg_F1: 91.87
+Merge_Cur_Precision: 97.68
+Merge_Cur_Recall: 97.68
+Merge_Cur_F1: 97.68
+=====================
+Merge_Avg_Precision: 94.61
+Merge_Avg_Recall: 89.47
+Merge_Avg_F1: 91.88
+Merge_Cur_Precision: 95.24
+Merge_Cur_Recall: 92.34
+Merge_Cur_F1: 93.75
+=====================
+Merge_Avg_Precision: 94.63
+Merge_Avg_Recall: 89.47
+Merge_Avg_F1: 91.89
+Merge_Cur_Precision: 98.65
+Merge_Cur_Recall: 92.08
+Merge_Cur_F1: 95.25
+=====================
+Merge_Avg_Precision: 94.64
+Merge_Avg_Recall: 89.49
+Merge_Avg_F1: 91.90
+Merge_Cur_Precision: 97.83
+Merge_Cur_Recall: 91.81
+Merge_Cur_F1: 94.67
+=====================
+Merge_Avg_Precision: 94.65
+Merge_Avg_Recall: 89.52
+Merge_Avg_F1: 91.93
+Merge_Cur_Precision: 97.72
+Merge_Cur_Recall: 95.57
+Merge_Cur_F1: 96.62
+=====================
+Merge_Avg_Precision: 94.67
+Merge_Avg_Recall: 89.54
+Merge_Avg_F1: 91.94
+Merge_Cur_Precision: 96.92
+Merge_Cur_Recall: 92.61
+Merge_Cur_F1: 94.71
+=====================
+Merge_Avg_Precision: 94.68
+Merge_Avg_Recall: 89.55
+Merge_Avg_F1: 91.96
+Merge_Cur_Precision: 97.99
+Merge_Cur_Recall: 94.94
+Merge_Cur_F1: 96.43
+=====================
+Merge_Avg_Precision: 94.69
+Merge_Avg_Recall: 89.56
+Merge_Avg_F1: 91.97
+Merge_Cur_Precision: 97.55
+Merge_Cur_Recall: 90.73
+Merge_Cur_F1: 94.00
+=====================
+Merge_Avg_Precision: 94.70
+Merge_Avg_Recall: 89.58
+Merge_Avg_F1: 91.99
+Merge_Cur_Precision: 99.22
+Merge_Cur_Recall: 99.22
+Merge_Cur_F1: 99.22
+=====================
+Merge_Avg_Precision: 94.68
+Merge_Avg_Recall: 89.60
+Merge_Avg_F1: 91.99
+Merge_Cur_Precision: 93.42
+Merge_Cur_Recall: 91.62
+Merge_Cur_F1: 92.42
+=====================
+Merge_Avg_Precision: 94.69
+Merge_Avg_Recall: 89.64
+Merge_Avg_F1: 92.02
+Merge_Cur_Precision: 95.47
+Merge_Cur_Recall: 94.48
+Merge_Cur_F1: 94.96
+=====================
+Merge_Avg_Precision: 94.70
+Merge_Avg_Recall: 89.67
+Merge_Avg_F1: 92.03
+Merge_Cur_Precision: 95.17
+Merge_Cur_Recall: 93.14
+Merge_Cur_F1: 94.11
+=====================
+Merge_Avg_Precision: 94.68
+Merge_Avg_Recall: 89.61
+Merge_Avg_F1: 91.99
+Merge_Cur_Precision: 89.75
+Merge_Cur_Recall: 78.81
+Merge_Cur_F1: 83.47
+=====================
+Merge_Avg_Precision: 94.69
+Merge_Avg_Recall: 89.64
+Merge_Avg_F1: 92.01
+Merge_Cur_Precision: 96.73
+Merge_Cur_Recall: 96.73
+Merge_Cur_F1: 96.73
+=====================
+Merge_Avg_Precision: 94.70
+Merge_Avg_Recall: 89.68
+Merge_Avg_F1: 92.04
+Merge_Cur_Precision: 97.40
+Merge_Cur_Recall: 97.40
+Merge_Cur_F1: 97.40
+=====================
+Merge_Avg_Precision: 94.68
+Merge_Avg_Recall: 89.68
+Merge_Avg_F1: 92.03
+Merge_Cur_Precision: 91.37
+Merge_Cur_Recall: 87.88
+Merge_Cur_F1: 89.47
+=====================
+Merge_Avg_Precision: 94.68
+Merge_Avg_Recall: 89.68
+Merge_Avg_F1: 92.03
+Merge_Cur_Precision: 95.56
+Merge_Cur_Recall: 90.49
+Merge_Cur_F1: 92.92
+=====================
+Merge_Avg_Precision: 94.70
+Merge_Avg_Recall: 89.63
+Merge_Avg_F1: 92.01
+Merge_Cur_Precision: 96.96
+Merge_Cur_Recall: 84.46
+Merge_Cur_F1: 90.24
+=====================
+Merge_Avg_Precision: 94.71
+Merge_Avg_Recall: 89.61
+Merge_Avg_F1: 92.01
+Merge_Cur_Precision: 97.24
+Merge_Cur_Recall: 86.80
+Merge_Cur_F1: 91.71
+=====================
+Merge_Avg_Precision: 94.72
+Merge_Avg_Recall: 89.65
+Merge_Avg_F1: 92.04
+Merge_Cur_Precision: 95.81
+Merge_Cur_Recall: 93.41
+Merge_Cur_F1: 94.55
+=====================
+Merge_Avg_Precision: 94.74
+Merge_Avg_Recall: 89.66
+Merge_Avg_F1: 92.05
+Merge_Cur_Precision: 98.24
+Merge_Cur_Recall: 94.60
+Merge_Cur_F1: 96.37
+=====================
+Merge_Avg_Precision: 94.75
+Merge_Avg_Recall: 89.69
+Merge_Avg_F1: 92.07
+Merge_Cur_Precision: 97.65
+Merge_Cur_Recall: 97.65
+Merge_Cur_F1: 97.65
+=====================
+Merge_Avg_Precision: 94.74
+Merge_Avg_Recall: 89.63
+Merge_Avg_F1: 92.03
+Merge_Cur_Precision: 93.87
+Merge_Cur_Recall: 81.72
+Merge_Cur_F1: 86.99
+=====================
+Merge_Avg_Precision: 94.73
+Merge_Avg_Recall: 89.63
+Merge_Avg_F1: 92.03
+Merge_Cur_Precision: 93.98
+Merge_Cur_Recall: 90.30
+Merge_Cur_F1: 91.88
+=====================
+Merge_Avg_Precision: 94.73
+Merge_Avg_Recall: 89.61
+Merge_Avg_F1: 92.02
+Merge_Cur_Precision: 95.04
+Merge_Cur_Recall: 84.84
+Merge_Cur_F1: 89.62
+=====================
+Merge_Avg_Precision: 94.75
+Merge_Avg_Recall: 89.65
+Merge_Avg_F1: 92.05
+Merge_Cur_Precision: 96.58
+Merge_Cur_Recall: 95.72
+Merge_Cur_F1: 96.12
+=====================
+Merge_Avg_Precision: 94.76
+Merge_Avg_Recall: 89.63
+Merge_Avg_F1: 92.05
+Merge_Cur_Precision: 98.93
+Merge_Cur_Recall: 83.56
+Merge_Cur_F1: 90.37
+=====================
+Merge_Avg_Precision: 94.76
+Merge_Avg_Recall: 89.64
+Merge_Avg_F1: 92.05
+Merge_Cur_Precision: 96.87
+Merge_Cur_Recall: 93.84
+Merge_Cur_F1: 95.32
+=====================
+Merge_Avg_Precision: 94.77
+Merge_Avg_Recall: 89.61
+Merge_Avg_F1: 92.04
+Merge_Cur_Precision: 95.55
+Merge_Cur_Recall: 80.05
+Merge_Cur_F1: 87.08
+=====================
+Merge_Avg_Precision: 94.77
+Merge_Avg_Recall: 89.62
+Merge_Avg_F1: 92.05
+Merge_Cur_Precision: 95.79
+Merge_Cur_Recall: 95.79
+Merge_Cur_F1: 95.79
+=====================
+Merge_Avg_Precision: 94.78
+Merge_Avg_Recall: 89.65
+Merge_Avg_F1: 92.06
+Merge_Cur_Precision: 97.84
+Merge_Cur_Recall: 95.83
+Merge_Cur_F1: 96.82
+=====================
+Merge_Avg_Precision: 94.79
+Merge_Avg_Recall: 89.67
+Merge_Avg_F1: 92.08
+Merge_Cur_Precision: 97.33
+Merge_Cur_Recall: 97.33
+Merge_Cur_F1: 97.33
+=====================
+Merge_Avg_Precision: 94.80
+Merge_Avg_Recall: 89.69
+Merge_Avg_F1: 92.10
+Merge_Cur_Precision: 96.99
+Merge_Cur_Recall: 92.11
+Merge_Cur_F1: 94.49
+=====================
+Merge_Avg_Precision: 94.82
+Merge_Avg_Recall: 89.74
+Merge_Avg_F1: 92.13
+Merge_Cur_Precision: 98.38
+Merge_Cur_Recall: 98.38
+Merge_Cur_F1: 98.38
+=====================
+Merge_Avg_Precision: 94.82
+Merge_Avg_Recall: 89.74
+Merge_Avg_F1: 92.13
+Merge_Cur_Precision: 94.71
+Merge_Cur_Recall: 90.49
+Merge_Cur_F1: 92.53
+=====================
+Merge_Avg_Precision: 94.84
+Merge_Avg_Recall: 89.74
+Merge_Avg_F1: 92.15
+Merge_Cur_Precision: 97.83
+Merge_Cur_Recall: 90.33
+Merge_Cur_F1: 93.92
+=====================
+Merge_Avg_Precision: 94.85
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.17
+Merge_Cur_Precision: 97.17
+Merge_Cur_Recall: 95.59
+Merge_Cur_F1: 96.37
+=====================
+Merge_Avg_Precision: 94.85
+Merge_Avg_Recall: 89.79
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 98.08
+Merge_Cur_Recall: 98.08
+Merge_Cur_F1: 98.08
+=====================
+Merge_Avg_Precision: 94.85
+Merge_Avg_Recall: 89.80
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 94.66
+Merge_Cur_Recall: 91.35
+Merge_Cur_F1: 92.96
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.81
+Merge_Avg_F1: 92.19
+Merge_Cur_Precision: 97.49
+Merge_Cur_Recall: 91.17
+Merge_Cur_F1: 94.17
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.81
+Merge_Avg_F1: 92.19
+Merge_Cur_Precision: 94.35
+Merge_Cur_Recall: 89.93
+Merge_Cur_F1: 92.01
+=====================
+Merge_Avg_Precision: 94.85
+Merge_Avg_Recall: 89.78
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 93.89
+Merge_Cur_Recall: 81.71
+Merge_Cur_F1: 87.18
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.76
+Merge_Avg_F1: 92.17
+Merge_Cur_Precision: 96.34
+Merge_Cur_Recall: 86.31
+Merge_Cur_F1: 91.04
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.75
+Merge_Avg_F1: 92.17
+Merge_Cur_Precision: 96.99
+Merge_Cur_Recall: 88.09
+Merge_Cur_F1: 92.22
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.76
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 97.78
+Merge_Cur_Recall: 97.78
+Merge_Cur_F1: 97.78
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 94.18
+Merge_Cur_Recall: 92.94
+Merge_Cur_F1: 93.45
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.78
+Merge_Avg_F1: 92.19
+Merge_Cur_Precision: 95.66
+Merge_Cur_Recall: 93.07
+Merge_Cur_F1: 94.21
+=====================
+Merge_Avg_Precision: 94.85
+Merge_Avg_Recall: 89.66
+Merge_Avg_F1: 92.11
+Merge_Cur_Precision: 90.32
+Merge_Cur_Recall: 69.36
+Merge_Cur_F1: 78.15
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.68
+Merge_Avg_F1: 92.12
+Merge_Cur_Precision: 96.38
+Merge_Cur_Recall: 94.30
+Merge_Cur_F1: 95.33
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.71
+Merge_Avg_F1: 92.14
+Merge_Cur_Precision: 94.58
+Merge_Cur_Recall: 95.42
+Merge_Cur_F1: 94.95
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.74
+Merge_Avg_F1: 92.16
+Merge_Cur_Precision: 98.89
+Merge_Cur_Recall: 98.89
+Merge_Cur_F1: 98.89
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.76
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 97.78
+Merge_Cur_Recall: 94.42
+Merge_Cur_F1: 96.05
+=====================
+Merge_Avg_Precision: 94.89
+Merge_Avg_Recall: 89.79
+Merge_Avg_F1: 92.20
+Merge_Cur_Precision: 97.70
+Merge_Cur_Recall: 96.24
+Merge_Cur_F1: 96.96
+=====================
+Merge_Avg_Precision: 94.90
+Merge_Avg_Recall: 89.82
+Merge_Avg_F1: 92.22
+Merge_Cur_Precision: 97.96
+Merge_Cur_Recall: 97.96
+Merge_Cur_F1: 97.96
+=====================
+Merge_Avg_Precision: 94.89
+Merge_Avg_Recall: 89.80
+Merge_Avg_F1: 92.21
+Merge_Cur_Precision: 93.22
+Merge_Cur_Recall: 83.87
+Merge_Cur_F1: 88.19
+=====================
+Merge_Avg_Precision: 94.91
+Merge_Avg_Recall: 89.80
+Merge_Avg_F1: 92.21
+Merge_Cur_Precision: 98.89
+Merge_Cur_Recall: 88.30
+Merge_Cur_F1: 93.27
+=====================
+Merge_Avg_Precision: 94.92
+Merge_Avg_Recall: 89.81
+Merge_Avg_F1: 92.23
+Merge_Cur_Precision: 97.36
+Merge_Cur_Recall: 94.15
+Merge_Cur_F1: 95.72
+=====================
+Merge_Avg_Precision: 94.91
+Merge_Avg_Recall: 89.80
+Merge_Avg_F1: 92.22
+Merge_Cur_Precision: 93.76
+Merge_Cur_Recall: 84.86
+Merge_Cur_F1: 88.67
+=====================
+Merge_Avg_Precision: 94.93
+Merge_Avg_Recall: 89.82
+Merge_Avg_F1: 92.23
+Merge_Cur_Precision: 98.27
+Merge_Cur_Recall: 94.51
+Merge_Cur_F1: 96.33
+=====================
+Merge_Avg_Precision: 94.93
+Merge_Avg_Recall: 89.84
+Merge_Avg_F1: 92.25
+Merge_Cur_Precision: 94.89
+Merge_Cur_Recall: 94.13
+Merge_Cur_F1: 94.44
+=====================
+Merge_Avg_Precision: 94.93
+Merge_Avg_Recall: 89.86
+Merge_Avg_F1: 92.26
+Merge_Cur_Precision: 97.44
+Merge_Cur_Recall: 97.44
+Merge_Cur_F1: 97.44
+=====================
+Merge_Avg_Precision: 94.94
+Merge_Avg_Recall: 89.87
+Merge_Avg_F1: 92.27
+Merge_Cur_Precision: 96.15
+Merge_Cur_Recall: 91.10
+Merge_Cur_F1: 93.53
+=====================
+Merge_Avg_Precision: 94.94
+Merge_Avg_Recall: 89.84
+Merge_Avg_F1: 92.25
+Merge_Cur_Precision: 93.01
+Merge_Cur_Recall: 79.28
+Merge_Cur_F1: 85.32
+=====================
+Merge_Avg_Precision: 94.93
+Merge_Avg_Recall: 89.81
+Merge_Avg_F1: 92.23
+Merge_Cur_Precision: 94.64
+Merge_Cur_Recall: 81.14
+Merge_Cur_F1: 87.09
+=====================
+Merge_Avg_Precision: 94.94
+Merge_Avg_Recall: 89.82
+Merge_Avg_F1: 92.24
+Merge_Cur_Precision: 96.59
+Merge_Cur_Recall: 96.59
+Merge_Cur_F1: 96.59
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.72
+Merge_Avg_F1: 92.15
+Merge_Cur_Precision: 89.00
+Merge_Cur_Recall: 82.96
+Merge_Cur_F1: 85.06
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.74
+Merge_Avg_F1: 92.16
+Merge_Cur_Precision: 95.40
+Merge_Cur_Recall: 94.44
+Merge_Cur_F1: 94.85
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.73
+Merge_Avg_F1: 92.15
+Merge_Cur_Precision: 95.14
+Merge_Cur_Recall: 84.68
+Merge_Cur_F1: 89.34
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.69
+Merge_Avg_F1: 92.13
+Merge_Cur_Precision: 94.05
+Merge_Cur_Recall: 84.81
+Merge_Cur_F1: 89.07
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.71
+Merge_Avg_F1: 92.14
+Merge_Cur_Precision: 97.00
+Merge_Cur_Recall: 93.26
+Merge_Cur_F1: 95.07
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.74
+Merge_Avg_F1: 92.16
+Merge_Cur_Precision: 96.24
+Merge_Cur_Recall: 96.24
+Merge_Cur_F1: 96.24
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.72
+Merge_Avg_F1: 92.15
+Merge_Cur_Precision: 94.66
+Merge_Cur_Recall: 86.50
+Merge_Cur_F1: 90.38
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.72
+Merge_Avg_F1: 92.14
+Merge_Cur_Precision: 92.03
+Merge_Cur_Recall: 87.94
+Merge_Cur_F1: 89.85
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.72
+Merge_Avg_F1: 92.15
+Merge_Cur_Precision: 95.73
+Merge_Cur_Recall: 91.91
+Merge_Cur_F1: 93.78
+=====================
+Merge_Avg_Precision: 94.85
+Merge_Avg_Recall: 89.73
+Merge_Avg_F1: 92.15
+Merge_Cur_Precision: 92.13
+Merge_Cur_Recall: 91.57
+Merge_Cur_F1: 91.58
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.75
+Merge_Avg_F1: 92.16
+Merge_Cur_Precision: 96.74
+Merge_Cur_Recall: 95.67
+Merge_Cur_F1: 96.13
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.75
+Merge_Avg_F1: 92.16
+Merge_Cur_Precision: 93.20
+Merge_Cur_Recall: 91.52
+Merge_Cur_F1: 92.24
+=====================
+Merge_Avg_Precision: 94.86
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.17
+Merge_Cur_Precision: 97.91
+Merge_Cur_Recall: 95.25
+Merge_Cur_F1: 96.55
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.78
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 97.27
+Merge_Cur_Recall: 94.63
+Merge_Cur_F1: 95.92
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.79
+Merge_Avg_F1: 92.19
+Merge_Cur_Precision: 95.84
+Merge_Cur_Recall: 92.88
+Merge_Cur_F1: 94.33
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.78
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 94.06
+Merge_Cur_Recall: 87.52
+Merge_Cur_F1: 90.61
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.78
+Merge_Avg_F1: 92.19
+Merge_Cur_Precision: 96.75
+Merge_Cur_Recall: 90.97
+Merge_Cur_F1: 93.73
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.78
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 93.30
+Merge_Cur_Recall: 86.32
+Merge_Cur_F1: 89.39
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.79
+Merge_Avg_F1: 92.19
+Merge_Cur_Precision: 95.88
+Merge_Cur_Recall: 93.71
+Merge_Cur_F1: 94.78
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.78
+Merge_Avg_F1: 92.19
+Merge_Cur_Precision: 95.97
+Merge_Cur_Recall: 86.46
+Merge_Cur_F1: 90.85
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.79
+Merge_Avg_F1: 92.19
+Merge_Cur_Precision: 95.14
+Merge_Cur_Recall: 95.14
+Merge_Cur_F1: 95.14
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.81
+Merge_Avg_F1: 92.21
+Merge_Cur_Precision: 96.28
+Merge_Cur_Recall: 95.10
+Merge_Cur_F1: 95.63
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.76
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 94.28
+Merge_Cur_Recall: 77.25
+Merge_Cur_F1: 84.91
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 94.91
+Merge_Cur_Recall: 94.91
+Merge_Cur_F1: 94.91
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.75
+Merge_Avg_F1: 92.17
+Merge_Cur_Precision: 92.37
+Merge_Cur_Recall: 85.85
+Merge_Cur_F1: 88.42
+=====================
+Merge_Avg_Precision: 94.87
+Merge_Avg_Recall: 89.76
+Merge_Avg_F1: 92.17
+Merge_Cur_Precision: 97.42
+Merge_Cur_Recall: 94.23
+Merge_Cur_F1: 95.78
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 95.83
+Merge_Cur_Recall: 95.83
+Merge_Cur_F1: 95.83
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.19
+Merge_Cur_Precision: 98.00
+Merge_Cur_Recall: 92.07
+Merge_Cur_F1: 94.93
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.80
+Merge_Avg_F1: 92.20
+Merge_Cur_Precision: 94.02
+Merge_Cur_Recall: 91.89
+Merge_Cur_F1: 92.94
+=====================
+Merge_Avg_Precision: 94.88
+Merge_Avg_Recall: 89.77
+Merge_Avg_F1: 92.18
+Merge_Cur_Precision: 94.50
+Merge_Cur_Recall: 77.00
+Merge_Cur_F1: 84.72
+=====================
+Merge_Avg_Precision: 94.89
+Merge_Avg_Recall: 89.80
+Merge_Avg_F1: 92.20
+Merge_Cur_Precision: 99.07
+Merge_Cur_Recall: 99.07
+Merge_Cur_F1: 99.07
+=====================
+Merge_Avg_Precision: 94.89
+Merge_Avg_Recall: 89.80
+Merge_Avg_F1: 92.21
+Merge_Cur_Precision: 95.30
+Merge_Cur_Recall: 91.48
+Merge_Cur_F1: 93.33
+=====================
+Merge_Avg_Precision: 94.90
+Merge_Avg_Recall: 89.83
+Merge_Avg_F1: 92.22
+Merge_Cur_Precision: 97.38
+Merge_Cur_Recall: 95.60
+Merge_Cur_F1: 96.48
+=====================
+Merge_Avg_Precision: 94.90
+Merge_Avg_Recall: 89.83
+Merge_Avg_F1: 92.23
+Merge_Cur_Precision: 95.45
+Merge_Cur_Recall: 90.41
+Merge_Cur_F1: 92.81
+=====================
+Merge_Avg_Precision: 94.90
+Merge_Avg_Recall: 89.82
+Merge_Avg_F1: 92.22
+Merge_Cur_Precision: 95.51
+Merge_Cur_Recall: 87.46
+Merge_Cur_F1: 91.31
+=====================
+Merge_Avg_Precision: 94.90
+Merge_Avg_Recall: 89.82
+Merge_Avg_F1: 92.22
+Merge_Cur_Precision: 95.65
+Merge_Cur_Recall: 86.85
+Merge_Cur_F1: 90.94
+Documents F1-Scores: [0.9516625824084567, 0.9581529581529583, 0.9595905095216226, 0.8946710266173588, 0.9268431996816479, 0.9295693379399651, 0.9140884619819684, 0.8962027255388055, 0.9273146444199075, 0.9644444444444445, 0.9139167922481194, 0.9804713804713806, 0.9198833956463668, 0.8023745856657508, 0.9361428045638571, 0.9618055555555557, 0.9252004966491558, 0.9252337452416759, 0.96916627762216, 0.9792592592592593, 0.8363513624051605, 0.9336056471144191, 0.9157597137026222, 0.9241099375261363, 0.8911345079541967, 0.8490353557623189, 0.8759749424404298, 0.9788569455236122, 0.9716884543390205, 0.9749735449735449, 0.9556618819776714, 0.8935323441624407, 0.9086139531598638, 0.8892414744349303, 0.9187232568139029, 0.9230236272981754, 0.8997004983596923, 0.9543420753366574, 0.9594192212617143, 0.9470822723756056, 0.9315445776043602, 0.9204115466228272, 0.9233560207981352, 0.96416575392479, 0.7933074870919482, 0.9187018842329371, 0.9843097643097644, 0.7824245638431634, 0.914701818018879, 0.9027198352248313, 0.9170722322311833, 0.8604222559299455, 0.9111680791621795, 0.9348842137869262, 0.9010451930059773, 0.9713835671675297, 0.8970269276980737, 0.9582850034185216, 0.9494727397224066, 0.9169238703740809, 0.9684429048613884, 0.9510596803287282, 0.9891666666666667, 0.8652821635729088, 0.9490269628200663, 0.9335736597182379, 0.9470936884345128, 0.9866666666666667, 0.9080773124834725, 0.9160090962478505, 0.9297726756184179, 0.9811965811965813, 0.9405468829711254, 0.9489883366508155, 0.8627730126319156, 0.9242300321393753, 0.964481378885811, 0.8320950803452053, 0.9114596374542644, 0.8938171305818364, 0.8670452004510324, 0.9067555660955948, 0.9851851851851853, 0.8916283157517683, 0.9719135802469135, 0.9600210166448626, 0.9773824059538345, 0.8506473957395556, 0.9218982945010342, 0.9173925323766126, 0.9364179279695701, 0.9841025641025641, 0.8645536611693441, 0.9835150309574862, 0.9262703598827379, 0.9749823426638414, 0.9296160228302779, 0.8539603257977609, 0.9511841100076395, 0.9676767676767678, 0.9551473932881255, 0.8935109445742526, 0.9617005246377609, 0.9574793882934763, 0.9195915138439409, 0.9794277003048933, 0.9275421796625628, 0.8336116584956598, 0.965739237373306, 0.9765376984126984, 0.9881701631701633, 0.9477465744132411, 0.9861471861471861, 0.9210521674056036, 0.9722222222222222, 0.952420022151823, 1.0, 0.9099753137020218, 0.96016955402375, 0.9843448490507315, 0.9372700767216467, 0.9774669774669774, 0.9674784146534186, 0.9444776033281963, 0.9226342479013266, 0.9398629436000873, 0.9409655164727951, 0.8668450929311415, 0.9514066689200772, 0.896573524366293, 0.9881944444444445, 0.8999799133692269, 0.9605216293099188, 0.9089701377627074, 0.9672305764411027, 0.9790123456790124, 0.9099168307054032, 0.7695712508270457, 0.8749398313709907, 0.9751233711157375, 0.9438559576032813, 0.9078981732142922, 0.9750914387270724, 0.9114126356605028, 0.9647837504597067, 0.8522657200799593, 0.8896100650486617, 0.9291608577227306, 0.9346154338707794, 0.8073239244037659, 0.8835410313241466, 0.8613164537189179, 0.9958847736625515, 0.9767757507043221, 0.9375413273257108, 0.9525046785916351, 0.9467468762681742, 0.9662491654958698, 0.9471061788033553, 0.9642938048468003, 0.9400480563510089, 0.9922480620155039, 0.9242245550674669, 0.9495557916171466, 0.941137511167049, 0.834667228282291, 0.9673456790123457, 0.9740088304516616, 0.8947420267551172, 0.9292040092677883, 0.9023642641734333, 0.9171405855982971, 0.9455350682381521, 0.963685669763018, 0.9764682982074286, 0.8699307886835247, 0.9188037691388232, 0.8962335216572505, 0.9612077025905715, 0.9037095538398067, 0.9532073435983818, 0.8708433541766875, 0.9579124579124579, 0.9681915434503617, 0.9733007733007734, 0.9448862735934641, 0.9837973137973138, 0.9252851270708224, 0.9392322008036197, 0.963700656261472, 0.9808157528745763, 0.9296008054455954, 0.9416814129252117, 0.9201071212649136, 0.8718481996368493, 0.9104076928548618, 0.9221841838550414, 0.9777777777777777, 0.9344530275172728, 0.9420748580139305, 0.7814877802973043, 0.9532802137802786, 0.9494580528250784, 0.9888888888888889, 0.96054622508472, 0.9696199557572692, 0.9796271135265701, 0.8818875502008031, 0.9326916582235731, 0.9571652084092842, 0.886698175267172, 0.9633465819096365, 0.9444231333812761, 0.9743589743589745, 0.9352529657969177, 0.8532193907553949, 0.8709398271085069, 0.965895061728395, 0.8506089087335477, 0.9484618403185435, 0.8933823529411765, 0.8907397804523706, 0.9507493429470554, 0.9623619737750172, 0.903830240725218, 0.8984780597688551, 0.9377672775809421, 0.9157963233593586, 0.9613206058144877, 0.9223925361783264, 0.9655156995438275, 0.9591981665729264, 0.9432686446439874, 0.9061011234363269, 0.9373053434579276, 0.8938712771010907, 0.9477711265413086, 0.9084963427019502, 0.951388888888889, 0.9563143631436315, 0.8490545877206536, 0.9490740740740741, 0.8842008331211807, 0.9578489774568206, 0.9583333333333334, 0.9492841581076875, 0.9293745309294131, 0.8471592844830785, 0.9906565656565657, 0.9332865030069999, 0.9647969696461566, 0.9281413431658453, 0.9130602606402762, 0.909371612356687]
+Documents Recall: [0.9407087153439729, 0.9396514161220043, 0.9537037037037036, 0.8586673289560828, 0.9120257582507988, 0.9143789749345306, 0.8888013877375579, 0.8372847425479005, 0.8968802911914366, 0.9644444444444445, 0.8831380189713524, 0.9804713804713806, 0.8964514402517624, 0.7332105996803616, 0.9001452432824982, 0.9618055555555557, 0.9294470241324463, 0.8942506174600272, 0.96916627762216, 0.9792592592592593, 0.7745655479526447, 0.9159259259259259, 0.9071947385334876, 0.8992367617643962, 0.8592439930970398, 0.8200609317641323, 0.8432861891195224, 0.9788569455236122, 0.9633894059415882, 0.9749735449735449, 0.9556618819776714, 0.8519792127377267, 0.8773096039762707, 0.858726578391534, 0.8965040997649694, 0.8991522366522368, 0.8695575946040788, 0.9415776353276354, 0.9389810936533843, 0.9322712317996197, 0.9109974811437578, 0.9084387676702931, 0.8864307760141094, 0.9467910959714239, 0.7628479047301527, 0.9046027030340756, 0.9843097643097644, 0.7441220217070413, 0.8918390637140639, 0.8497288966400749, 0.8950576592023961, 0.8057329953448283, 0.8833318129295141, 0.9034024751416055, 0.8963289588293445, 0.9586416819126381, 0.8670384011871292, 0.9556885836771986, 0.9334572132946747, 0.8763392857142858, 0.9542375791277359, 0.9424182454042119, 0.9891666666666667, 0.825537775234315, 0.9096949360817428, 0.8923840933403775, 0.938648026691505, 0.9866666666666667, 0.8781921343763449, 0.876847913669776, 0.8870101686507935, 0.9811965811965813, 0.9164021164021164, 0.9405245391300158, 0.8225753448488012, 0.8673261521087609, 0.964481378885811, 0.7835856657935282, 0.8799695369484399, 0.8444444444444444, 0.8407825620278913, 0.8770044805723156, 0.9851851851851853, 0.8766524231688168, 0.9719135802469135, 0.9471679555012887, 0.9773824059538345, 0.8063159851192306, 0.88001628001628, 0.9038040415064175, 0.9308906142662786, 0.9841025641025641, 0.8170425290188984, 0.9835150309574862, 0.9187703413267322, 0.9749823426638414, 0.9173082364258835, 0.7979312403221855, 0.9285383563085342, 0.9676767676767678, 0.9454816966659072, 0.8594818931156692, 0.9398148148148149, 0.9339056776556776, 0.8664106414106415, 0.9794277003048933, 0.9177849927849927, 0.8091997822750701, 0.9662457712284193, 0.9765376984126984, 0.9881701631701633, 0.9477465744132411, 0.9861471861471861, 0.9060428332842125, 0.9722222222222222, 0.932697343808455, 1.0, 0.862132312132312, 0.951664036107346, 0.9843448490507315, 0.8959735639365981, 0.9774669774669774, 0.9578505856283633, 0.9262611657348497, 0.8998141715263103, 0.9282923905308745, 0.9403166462820507, 0.8119067088114708, 0.9367040117040117, 0.8667365208304137, 0.9881944444444445, 0.875221266550214, 0.945645813881108, 0.8486625514403293, 0.9672305764411027, 0.9790123456790124, 0.8886604321491842, 0.6957938172634396, 0.8275516046349379, 0.9651759351759351, 0.935878966971404, 0.894226078268507, 0.9688570875387145, 0.8770262417321243, 0.9549334921483151, 0.80868517178862, 0.8877463666937353, 0.9031673881673882, 0.9209938176423685, 0.7478392593518904, 0.8665183890183891, 0.8200766417678181, 0.9958847736625515, 0.9767757507043221, 0.9233567358567359, 0.9208273072166677, 0.9181146331596107, 0.9556621105232216, 0.9261469032057267, 0.9494179894179894, 0.9072797274410177, 0.9922480620155039, 0.9161778699257374, 0.9448408607834716, 0.9314188572809262, 0.7881282503504726, 0.9673456790123457, 0.9740088304516616, 0.8787578582221439, 0.9048669638100533, 0.8445929508549227, 0.8679942062295002, 0.9341039392355972, 0.945977916945659, 0.9764682982074286, 0.8171836247331297, 0.9029745310424614, 0.8484344266773512, 0.9571672632289071, 0.8356348914243652, 0.9384274162051941, 0.8004761904761906, 0.9579124579124579, 0.9582887466659397, 0.9733007733007734, 0.9211477374914779, 0.9837973137973138, 0.9048794696588813, 0.9033291351687578, 0.9559084103726961, 0.9808157528745763, 0.9134881844559265, 0.9116706278470983, 0.8992559581217457, 0.8170937534291571, 0.8631398870626513, 0.8808624032982184, 0.9777777777777777, 0.9294192683031159, 0.9307412893619791, 0.6935887699045594, 0.9430473629471271, 0.9542345000678334, 0.9888888888888889, 0.9441646986125353, 0.9623802119775907, 0.9796271135265701, 0.8387037037037036, 0.8829629629629631, 0.9415123456790123, 0.8485759315546549, 0.9451419042775139, 0.9412586027474151, 0.9743589743589745, 0.9109721232525395, 0.7928060892973173, 0.8114349233857684, 0.965895061728395, 0.8296240782118961, 0.9443949998053759, 0.8468001443001443, 0.8480935567860532, 0.932608300078873, 0.9623619737750172, 0.8650332754047924, 0.8794321339771977, 0.919063198622947, 0.9156914484692263, 0.956727316221997, 0.9152203856749311, 0.9524845576738986, 0.9462715477763357, 0.9287846412846413, 0.8751894723633854, 0.9097135597135596, 0.8631979131979133, 0.937118752012369, 0.8646097883597883, 0.951388888888889, 0.9509990662931839, 0.7724996464003556, 0.9490740740740741, 0.8585446407773452, 0.9423151761014079, 0.9583333333333334, 0.9206766206766207, 0.9189470912290506, 0.7700069895382397, 0.9906565656565657, 0.9147764221372773, 0.9560148912421033, 0.9041107820514629, 0.8746339685798933, 0.8685064935064934]
+Documents Precision: [0.9630039169495194, 0.9777777777777779, 0.9670138888888888, 0.9340815213155639, 0.9466285885423352, 0.9475080667789001, 0.9484427183008743, 0.9662608169785204, 0.9610142781195412, 0.9644444444444445, 0.9528897028897029, 0.9804713804713806, 0.9478124384302874, 0.9014972347913525, 0.9753086419753086, 0.9618055555555557, 0.9238303449722135, 0.9598594993552977, 0.96916627762216, 0.9792592592592593, 0.9219350765721733, 0.9523456790123457, 0.9311557219344104, 0.9527777777777776, 0.92958089668616, 0.890147240807471, 0.9194843617920542, 0.9788569455236122, 0.9802054154995332, 0.9749735449735449, 0.9556618819776714, 0.9415761626287943, 0.9472883597883598, 0.9277245636441038, 0.9457946815089672, 0.9534391534391534, 0.9383617213865693, 0.9676256613756614, 0.9812033377250767, 0.9626219569953585, 0.9536719067969068, 0.9367647898213441, 0.9635521885521886, 0.9822671156004489, 0.8550391129338498, 0.9353485838779957, 0.9843097643097644, 0.8624150446503388, 0.9407109557109558, 0.9648627533536999, 0.9420461760461761, 0.9263730158730158, 0.9422398589065256, 0.9687467560985347, 0.9101831651464004, 0.9846468021906619, 0.9328938738029647, 0.9618606701940036, 0.9663275836650449, 0.9618480725623583, 0.9833189379192396, 0.9599030574363274, 0.9891666666666667, 0.9155227114823075, 0.9930337861372345, 0.9788055998582315, 0.9578758600497731, 0.9866666666666667, 0.9450866750208856, 0.9588878713878713, 0.9772675736961451, 0.9811965811965813, 0.9666666666666667, 0.9576788407670761, 0.9134567901234568, 0.989578449657501, 0.964481378885811, 0.8980266280266281, 0.9485559312482389, 0.9527777777777778, 0.8987212276214834, 0.9482804232804233, 0.9851851851851853, 0.9151130351130351, 0.9719135802469135, 0.9734025234025233, 0.9773824059538345, 0.9137877373171491, 0.9703703703703703, 0.9343392718392719, 0.9420424372805325, 0.9841025641025641, 0.9187023502812975, 0.9835150309574862, 0.9355091432284414, 0.9749823426638414, 0.9450366626837216, 0.9229359692594987, 0.975, 0.9676767676767678, 0.9651065162907267, 0.9373750734861845, 0.9851851851851853, 0.9823280423280423, 0.9802469135802468, 0.9794277003048933, 0.9428571428571427, 0.8879919800716412, 0.9656299014994668, 0.9765376984126984, 0.9881701631701633, 0.9477465744132411, 0.9861471861471861, 0.9386752136752136, 0.9722222222222222, 0.9734380845491958, 1.0, 0.9637029637029636, 0.9689015855320203, 0.9843448490507315, 0.9834845049130764, 0.9774669774669774, 0.977397910731244, 0.9637855322065848, 0.9473403944911297, 0.9518704167826976, 0.9425875161148652, 0.9344608213655833, 0.9668091168091167, 0.9314021448636834, 0.9881944444444445, 0.9303980114896295, 0.9761220043572983, 0.9787037037037036, 0.9672305764411027, 0.9790123456790124, 0.9346036030246556, 0.8773555308038067, 0.931530583613917, 0.9853896103896104, 0.9537545787545788, 0.9256773939515837, 0.9814484388397432, 0.9501864148922973, 0.9749394819656257, 0.9147310206133735, 0.8967895930301945, 0.9574603174603175, 0.9492879866686866, 0.8970018805600279, 0.9088493631971893, 0.9126984126984127, 0.9958847736625515, 0.9767757507043221, 0.9523809523809524, 0.9865319865319865, 0.9783441612527071, 0.9771898883009994, 0.9691710017340269, 0.9798941798941799, 0.9755460588793922, 0.9922480620155039, 0.9342130441920359, 0.9546546546546546, 0.9517195767195767, 0.8975245653817083, 0.9673456790123457, 0.9740088304516616, 0.9137293570626904, 0.955579214522304, 0.9695657235500521, 0.9723588580731438, 0.9580998822378133, 0.9824175824175825, 0.9764682982074286, 0.9386946386946388, 0.9397759103641458, 0.9504232804232804, 0.9658432735355813, 0.9892543859649123, 0.9687082464860243, 0.9554563492063491, 0.9579124579124579, 0.9784098292870222, 0.9733007733007734, 0.9699227876956206, 0.9837973137973138, 0.9470722306016423, 0.9782557354925775, 0.9716854904354904, 0.9808157528745763, 0.9465608465608466, 0.9748514557338086, 0.9435135637504918, 0.9388785817357247, 0.963370388805929, 0.9699387357282094, 0.9777777777777777, 0.9418250487329435, 0.9565656565656565, 0.9032010582010582, 0.9638488247863247, 0.9457891111737265, 0.9888888888888889, 0.9778119051410977, 0.9770282451038846, 0.9796271135265701, 0.9322222222222223, 0.9888888888888889, 0.9736111111111111, 0.9376165280927186, 0.9826730706948492, 0.9488840788840789, 0.9743589743589745, 0.9615261813537676, 0.9301076765989046, 0.9464329321472178, 0.965895061728395, 0.8900221216935676, 0.9539720880300591, 0.951388888888889, 0.9404750267653493, 0.9700027233115468, 0.9623619737750172, 0.946603835978836, 0.9202594382741441, 0.9573126220185043, 0.9213069558307655, 0.9673611111111112, 0.931974506974507, 0.9791102617189574, 0.9726579520697168, 0.9584401709401709, 0.9405935127674258, 0.9675213675213675, 0.9330026455026456, 0.9587893587893589, 0.9596825396825396, 0.951388888888889, 0.9627865961199294, 0.9427853192559074, 0.9490740740740741, 0.9237012987012987, 0.9741690408357074, 0.9583333333333334, 0.98, 0.9402090939725348, 0.945, 0.9906565656565657, 0.9530045351473923, 0.9738243004909671, 0.95446314286894, 0.9550930550930551, 0.9564694564694564]
+Dump predictions of first document into file predicted.german.128.json

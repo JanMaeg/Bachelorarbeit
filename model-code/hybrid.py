@@ -27,10 +27,10 @@ OVERLAPPING = "overlapping"
 EMBEDDING = "embedding"
 NEURAL = "neural"
 
-METHOD = NEURAL
+METHOD = EMBEDDING
 USE_GOLD_CLUSTER = False
 
-EMBEDDING_THRESHOLD = 0.7
+EMBEDDING_THRESHOLD = 0.8
 
 
 def get_documents_with_predictions(documents, config, runner, model, out_file, skip_predictions=True):
@@ -309,7 +309,7 @@ def merge_by_string_matching(documents, use_gold_clusters=False):
                 cluster_indices_corrected = np.array(split[predictions_key][cluster_index]) + split["start_index"]
 
                 if possible_merges_count == 1:
-                    logger.debug(f"Cluster where merged by token: {merge_token}")
+                    logger.info(f"Cluster where merged by token: {merge_token}")
                     document_clusters[possible_merge_cluster] = np.concatenate(
                         (document_clusters[possible_merge_cluster], cluster))
 
@@ -324,6 +324,7 @@ def merge_by_string_matching(documents, use_gold_clusters=False):
                     logger.debug("Two or more merges with the same accuracy are possible. Skipping merge.")
                     document_clusters.append(cluster)
                     document_clusters_indices.append(cluster_indices_corrected)
+                    logger.info("=====")
         merged_clusters.append({
             "str": document_clusters,
             "indices": document_clusters_indices
@@ -553,6 +554,22 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
 
     merged_clusters = []
 
+    filtered_documents = []
+    filtered_complete_documents = []
+    original_ids = []
+    for document_id, splits in enumerate(enriched_documents):
+        if len(splits) > 1:
+            original_ids.append(document_id)
+            filtered_documents.append(splits)
+            filtered_complete_documents.append(documents[document_id])
+
+    logger.info(f"Removed {len(enriched_documents) - len(filtered_documents)} documents because only 1 split given. {len(filtered_documents)} documents left.")
+
+    enriched_documents = filtered_documents
+
+    logger.info([len(splits) for splits in enriched_documents])
+
+
     if METHOD == STRING_MATCHING:
         merged_clusters = merge_by_string_matching(enriched_documents, use_gold_clusters=USE_GOLD_CLUSTER)
     elif METHOD == OVERLAPPING:
@@ -560,7 +577,7 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     elif METHOD == EMBEDDING:
         merged_clusters = merge_by_embedding(enriched_documents, use_gold_clusters=USE_GOLD_CLUSTER, use_word2vec=True)
     elif METHOD == NEURAL:
-        merged_clusters = merge_by_neural_net(enriched_documents, documents, config, model, runner, out_file, use_gold_clusters=USE_GOLD_CLUSTER)
+        merged_clusters = merge_by_neural_net(enriched_documents, filtered_complete_documents, config, model, runner, out_file, use_gold_clusters=USE_GOLD_CLUSTER)
 
     evaluator = CorefEvaluator()
 
@@ -571,8 +588,9 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     for doc_index, document in enumerate(enriched_documents):
         evaluator2 = CorefEvaluator()
         document_clusters = merged_clusters[doc_index]['indices']
+        original_document_id = original_ids[doc_index]
 
-        gold_clusters = documents[doc_index]['clusters']
+        gold_clusters = documents[original_document_id]['clusters']
         predicted_clusters = []
         mention_to_cluster_id = {}
 
@@ -602,14 +620,17 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     logger.info(f"Documents Precision: {p_total}")
 
     exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
-    dump_to_file(enriched_documents, config, None,
-                 f'predicted.{language}.{max_seg_len}{exclude_token_suffix}.json', True,
-                 method=METHOD)
-
-    dump_to_file(enriched_documents, config, merged_clusters[0]['indices'],
-                 f'merged.{language}.{max_seg_len}{exclude_token_suffix}.json', False,
-                 method=METHOD)
-
+    # dump_to_file(enriched_documents, config, None,
+    #              f'predicted.{language}.{max_seg_len}{exclude_token_suffix}.json', True,
+    #              method=METHOD)
+    #
+    # dump_to_file(enriched_documents, config, merged_clusters[0]['indices'],
+    #              f'merged.{language}.{max_seg_len}{exclude_token_suffix}.json', False,
+    #              method=METHOD)
+    #
+    # dump_to_file(enriched_documents, config, None,
+    #              f'gold.{language}.{max_seg_len}{exclude_token_suffix}.json', False,
+    #              method=METHOD)
 
 def main():
     config_name, saved_suffix, gpu_id = sys.argv[1], sys.argv[2], int(sys.argv[3])
