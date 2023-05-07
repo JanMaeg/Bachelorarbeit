@@ -211,7 +211,7 @@ class Tensorizer:
                               gold_starts, gold_ends, gold_mention_cluster_map, split_starts, split_ends, predictions_start,
                               predictions_ends, predictions_cluster_map, predictions_split_map, segments_per_split)
 
-        if (is_hybrid or is_training) and len(sentences) > self.config['max_training_sentences']:
+        if is_training and len(sentences) > self.config['max_training_sentences']:
             if self.long_doc_strategy == 'split':
                 out = []
                 for sentence_offset in range(0, len(sentences), self.config['max_training_sentences']):

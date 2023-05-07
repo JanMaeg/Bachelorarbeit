@@ -1,9 +1,9 @@
+import argparse
 import itertools
 import json
 import logging
 import os
 import pickle
-import sys
 from collections import Counter
 from os.path import join
 
@@ -17,7 +17,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import util
 from metrics import CorefEvaluator
 from run import Runner
-from split_hybrid import split_document, dump_to_file
+from split_hybrid import split_document
 from tensorize import Tensorizer, convert_to_torch_tensor
 
 logger = logging.getLogger(__name__)
@@ -27,20 +27,18 @@ OVERLAPPING = "overlapping"
 EMBEDDING = "embedding"
 NEURAL = "neural"
 
-METHOD = EMBEDDING
-USE_GOLD_CLUSTER = False
-
-EMBEDDING_THRESHOLD = 0.8
+#EMBEDDING_THRESHOLD = 0.8
 
 
-def get_documents_with_predictions(documents, config, runner, model, out_file, skip_predictions=True):
+def get_documents_with_predictions(documents, config, runner, model, args):
     tensorizer = Tensorizer(config)
     language = config['language']
     max_seg_len = config['max_segment_len']
 
-    splitted_documents = split_document(documents, overlapping=(METHOD == OVERLAPPING))
+    splitted_documents = split_document(documents, max_length=args.split_length,
+                                        overlapping=(args.method == OVERLAPPING))
 
-    if skip_predictions:
+    if args.use_c2f is None:
         for index, docs in enumerate(splitted_documents):
             for doc_key, doc in docs.items():
                 splitted_documents[index][doc_key]["predictions"] = []
@@ -62,7 +60,7 @@ def get_documents_with_predictions(documents, config, runner, model, out_file, s
 
     torch_documents = [(doc_key, convert_to_torch_tensor(*tensor)) for doc_key, tensor in tensor_documents]
 
-    cache_path = join(config['data_dir'], f'predictions.{METHOD.lower()}.{language}.{max_seg_len}')
+    cache_path = join(config['data_dir'], f'predictions.string_matching.{language}.{max_seg_len}.{args.split_length}')
 
     # For faster development I added here a caching for the predictions so that the model doesn't have
     # to prediction on every run (which takes some time).
@@ -79,7 +77,7 @@ def get_documents_with_predictions(documents, config, runner, model, out_file, s
             0,
             official=False,
             conll_path=runner.config['conll_test_path'],
-            out_file=out_file,
+            out_file=None,
             hybrid=True
         )
 
@@ -232,17 +230,37 @@ def merge_by_overlapping(documents, use_gold_clusters=False):
     return merged_clusters
 
 
-def merge_by_string_matching(documents, use_gold_clusters=False):
+def get_gold_cluster(document, split_end_index):
+    filtered_clusters = []
+
+    for cluster in document['clusters']:
+        filtered_entity = [mention for mention in cluster if mention[1] <= split_end_index]
+
+        if len(filtered_entity) > 0:
+            filtered_clusters.append(filtered_entity)
+
+    return filtered_clusters
+
+
+def merge_by_string_matching(documents, use_gold_clusters=False, unsplit_documents=None):
     merged_clusters = []
     predictions_str_key = "predictions_str" if not use_gold_clusters else "gold_cluster_str"
     predictions_key = "predictions" if not use_gold_clusters else "clusters"
 
-    for document in documents:
+    evaluation_over_time = {}
+
+    for document_index, document in enumerate(documents):
         document_clusters = []
         document_clusters_indices = []
+        document_f1s = []
+        document_precisions = []
+        document_recalls = []
+
+        evaluator = CorefEvaluator()
 
         for index, split_doc_key in enumerate(document):
             split = document[split_doc_key]
+
             pre_merge_clusters = document_clusters
 
             # For the first split we simply take all clusters as they are
@@ -265,8 +283,8 @@ def merge_by_string_matching(documents, use_gold_clusters=False):
                 result = {}
 
                 for token in cluster:
-                    #if token in ["er", "sie", "sich", "sein", "seinem", "ihre", "ihr", "Sie", "Ich", "ich", "ihm",
-#                                 "ihn", "seine", "ihres", "seinen", "ihrer", "ihrem", "seiner", "ihren"]: continue
+                    # if token in ["er", "sie", "sich", "sein", "seinem", "ihre", "ihr", "Sie", "Ich", "ich", "ihm",
+                    #                                 "ihn", "seine", "ihres", "seinen", "ihrer", "ihrem", "seiner", "ihren"]: continue
 
                     # The cluster that the token possibly matches the best with
                     best_cluster_match = -1
@@ -309,7 +327,7 @@ def merge_by_string_matching(documents, use_gold_clusters=False):
                 cluster_indices_corrected = np.array(split[predictions_key][cluster_index]) + split["start_index"]
 
                 if possible_merges_count == 1:
-                    logger.info(f"Cluster where merged by token: {merge_token}")
+                    # logger.info(f"Cluster where merged by token: {merge_token}")
                     document_clusters[possible_merge_cluster] = np.concatenate(
                         (document_clusters[possible_merge_cluster], cluster))
 
@@ -324,11 +342,38 @@ def merge_by_string_matching(documents, use_gold_clusters=False):
                     logger.debug("Two or more merges with the same accuracy are possible. Skipping merge.")
                     document_clusters.append(cluster)
                     document_clusters_indices.append(cluster_indices_corrected)
-                    logger.info("=====")
+                    # logger.info("=====")
+
+            gold_clusters_until = get_gold_cluster(unsplit_documents[document_index], split['end_index'])
+
+            predicted_clusters = []
+            mention_to_cluster_id = {}
+
+            for cluster_index, cluster in enumerate(document_clusters_indices):
+                predicted_clusters.append(tuple(tuple(m) for m in cluster))
+                for mention in cluster:
+                    mention_to_cluster_id[tuple(mention)] = cluster_index
+
+            update_evaluator(predicted_clusters, mention_to_cluster_id, gold_clusters_until, evaluator)
+            document_f1s.append(evaluator.get_f1())
+            document_precisions.append(evaluator.get_precision())
+            document_recalls.append(evaluator.get_recall())
+
+        evaluation_over_time[list(document.keys())[0]] = {
+            "f1": document_f1s,
+            "precision": document_precisions,
+            "recall": document_recalls
+        }
+
         merged_clusters.append({
             "str": document_clusters,
             "indices": document_clusters_indices
         })
+
+    #    output_path = join('/Users/jan/Documents/Studium/Bachelorarbeit/repository/results', "evaluation_over_time_news_c2f.json")
+    #    dump_file = open(output_path, "w")
+    #    dump_file.write(json.dumps(evaluation_over_time))
+    #    dump_file.close()
 
     return merged_clusters
 
@@ -392,7 +437,7 @@ def highlight_cell(x, y, ax=None, **kwargs):
     return rect
 
 
-def merge_by_embedding(documents, use_gold_clusters=True, use_word2vec=False):
+def merge_by_embedding(documents, use_gold_clusters=True, use_word2vec=False, threshold=50):
     if use_word2vec:
         model = KeyedVectors.load_word2vec_format("vectors_full.txt", binary=False, no_header=True)
     else:
@@ -403,6 +448,8 @@ def merge_by_embedding(documents, use_gold_clusters=True, use_word2vec=False):
     cluster_indices_key = "clusters" if use_gold_clusters else "predictions"
 
     merged_clusters = []
+
+    threshold = threshold / 100
 
     for document in documents:
         document_clusters = []
@@ -454,10 +501,10 @@ def merge_by_embedding(documents, use_gold_clusters=True, use_word2vec=False):
 
                     # If the highest cosine similarity is above the threshold both clusters will be merged
                     # Also check if the current index is also the highest possible for the target cluster
-                    if highest_sim_value > EMBEDDING_THRESHOLD and np.argmax(
+                    if highest_sim_value > threshold and np.argmax(
                             weights[:, highest_sim_index]) == cluster_index:
                         highlight_cell(highest_sim_index, cluster_index, color="red", linewidth=3)
-                        logger.debug(f"Cluster where merged by cosine similarity: {highest_sim_value}")
+                        logger.info(f"Cluster where merged by cosine similarity: {highest_sim_value}")
                         document_clusters[highest_sim_index] = np.concatenate(
                             (document_clusters[highest_sim_index], cluster))
 
@@ -465,7 +512,7 @@ def merge_by_embedding(documents, use_gold_clusters=True, use_word2vec=False):
                             (document_clusters_indices[highest_sim_index], cluster_indices_corrected)
                         )
                     else:
-                        logger.debug(
+                        logger.info(
                             f"Cosine similarity doesn't pass threshold for any existing cluster. "
                             f"Adding new one {highest_sim_value}")
                         document_clusters.append(cluster)
@@ -506,7 +553,8 @@ def merge_by_neural_net(enriched_documents, documents, config, model, runner, ou
         for enriched_split in enriched_doc.values():
             segments_per_split.append(len(enriched_split['sentences']))
 
-        enriched_tensor = tensorizer.tensorize_example(doc, False, False, split_starts, split_ends, predictions, segments_per_split)
+        enriched_tensor = tensorizer.tensorize_example(doc, False, False, split_starts, split_ends, predictions,
+                                                       segments_per_split)
         tensors.append(enriched_tensor)
 
     tensor_documents = itertools.chain(*tensors)
@@ -535,10 +583,10 @@ def merge_by_neural_net(enriched_documents, documents, config, model, runner, ou
     return merged_clusters
 
 
-def evaluate(config_name, gpu_id, saved_suffix, out_file):
-    config = util.initialize_config(config_name, create_dirs=False)
-    runner = Runner(config_name, gpu_id, skip_data_loading=True)
-    model = runner.initialize_model(saved_suffix)
+def evaluate(args):
+    config = util.initialize_config(args.config_name, create_dirs=False)
+    runner = Runner(args.config_name, 0, skip_data_loading=True)
+    model = runner.initialize_model(args.saved_suffix)
     model.eval_only = True
     exclude_merge_tokens = False
 
@@ -548,8 +596,9 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
 
     f = open(path, 'r')
     documents = [json.loads(line) for line in f.readlines()]
+    documents = [document for document in documents if len(document['tokens']) > 350]
 
-    enriched_documents = get_documents_with_predictions(documents, config, runner, model, out_file, skip_predictions=USE_GOLD_CLUSTER)
+    enriched_documents = get_documents_with_predictions(documents, config, runner, model, args)
     enriched_documents = cluster_indices_to_tokens(enriched_documents)
 
     merged_clusters = []
@@ -563,21 +612,24 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
             filtered_documents.append(splits)
             filtered_complete_documents.append(documents[document_id])
 
-    logger.info(f"Removed {len(enriched_documents) - len(filtered_documents)} documents because only 1 split given. {len(filtered_documents)} documents left.")
+    logger.info(
+        f"Removed {len(enriched_documents) - len(filtered_documents)} documents because only 1 split given. {len(filtered_documents)} documents left.")
 
     enriched_documents = filtered_documents
 
     logger.info([len(splits) for splits in enriched_documents])
 
-
-    if METHOD == STRING_MATCHING:
-        merged_clusters = merge_by_string_matching(enriched_documents, use_gold_clusters=USE_GOLD_CLUSTER)
-    elif METHOD == OVERLAPPING:
-        merged_clusters = merge_by_overlapping(enriched_documents, use_gold_clusters=USE_GOLD_CLUSTER)
-    elif METHOD == EMBEDDING:
-        merged_clusters = merge_by_embedding(enriched_documents, use_gold_clusters=USE_GOLD_CLUSTER, use_word2vec=True)
-    elif METHOD == NEURAL:
-        merged_clusters = merge_by_neural_net(enriched_documents, filtered_complete_documents, config, model, runner, out_file, use_gold_clusters=USE_GOLD_CLUSTER)
+    if args.method == STRING_MATCHING:
+        merged_clusters = merge_by_string_matching(enriched_documents, use_gold_clusters=args.use_c2f is None,
+                                                   unsplit_documents=filtered_complete_documents)
+    elif args.method == OVERLAPPING:
+        merged_clusters = merge_by_overlapping(enriched_documents, use_gold_clusters=args.use_c2f is None)
+    elif args.method == EMBEDDING:
+        merged_clusters = merge_by_embedding(enriched_documents, use_gold_clusters=args.use_c2f is None,
+                                             use_word2vec=args.embedding_method == "word2vec", threshold=args.embedding_threshold)
+    elif args.method == NEURAL:
+        merged_clusters = merge_by_neural_net(enriched_documents, filtered_complete_documents, config, model, runner,
+                                              None, use_gold_clusters=args.use_c2f is None)
 
     evaluator = CorefEvaluator()
 
@@ -615,11 +667,38 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
         for name, score in metrics.items():
             logger.info('%s: %.2f' % (name, score))
 
+    p, r, f = evaluator.get_prf()
+
     logger.info(f"Documents F1-Scores: {f1_total}")
     logger.info(f"Documents Recall: {r_total}")
     logger.info(f"Documents Precision: {p_total}")
 
-    exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
+    logger.info(f"{p} {r} {f}")
+
+    results = {
+        "f1": f,
+        "precision": p,
+        "recall": r,
+        "documents_f1": f1_total,
+        "documents_precision": p_total,
+        "documents_recall": r_total,
+        "method": args.method,
+        "split_length": args.split_length,
+        "config": args.config_name,
+        "embedding_threshold": args.embedding_threshold
+    }
+
+    gold_suffix = "_c2f" if args.use_c2f is not None else ""
+
+    if args.method == EMBEDDING:
+        output_path = join(args.results_output, f"results_{args.config_name}_{args.method}_{args.split_length}_{args.embedding_method}_{args.embedding_threshold}_{gold_suffix}.json")
+    else:
+        output_path = join(args.results_output, f"results_{args.config_name}_{args.method}_{args.split_length}{gold_suffix}.json")
+    dump_file = open(output_path, "w")
+    dump_file.write(json.dumps(results))
+    dump_file.close()
+
+    # exclude_token_suffix = ".ex" if exclude_merge_tokens else ""
     # dump_to_file(enriched_documents, config, None,
     #              f'predicted.{language}.{max_seg_len}{exclude_token_suffix}.json', True,
     #              method=METHOD)
@@ -632,11 +711,29 @@ def evaluate(config_name, gpu_id, saved_suffix, out_file):
     #              f'gold.{language}.{max_seg_len}{exclude_token_suffix}.json', False,
     #              method=METHOD)
 
-def main():
-    config_name, saved_suffix, gpu_id = sys.argv[1], sys.argv[2], int(sys.argv[3])
-    out_file = sys.argv[4] if len(sys.argv) > 4 else None
-    evaluate(config_name, gpu_id, saved_suffix, out_file)
-
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config_name', type=str, required=True, default='droc_final_512',
+                        help='Name of the experiment that should be run from the experiments.conf')
+    parser.add_argument('--saved_suffix', type=str, required=True,
+                        help='Suffix of the model that will be run')
+    parser.add_argument('--method', type=str, required=True, default=STRING_MATCHING,
+                        choices=[STRING_MATCHING, NEURAL, EMBEDDING, OVERLAPPING],
+                        help='Merging method that should be applied')
+    parser.add_argument('--split_length', type=int, default=512,
+                        help='Maximum length of a split')
+    parser.add_argument('--use_c2f', action=argparse.BooleanOptionalAction,
+                        help='If splits should be predicted with coarse-to-fine model')
+    parser.add_argument('--results_output', type=str, required=True,
+                        help='Path were the results will be stored')
+    parser.add_argument('--embedding_method', type=str, default="word2vec",
+                        choices=["fastText", "word2vec"],
+                        help='Type of word embeddings that are used')
+    parser.add_argument('--embedding_threshold', type=int, default=95,
+                        help='Required cosine-similarity to merged two entities')
+
+    args = parser.parse_args()
+    logger.info(args)
+
+    evaluate(args)

@@ -117,6 +117,9 @@ def phi4(c1, c2):
     return 2 * len([m for m in c1 if m in c2]) / float(len(c1) + len(c2))
 
 
+def phi3(c1, c2):
+    return len([m for m in c1 if m in c2])
+
 def ceafe(clusters, gold_clusters):
     clusters = [c for c in clusters if len(c) != 1]
     scores = np.zeros((len(gold_clusters), len(clusters)))
@@ -147,3 +150,30 @@ def lea(clusters, mention_to_gold):
         dem += len(c)
 
     return num, dem
+
+
+if __name__ == '__main__':
+    gold_clusters = [
+        [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)],
+        [(6, 6), (7, 7)],
+        [(8, 8), (9, 9), (10, 10), (11, 11), (12, 12)]
+    ]
+
+    predicted_clusters = [
+        ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5)),
+        ((6, 6), (7, 7), (8, 8), (9, 9), (10, 10), (11, 11), (12, 12))
+    ]
+
+    mention_to_cluster_id = {}
+
+    for cluster_index, cluster in enumerate(predicted_clusters):
+        for mention in cluster:
+            mention_to_cluster_id[tuple(mention)] = cluster_index
+
+    evaluator = CorefEvaluator()
+
+    mention_to_predicted = {m: predicted_clusters[cluster_idx] for m, cluster_idx in mention_to_cluster_id.items()}
+    gold_clusters = [tuple(tuple(m) for m in cluster) for cluster in gold_clusters]
+    mention_to_gold = {m: cluster for cluster in gold_clusters for m in cluster}
+
+    evaluator.update(predicted_clusters, gold_clusters, mention_to_predicted, mention_to_gold)

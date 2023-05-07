@@ -37,7 +37,7 @@ def filter_cluster(clusters, start_index, end_index, normalize=False, correct_in
     return final_clusters
 
 
-def split_document(samples, max_length=2500, overlapping=True):
+def split_document(samples, max_length=512, overlapping=True):
     logger.info(f"Splitting documents into segment of length of less than {max_length} subtokens.")
     if overlapping:
         logger.info(f"Documents will overlap.")
