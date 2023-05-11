@@ -36,7 +36,7 @@ def get_documents_with_predictions(documents, config, runner, model, args):
     max_seg_len = config['max_segment_len']
 
     splitted_documents = split_document(documents, max_length=args.split_length,
-                                        overlapping=(args.method == OVERLAPPING))
+                                        overlapping=(args.method == OVERLAPPING), overlapping_length=args.overlapping_length)
 
     if args.use_c2f is None:
         for index, docs in enumerate(splitted_documents):
@@ -60,7 +60,7 @@ def get_documents_with_predictions(documents, config, runner, model, args):
 
     torch_documents = [(doc_key, convert_to_torch_tensor(*tensor)) for doc_key, tensor in tensor_documents]
 
-    cache_path = join(config['data_dir'], f'predictions.string_matching.{language}.{max_seg_len}.{args.split_length}')
+    cache_path = join(config['data_dir'], f'predictions.{args.method}.{args.overlapping_length}.{language}.{max_seg_len}.{args.split_length}')
 
     # For faster development I added here a caching for the predictions so that the model doesn't have
     # to prediction on every run (which takes some time).
@@ -283,8 +283,8 @@ def merge_by_string_matching(documents, use_gold_clusters=False, unsplit_documen
                 result = {}
 
                 for token in cluster:
-                    # if token in ["er", "sie", "sich", "sein", "seinem", "ihre", "ihr", "Sie", "Ich", "ich", "ihm",
-                    #                                 "ihn", "seine", "ihres", "seinen", "ihrer", "ihrem", "seiner", "ihren"]: continue
+                    if token.lower() in ["er", "sie", "sich", "sein", "seinem", "ihre", "ihr", "Sie", "Ich", "ich", "ihm", "ihn", "seine", "ihres", "seinen", "ihrer", "ihrem", "seiner", "ihren"]:
+                        continue
 
                     # The cluster that the token possibly matches the best with
                     best_cluster_match = -1
@@ -689,11 +689,12 @@ def evaluate(args):
     }
 
     gold_suffix = "_c2f" if args.use_c2f is not None else ""
+    overlap_suffix = f"_overlap_{args.overlapping_length}" if args.overlapping_length > 0 else ""
 
     if args.method == EMBEDDING:
-        output_path = join(args.results_output, f"results_{args.config_name}_{args.method}_{args.split_length}_{args.embedding_method}_{args.embedding_threshold}_{gold_suffix}.json")
+        output_path = join(args.results_output, f"results_{args.config_name}_{args.method}_{args.split_length}_{args.embedding_method}_{args.embedding_threshold}{gold_suffix}.json")
     else:
-        output_path = join(args.results_output, f"results_{args.config_name}_{args.method}_{args.split_length}{gold_suffix}.json")
+        output_path = join(args.results_output, f"results_{args.config_name}_{args.method}_{args.split_length}{gold_suffix}{overlap_suffix}.json")
     dump_file = open(output_path, "w")
     dump_file.write(json.dumps(results))
     dump_file.close()
@@ -732,6 +733,8 @@ if __name__ == '__main__':
                         help='Type of word embeddings that are used')
     parser.add_argument('--embedding_threshold', type=int, default=95,
                         help='Required cosine-similarity to merged two entities')
+    parser.add_argument('--overlapping_length', type=int, default=0,
+                        help='Number of sentence that should overlap')
 
     args = parser.parse_args()
     logger.info(args)
