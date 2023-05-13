@@ -42,5 +42,6 @@ The following command line arguments are available for running the script:
 * `--embedding_method`: Type of word embeddings that are used. Available choices are: `fastText`, `word2vec` (default: word2vec).
 * `--embedding_threshold`: Required cosine-similarity to merged two entities (default: 95).
 * `--overlapping_length`: Number of sentence that should overlap (default: 0).
+* `--exclude_pronouns`: If pronouns should be considered in string-based merging method
 
 Example command: `python split_an_merge.py --saved_suffix droc_c2f_May12_17-38-53_1800 --config_name droc_final_512 --method embedding --embedding_threshold 90 --embedding_method fastText --split_length 512 --results_output ../results/logs --use_c2f`
