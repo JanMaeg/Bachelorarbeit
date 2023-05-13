@@ -5,8 +5,10 @@ plt.rcParams['svg.fonttype'] = 'none'
 
 string = [65.61, 88.93]
 overlapping = [79.11, 92.22]
-fast_text = [69.63, 88.92]
-word_2_vec = [70.87, 91.20]
+# fast_text = [69.63, 88.92] # --
+fast_text = [70.06, 90.89]
+#word_2_vec = [70.87, 91.20] # --
+word_2_vec = [72.64, 92.74]
 neural = [66.95, 90.36]
 
 
@@ -30,5 +32,5 @@ plt.yticks(range(0, 110, 10))
 
 fig = ax.get_figure()
 plt.xticks(rotation=45, ha='right')
-fig.savefig("f1_scores_overview_gold.svg", bbox_inches="tight")
+fig.savefig("../graphics/f1_scores_overview_gold.svg", bbox_inches="tight")
 plt.show()

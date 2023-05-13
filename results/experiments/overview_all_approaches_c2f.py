@@ -7,8 +7,10 @@ overview_f1_scores = [55.64, 51.11, 54.88, 55.94, 54.52, 64.72]
 
 string = [55.64, 66.88]
 overlapping = [51.11, 70.09]
-fast_text = [54.88, 67.31]
-word_2_vec = [55.94, 68.56]
+#fast_text = [54.88, 67.31] #--
+fast_text = [55.70, 69.07]
+#word_2_vec = [55.94, 68.56] #--
+word_2_vec = [56.73, 70.30]
 neural = [54.52, 66.21]
 baseline = [64.72, 78.79]
 
@@ -32,5 +34,5 @@ plt.yticks(range(0, 110, 10))
 
 fig = ax.get_figure()
 plt.xticks(rotation=45, ha='right')
-fig.savefig("f1_scores_overview_c2f.svg", bbox_inches="tight")
+fig.savefig("../graphics/f1_scores_overview_c2f.svg", bbox_inches="tight")
 plt.show()
