@@ -6,6 +6,8 @@ The repository is split into three main parts/folders
  - **/results/**: Contains log outputs for the experiments that were run for the evaluation. Also, the code to generate the plots is part of this folder.
  - **/visualization/**: A small visualization tool based on React that I used in the beginning to see how the coarse-to-fine model predicts the entities. This is not really part of the thesis and was just used for development purposes.
 
+You can find the final thesis [here](https://www.inf.uni-hamburg.de/en/inst/ab/lt/teaching/theses/completed-theses/2023-ba-maegdefrau.pdf).
+
 ## Abstract
 Coreference resolution is an essential pre-processing step for many natural language processing tasks. In the past, there has been a shift from rule-based approaches to machine-learning-based approaches. One of these approaches was proposed by Schröder et al., which involved two end-to-end trained models. The first model, called the coarse-to-fine model, suffers from the problem of requiring an increasing amount of memory. Meanwhile, the second model, called the incremental model, only requires a constant amount of memory but performs worse than the coarse-to-fine model. 
 
